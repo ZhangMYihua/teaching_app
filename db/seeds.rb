@@ -24,7 +24,7 @@ create_table "bookings", force: :cascade do |t|
     t.datetime "updated_at",        null: false
   end
 
-  create_table "users", force: :cascade do |t|
+ate_table "users", force: :cascade do |t|
     t.string   "email",                           null: false
     t.string   "crypted_password"
     t.string   "salt"
@@ -38,38 +38,28 @@ create_table "bookings", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "city_time_zone"
+    t.string   "username"
   end
 
 200.times do 
 	User.create!(
-  	user_name: Faker::Internet.user_name,
+  	username: Faker::Internet.user_name,
   	first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
+		city_time_zone: Faker::Address.time_zone,
     email: Faker::Internet.email,
-    password: "cats"
   ) 
   end
 
-150.times do 
-	StudentAccount.create!(
-		city_time_zone: Faker::Address.time_zone,
-    s_introduction: Faker::Lorem.paragraph,
-    subject_of_study: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
-    user_id: User.all.sample.id
-		)
-  end
-
-50.times do 
-	TeacherAccount.create!(
-    country_of_origin: Faker::Address.country,
-    city_time_zone: Faker::Address.time_zone,
-    first_language: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
-    subject_to_teach: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
-    education: ["Masters", "Bachelor Degree", "PhD", "Other"].sample,
-    t_introduction: Faker::Lorem.paragraph,
-    user_id: User.all.sample.id
-		)
-  end
+  100.times do 
+  	Teaching.create!(
+	    country_of_origin: Faker::Address.country,
+    	first_language: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
+    	subject_to_teach: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
+    	education: ["Masters", "Bachelor Degree", "PhD", "Other"].sample,
+    	teacher_id: User.all.sample.id
+  )
+	end
 
 200.times do
 	Booking.create!(

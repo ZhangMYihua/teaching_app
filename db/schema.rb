@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311232126) do
+ActiveRecord::Schema.define(version: 20150311232832) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "time"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150311232126) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "city_time_zone"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
