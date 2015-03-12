@@ -23,9 +23,16 @@ class TeachingsController < ApplicationController
   end
 
   def edit
+    @teaching = Teaching.find(params[:id])
   end
 
   def update
+    @teaching = Teaching.find(params[:id])
+    if @teaching.update_attributes(teaching_params)
+      redirect_to teaching_path(@teaching)
+    else
+      render :edit
+    end
   end
 
   def delete
