@@ -1,2 +1,16 @@
-<h1>Teachings#show</h1>
-<p>Find me in app/views/teachings/show.html.erb</p>
+<h1><%= @teaching.teacher.first_name%></h1>
+<div class="teacher-fields">
+	<p>Time Zone: <strong><%= @teaching.teacher.city_time_zone %></strong></p>
+	<p>Subject to teach: <strong><%= @teaching.subject_to_teach %></strong></p>
+	<p>Education level: <strong><%= @teaching.education %></strong></p>
+</div>
+
+<h2>Availability</h2>
+
+<div id="timeslots">
+	<% @teaching.timeslots.each do |timeslot| %>
+		<%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
+	<% end %>
+</div>
+
+<h5><%= link_to 'Select Availability', new_teaching_timeslot_path(@teaching), id:'add_availability_link'%></h5>

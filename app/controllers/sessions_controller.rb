@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if @user
       session[:user_id] = @user.id
-      redirect_to projects_url, notice: "Logged in"
+      redirect_to teachings_url, notice: "Logged in"
     else
       flash.now[:alert] = "Invalid email or password!"
       render :new
@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to projects_url, notice: "Logged out!"
+    redirect_to teachings_url, notice: "Logged out!"
   end
 end

@@ -1,0 +1,12 @@
+<%= form_for([@teaching, @timeslot]) do |f| %>
+
+	<div class="field">
+	  <%= f.label :time %>
+	  <%= f.datetime_select :time %>
+	</div>
+
+	<div class="actions">
+	  <%= f.submit %>
+	</div>
+
+<% end %>
