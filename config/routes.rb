@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'users#index'
+
   resources :teachings do
     resources :bookings
   end 
