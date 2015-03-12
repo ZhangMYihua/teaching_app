@@ -1,11 +1,13 @@
 class TeachingsController < ApplicationController
   def index
+    @teachings = Teaching.all
   end
 
   def show
   end
 
   def new
+    @teaching = Teaching.new
   end
 
   def create
@@ -19,4 +21,6 @@ class TeachingsController < ApplicationController
 
   def delete
   end
+
+
 end

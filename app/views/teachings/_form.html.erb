@@ -1,0 +1,37 @@
+<%= form_for(@teaching) do |f| %>
+  <% if @teaching.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@teaching.errors.count, "error") %> prohibited this teaching from being saved:</h2>
+
+      <ul>
+      <% @teaching.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :country_of_origin %>
+    <%= f.country_select :country_of_origin %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_language %>
+    <%= f.text_field :first_language %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subject_to_teach %>
+    <%= f.text_field :subject_to_teach %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education%>
+    <%= select(:teaching, :education, options_for_select(['High School Diploma', 'Bachelors', 'Masters', 'P.hD', 'J.D.', 'M.D']), include_blank: true) %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
