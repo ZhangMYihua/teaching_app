@@ -1,44 +1,12 @@
 Rails.application.routes.draw do
-  get 'booking/show'
 
-  get 'booking/new'
+  resources :teachings do
+    resources :bookings
+  end 
 
-  get 'booking/create'
-
-  get 'booking/edit'
-
-  get 'booking/update'
-
-  get 'booking/delete'
-
-  get 'users/index'
-
-  get 'users/show'
-
-  get 'users/new'
-
-  get 'users/create'
-
-  get 'users/edit'
-
-  get 'users/update'
-
-  get 'users/delete'
-
-  get 'teachings/index'
-
-  get 'teachings/show'
-
-  get 'teachings/new'
-
-  get 'teachings/create'
-
-  get 'teachings/edit'
-
-  get 'teachings/update'
-
-  get 'teachings/delete'
-
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
