@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+# match 'logout' => 'sessions#destroy', :as => :logout
 
   root 'teachings#index'
 
