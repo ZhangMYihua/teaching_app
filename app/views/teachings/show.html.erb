@@ -1,8 +1,9 @@
-<h1><%= @teaching.teacher.first_name%></h1>
+<h1><%= @teaching.teacher.joined_fields :first_name, :last_name %></h1>
 <div class="teacher-fields">
 	<p>Time Zone: <strong><%= @teaching.teacher.city_time_zone %></strong></p>
 	<p>Subject to teach: <strong><%= @teaching.subject_to_teach %></strong></p>
 	<p>Education level: <strong><%= @teaching.education %></strong></p>
+	<%= "#{@teaching.price.format} #{@teaching.price.currency}" %>
 </div>
 
 <h2>Availability</h2>

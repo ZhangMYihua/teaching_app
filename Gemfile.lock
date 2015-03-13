@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/NoamB/sorcery.git
-  revision: bbc745672b4ab4ea04293dca60350dcf64b92f9a
-  specs:
-    sorcery (0.9.0)
-      bcrypt (~> 3.1)
-      oauth (~> 0.4, >= 0.4.4)
-      oauth2 (>= 0.8.0)
-
-GIT
   remote: git://github.com/stefanpenner/country_select.git
   revision: 68ae9f919e35b3268c1398490d45c6a88f1e3ca1
   specs:
@@ -112,13 +103,22 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
+    monetize (1.1.0)
+      money (~> 6.5.0)
+    money (6.5.1)
+      i18n (>= 0.6.4, <= 0.7.0)
+    money-rails (1.3.0)
+      activesupport (>= 3.0)
+      monetize (~> 1.1.0)
+      money (~> 6.5.0)
+      railties (>= 3.0)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
-    oauth2 (1.0.0)
+    oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
       multi_json (~> 1.3)
@@ -173,6 +173,10 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     slop (3.6.0)
+    sorcery (0.8.6)
+      bcrypt (~> 3.1)
+      oauth (~> 0.4, >= 0.4.4)
+      oauth2 (>= 0.8.0, < 1.0.0)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
     spring (1.3.3)
@@ -214,10 +218,11 @@ DEPENDENCIES
   favorite_things
   jbuilder (~> 2.0)
   jquery-rails
+  money-rails
   rails (= 4.2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  sorcery!
+  sorcery (= 0.8.6)
   spring
   sqlite3
   turbolinks
