@@ -1,6 +1,7 @@
 <h1>Teachers</h1>
 
 <% @teachings.each do |teaching| %>
+	binding.pry
 	<p>
 		<%= link_to teaching.teacher.name, teaching_path(teaching) %>
 	</p>

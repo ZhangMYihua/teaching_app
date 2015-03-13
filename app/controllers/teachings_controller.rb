@@ -44,4 +44,5 @@ class TeachingsController < ApplicationController
     params.require(:teaching).permit(:country_of_origin, :first_language, :subject_to_teach, :education)
   end
 
+
 end
