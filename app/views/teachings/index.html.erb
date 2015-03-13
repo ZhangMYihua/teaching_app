@@ -1,9 +1,8 @@
 <h1>Teachers</h1>
 
 <% @teachings.each do |teaching| %>
-		<%= link_to teaching.teacher.name, teaching_path(teaching) %>
-	</h4>
 	<p>
+		<%= link_to teaching.teacher.name, teaching_path(teaching) %>
 		From: <%= teaching.country_of_origin %> <br>
 		Teaches: <%= teaching.subject_to_teach %> <br>
 		Education level: <%= teaching.education %> <br>

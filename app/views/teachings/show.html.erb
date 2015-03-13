@@ -13,4 +13,27 @@
 	<% end %>
 </div>
 
+<div class='teacher_calendar'>
+</div>
+<script> 
+	$('.teacher_calendar').fullCalendar({
+		events: "/teachings/<%= @teaching.id %>/timeslots",
+		defaultView: "agendaWeek",
+		displayEventEnd: {
+        month: true,
+        basicWeek: true,
+        "default": true
+    },
+    theme: true,
+    // dayClick: function(date, jsEvent, view) {
+
+    //     // change the day's background color just for fun
+    //     $(this).css('background-color', 'lightgreen');
+
+
+    // }
+	}); 
+</script>
+
+
 <h5><%= link_to 'Select Availability', new_teaching_timeslot_path(@teaching), id:'add_availability_link'%></h5>

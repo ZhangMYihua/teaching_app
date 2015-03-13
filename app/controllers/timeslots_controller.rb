@@ -1,6 +1,11 @@
 class TimeslotsController < ApplicationController
 	before_action :load_teaching
 	
+	def index
+		@timeslots = @teaching.timeslots
+		render json: @timeslots
+	end
+
 	def new
 		@timeslot = @teaching.timeslots.new
 	end
@@ -14,7 +19,9 @@ class TimeslotsController < ApplicationController
 		end
 	end
 
-
+	def default_serializer_options
+  	{root: false}
+	end
 
 	private	
 	def timeslot_params
