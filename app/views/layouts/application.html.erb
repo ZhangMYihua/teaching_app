@@ -14,12 +14,8 @@
     <%= link_to "Logout", session_path("current"), :method => :delete %>
     <%= link_to 'Wanna Teach?', new_teaching_path %>
    <% else %>
-    <div id='login_button'>
 	    <%= link_to "Login", new_session_path %>
-    </div>
-    <div id='signup_button'>
 	    <%= link_to "Sign up", new_user_path %>
-    </div>
     <% end %>
   </nav>
   

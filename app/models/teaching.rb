@@ -12,14 +12,20 @@ class Teaching < ActiveRecord::Base
 	validates :teacher, presence: true
 
 	monetize :price_cents
+
+	def price_string
+		price.format
+	end
+
+	def price_string=(val)
+		if val =~ /(\d+(\.\d+)?)/
+			self.price_cents = ($1.to_f * 100).to_i # convert to cents
+		else
+			raise "Couldn't turn this into a price: #{val.inspect}"
+		end
+	end
+
+
+
 end
 
-
-
-# def price_dollars
-#   price_cents.to_d/100 if price_cents
-# end
-
-# def price_in_dollars=(dollars)
-#   self.price_in_cents = dollars.to_d*100 if dollars.present?
-# end
