@@ -27,7 +27,8 @@ end
   	subject_to_teach: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
   	education: ["Masters", "Bachelor Degree", "PhD", "Other"].sample,
   	teacher_id: User.all.sample.id,
-  	price_cents: rand(1000...4000)
+  	price_cents: rand(1000...4000),
+  	about: Faker::Lorem.paragraphs(paragraph_count=3).join(" ")
     # price_currency: USD
 	)
 	print "|".yellow
