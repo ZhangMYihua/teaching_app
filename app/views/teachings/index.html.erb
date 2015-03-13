@@ -1,2 +1,13 @@
-<h1>Teachings#index</h1>
-<p>Find me in app/views/teachings/index.html.erb</p>
+<h1>Teachers</h1>
+
+<% @teachings.each do |teaching| %>
+	<h4>
+		<%= link_to teaching.teacher.name, teaching_path(teaching) %>
+	</h4>
+	<p>
+		From: <%= teaching.country_of_origin %> <br>
+		Teaches: <%= teaching.subject_to_teach %> <br>
+		Education level: <%= teaching.education %> <br>
+		
+	</p>
+<% end %>

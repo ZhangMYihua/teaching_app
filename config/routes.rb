@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+# match 'logout' => 'sessions#destroy', :as => :logout
 
-  root 'users#index'
+  root 'teachings#index'
 
   resources :teachings do
-    resources :bookings
+    resources :timeslots, only: [:new, :create, :edit, :update, :destroy] do
+      resources :bookings, only: [:new, :create]
+    end
   end 
 
-  resources :users
+  resources :users do
+    resources :bookings, only: [:index, :show, :destroy]
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
   
   # The priority is based upon order of creation: first created -> highest priority.
