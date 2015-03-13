@@ -27,6 +27,7 @@
 	<% end %>
 </div>
 
+<<<<<<< HEAD
 <div class='teacher_calendar'>
 </div>
 <script> 
@@ -58,3 +59,6 @@
 
 
 <h5><%= link_to 'Select Availability', new_teaching_timeslot_path(@teaching), id:'add_availability_link'%></h5>
+=======
+<h4><%= link_to 'Select Availability', new_teaching_timeslot_path(@teaching), id:'add_availability_link'%></h4>
+>>>>>>> merging

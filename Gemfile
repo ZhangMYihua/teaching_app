@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sorcery', github: 'NoamB/sorcery'
+gem 'sorcery', '0.8.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
@@ -27,6 +27,8 @@ gem 'active_model_serializers'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker'
 gem 'country_select', github: 'stefanpenner/country_select'
+gem 'money-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

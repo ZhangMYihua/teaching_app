@@ -1,6 +1,15 @@
 <h1>Teachers</h1>
 
 <% @teachings.each do |teaching| %>
+<<<<<<< HEAD
+	<p>
+		<%= link_to teaching.teacher.name, teaching_path(teaching) %>
+		From: <%= teaching.country_of_origin %> <br>
+		Teaches: <%= teaching.subject_to_teach %> <br>
+		Education level: <%= teaching.education %> <br>
+		
+	</p>
+=======
 	<div class="teacher">
 		<h4>
 			<%= link_to teaching.teacher.name, teaching_path(teaching) %>
@@ -14,4 +23,5 @@
 		</p>
 	</div>
 	
+>>>>>>> merging
 <% end %>

@@ -42,7 +42,7 @@ class TeachingsController < ApplicationController
   private
 
   def teaching_params
-    params.require(:teaching).permit(:country_of_origin, :first_language, :subject_to_teach, :education)
+    params.require(:teaching).permit(:country_of_origin, :first_language, :subject_to_teach, :education, :price_string)
   end
 
 
