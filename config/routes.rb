@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'users#index'
+  root 'teachings#index'
 
   resources :teachings do
     resources :timeslots, only: [:new, :create, :edit, :update, :destroy] do
