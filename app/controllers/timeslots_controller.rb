@@ -23,7 +23,7 @@ class TimeslotsController < ApplicationController
 			{
 				start: result.start,
 				end: result.end,
-				title: "kjlhlkjh"
+				title: "Available"
 		  }
 		end.to_json
 

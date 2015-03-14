@@ -31,22 +31,32 @@
 </div>
 <script> 
 	$('.teacher_calendar').fullCalendar({
+		editable: true,
+		header: {
+			left: 'prev, next',
+			center:'title',
+			right: 'today,month,agendaWeek,agendaDay'
+		},
 		events: "/teachings/<%= @teaching.id %>/timeslots",
 		defaultView: "agendaWeek",
+		timezone: 'local',
+		// timezoneParam: '<% @teaching.teacher.city_time_zone %>',
 		displayEventEnd: {
         month: true,
         basicWeek: true,
         "default": true
     },
     theme: true,
-    header: { center: 'month,agendaWeek'},
     views: {
         month: { // name of view
             titleFormat: 'YYYY, MM, DD'
             // other view-specific options here
         }
       },
-     eventClick: function(calEvent, jsEvent, view) {
+    eventMouseover: function(event, jsEvent, view) {
+    	
+    },
+    eventClick: function(calEvent, jsEvent, view) {
 
         // change the border color just for fun
         $(this).css('background-color', 'red');
