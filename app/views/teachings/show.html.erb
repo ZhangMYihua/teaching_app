@@ -45,14 +45,12 @@
             titleFormat: 'YYYY, MM, DD'
             // other view-specific options here
         }
+      },
+     eventClick: function(calEvent, jsEvent, view) {
+
+        // change the border color just for fun
+        $(this).css('background-color', 'red');
     }
-    // dayClick: function(date, jsEvent, view) {
-
-    //     // change the day's background color just for fun
-    //     $(this).css('background-color', 'lightgreen');
-
-
-    // }
 	}); 
 </script>
 
