@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :country_of_origin %>
     <%= f.country_select :country_of_origin %>
@@ -30,7 +29,14 @@
     <%= f.label :education%>
     <%= select(:teaching, :education, options_for_select(['High School Diploma', 'Bachelors', 'Masters', 'P.hD', 'J.D.', 'M.D']), include_blank: true) %>
   </div>
-  
+  <div class="field">
+  	<%= f.label :price_string, 'Hourly Rate' %>
+  	<%= f.text_field :price_string %> 
+  </div>
+  <div class="field">
+  	<%= f.label :about %>
+  	<%= f.text_field :about %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

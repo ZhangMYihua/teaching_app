@@ -14,7 +14,7 @@
 		
 	</p>
 	<div class="about-teacher">
-		<h3>About <%= @teaching.teacher.first_name.capitalize%>:</h3>
+		<h3>About <%= @teaching.teacher.first_name%>:</h3>
 		<p><%= @teaching.about%></p>
 	</div>
 </div>
@@ -27,42 +27,38 @@
 	<% end %>
 </div>
 
+<<<<<<< HEAD
 <div class='teacher_calendar'>
 </div>
 <script> 
 	$('.teacher_calendar').fullCalendar({
-		// editable: true,
-		header: {
-			left: 'prev, next',
-			center:'title',
-			right: 'today,month,agendaWeek,agendaDay'
-		},
 		events: "/teachings/<%= @teaching.id %>/timeslots",
 		defaultView: "agendaWeek",
-		timezone: 'local',
-		// timezoneParam: '<% @teaching.teacher.city_time_zone %>',
 		displayEventEnd: {
         month: true,
         basicWeek: true,
         "default": true
     },
     theme: true,
+    header: { center: 'month,agendaWeek'},
     views: {
         month: { // name of view
             titleFormat: 'YYYY, MM, DD'
             // other view-specific options here
         }
-      },
-    // eventMouseover: function(event, jsEvent, view) {
-    	
-    // },
-    eventClick: function(calEvent, jsEvent, view) {
-
-        // change the border color just for fun
-        $(this).css('background-color', 'red');
     }
+    // dayClick: function(date, jsEvent, view) {
+
+    //     // change the day's background color just for fun
+    //     $(this).css('background-color', 'lightgreen');
+
+
+    // }
 	}); 
 </script>
 
 
 <h5><%= link_to 'Select Availability', new_teaching_timeslot_path(@teaching), id:'add_availability_link'%></h5>
+=======
+<h4><%= link_to 'Select Availability', new_teaching_timeslot_path(@teaching), id:'add_availability_link'%></h4>
+>>>>>>> merging

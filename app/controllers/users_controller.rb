@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
   		auto_login(@user)
-  		redirect_back_or_to(users_url, notice: "Signed up!")
+  		redirect_back_or_to(teachings_url, notice: "Signed up!")
   	else
   		render "new"
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-  	params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :city_time_zone, :remember )
+  	params.require(:user).permit(:email, :username, :password, :password_confirmation, :first_name, :last_name, :city_time_zone, :remember )
   end
 
   def user

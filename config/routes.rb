@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'teachings#index'
 
   resources :teachings do
-    resources :timeslots, only: [:new, :create, :edit, :update, :destroy] do
+    resources :timeslots, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :bookings, only: [:new, :create]
     end
   end 
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
+  # post 'logout' => 'user_sessions#destroy', :as => :logout
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

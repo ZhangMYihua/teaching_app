@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-200.times do 
+100.times do 
 	User.create!(
   	username: Faker::Internet.user_name,
   	first_name: Faker::Name.first_name,
@@ -20,23 +20,25 @@
 	print "|".green
 end
 
-100.times do 
+50.times do 
 	Teaching.create!(
     country_of_origin: Faker::Address.country,
   	first_language: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
   	subject_to_teach: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
   	education: ["Masters", "Bachelor Degree", "PhD", "Other"].sample,
-  	teacher_id: User.all.sample.id
+  	teacher_id: User.all.sample.id,
+  	price_cents: rand(1000...4000),
+  	about: Faker::Lorem.paragraphs(paragraph_count=3).join(" ")
+    # price_currency: USD
 	)
 	print "|".yellow
 end
 
-200.times do
-	Booking.create!(
-	  time: Faker::Date.forward(10),
-	  description: Faker::Lorem.paragraph,
-	  student_id: User.all.sample.id,
-	  teaching_id: Teaching.all.sample.id
-	)
-	print "|".yellow
-end
+# 100.times do
+# 	Booking.create!(
+# 	  # time: Faker::Date.forward(10),
+# 	  description: Faker::Lorem.paragraph,
+# 	  student_id: User.all.sample.id,
+# 	)
+# 	print "|".yellow
+# end

@@ -35,13 +35,15 @@ class TeachingsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    
   end
 
   private
 
   def teaching_params
-    params.require(:teaching).permit(:country_of_origin, :first_language, :subject_to_teach, :education)
+    params.require(:teaching).permit(:country_of_origin, :first_language, :subject_to_teach, :education, :price_string, :about)
   end
+
 
 end
