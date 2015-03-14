@@ -1,6 +1,6 @@
 class ActiveRecord::Base
 	def joined_fields(*fields)
-		fields.map{|f| send(f)}.join(" ")
+		fields.map{|f| send(f)}.join(" ").titleize
 	end
 end
 
