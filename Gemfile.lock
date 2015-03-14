@@ -242,7 +242,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  sorcery (= 0.8.6)
+  sorcery
   spring
   sqlite3
   turbolinks
