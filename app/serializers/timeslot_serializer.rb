@@ -1,15 +1,20 @@
 class TimeslotSerializer < ActiveModel::Serializer
-  attributes :id, :start, :end, :description
+  attributes :id, :start, :end, :title
 
-  def description
-  	"Yolo"
-  end
+ 	def title
+ 		"Available"
+ 	end
 
   def start
-  	object.start_time
+  	format_time(object.start_time)
   end
 
   def end
-  	object.end_time
+  	format_time(object.end_time)
   end
+
+  private
+		def format_time(t)
+			t.strftime("%Y-%m-%dT%H:%M:%S%z")
+		end
 end

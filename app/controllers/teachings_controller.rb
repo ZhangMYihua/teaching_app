@@ -1,5 +1,4 @@
 class TeachingsController < ApplicationController
-  # before_action :load_user
   def index
     @teachings = Teaching.all
   end
@@ -39,11 +38,10 @@ class TeachingsController < ApplicationController
     
   end
 
-  private
+private
 
   def teaching_params
     params.require(:teaching).permit(:country_of_origin, :first_language, :subject_to_teach, :education, :price_string, :about)
   end
-
 
 end

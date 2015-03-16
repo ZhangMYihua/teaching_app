@@ -24,8 +24,5 @@ class Teaching < ActiveRecord::Base
 			raise "Couldn't turn this into a price: #{val.inspect}"
 		end
 	end
-
-
-
+	
 end
-
