@@ -4,31 +4,40 @@
       <h2><%= pluralize(@teaching.errors.count, "error") %> prohibited this teaching from being saved:</h2>
 
       <ul>
-      <% @teaching.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @teaching.errors.full_messeducations.each do |messeducation| %>
+        <li><%= messeducation %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :country_of_origin %>
+    <%= f.label :country_of_origin, "Country of Origin: " %>
     <%= f.country_select :country_of_origin %>
   </div>
 
   <div class="field">
-    <%= f.label :first_language %>
+    <%= f.label :first_language, "First Language: " %>
     <%= f.text_field :first_language %>
   </div>
 
-  <div class="field">
-    <%= f.label :subject_to_teach %>
-    <%= f.text_field :subject_to_teach %>
-  </div>
 
   <div class="field">
-    <%= f.label :education%>
-    <%= select(:teaching, :education, options_for_select(['High School Diploma', 'Bachelors', 'Masters', 'P.hD', 'J.D.', 'M.D']), include_blank: true) %>
-  </div>
+		<%= f.label :subject_to_teach, "Teaches: " %> <br>
+		<%= f.select(:subject_to_teach, options_for_select(["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese"]), include_blank: true) %> <br> <br>
+	</div>
+  <div class="field">
+    <%= f.label :education, "Education: " %> <br>
+    <%= f.radio_button(:education, "High School") %>
+		<%= f.label(:education_high_school, "High School") %>
+		<%= f.radio_button(:education, "Bachelor Degree") %>
+		<%= f.label(:education_bachelors, "Bachelor Degree") %> <br>
+		<%= f.radio_button(:education, "Master Degree") %>
+		<%= f.label(:education_masters, "Master Degree") %>
+		<%= f.radio_button(:education, "PhD") %>
+		<%= f.label(:education_phd, "PhD") %> <br>
+		<%= f.radio_button(:education, "Other") %>
+		<%= f.label(:education_other, "Other") %>
+		</div>
   <div class="field">
   	<%= f.label :price_string, 'Hourly Rate' %>
   	<%= f.text_field :price_string %> 

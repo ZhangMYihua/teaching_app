@@ -1,7 +1,11 @@
 class TeachingsController < ApplicationController
   # before_action :load_user
   def index
-    @teachings = Teaching.all
+  	if param = params[:subject_to_teach]
+  		@teachings = Teaching.where(subject_to_teach: param)
+  	else
+	    @teachings = Teaching.all
+	  end
   end
 
   def show
