@@ -1,8 +1,7 @@
 <%= form_for(@teaching) do |f| %>
   <% if @teaching.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@teaching.errors.count, "error") %> prohibited this teaching from being saved:</h2>
-
+      <h2><%= pluralize(@teaching.errors.count, "error") %> prohibited this teaching from being saved:</h2> 
       <ul>
       <% @teaching.errors.full_messeducations.each do |messeducation| %>
         <li><%= messeducation %></li>
@@ -10,6 +9,7 @@
       </ul>
     </div>
   <% end %>
+
   <div class="field">
     <%= f.label :country_of_origin, "Country of Origin: " %>
     <%= f.country_select :country_of_origin %>
@@ -19,8 +19,7 @@
     <%= f.label :first_language, "First Language: " %>
     <%= f.text_field :first_language %>
   </div>
-
-
+	
   <div class="field">
 		<%= f.label :subject_to_teach, "Teaches: " %> <br>
 		<%= f.select(:subject_to_teach, options_for_select(["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese"]), include_blank: true) %> <br> <br>
