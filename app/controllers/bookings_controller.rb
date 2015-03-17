@@ -1,13 +1,17 @@
 class BookingsController < ApplicationController
 before_action :load_user
-before_action :load_timeslot
   
   def new
-    @booking = @timeslot.bookings.new
+    @booking = @user.bookings.new
   end
 
   def create
-  	@booking = @timeslot.bookings.new(booking_params)
+  	@booking = @user.bookings.new(booking_params)
+    if @booking.save
+      redirect_to teachings_path
+    else
+      render :new
+    end
   end
 
   def index
@@ -26,11 +30,7 @@ private
   end
 
   def load_user
-    @user = User.find(params[:student_id])
-  end
-
-  def load_timeslot
-    @timeslot = Timeslot.find(params[:timeslot_id]) 
+    @user = current_user  
   end
 
 end

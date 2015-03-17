@@ -3,14 +3,12 @@ Rails.application.routes.draw do
 
   root 'teachings#index'
 
-  resources :teachings do
-    resources :timeslots, only: [:index, :new, :create, :edit, :update, :destroy] do
-      resources :bookings, only: [:new, :create]
-    end
+  resources :instructors do
+    resources :timeslots, only: [:index, :new, :create, :edit, :update, :destroy]
   end 
 
   resources :users do
-    resources :bookings, only: [:index, :show, :destroy]
+    resources :bookings
   end
 
   resources :sessions, only: [:new, :create, :destroy]

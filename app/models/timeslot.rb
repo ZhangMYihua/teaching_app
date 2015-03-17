@@ -1,5 +1,5 @@
 class Timeslot < ActiveRecord::Base
 	belongs_to :teaching
-	has_one :booking
+	has_many :bookings
 
 end

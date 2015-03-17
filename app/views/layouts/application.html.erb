@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TeachingApp</title>
+  <title>instructorApp</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<nav>
-	 <%= link_to "Home", teachings_path %>
+	 <%= link_to "Home", instructors_path %>
     <% if current_user != nil %>
-     <% if current_user.teaching %>
-        Welcome <%= link_to current_user.first_name, teaching_path(current_user.teaching.id) %>
+     <% if current_user.instructor %>
+        Welcome <%= link_to current_user.first_name, instructor_path(current_user.instructor.id) %>
         <%= link_to "Logout", session_path("current"), :method => :delete %>
      <% elsif current_user %>
         Signed is as <%= link_to current_user.first_name, user_path(current_user) %> 
         <%= link_to "Logout", session_path("current"), :method => :delete %>
-        <%= link_to 'Wanna Teach?', new_teaching_path %>
+        <%= link_to 'Wanna Teach?', new_instructor_path %>
       <% end %>  
     <% else %>
   	   <%= link_to "Login", new_session_path %>

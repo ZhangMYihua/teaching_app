@@ -21,7 +21,7 @@
 end
 
 50.times do 
-	Teaching.create!(
+	Instructor.create!(
     country_of_origin: Faker::Address.country,
   	first_language: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
   	subject_to_teach: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,

@@ -1,4 +1,4 @@
-gat# encoding: UTF-8
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +11,7 @@ gat# encoding: UTF-8
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313202056) do
+ActiveRecord::Schema.define(version: 20150317144615) do
 
   create_table "bookings", force: :cascade do |t|
     t.text     "description"
@@ -19,9 +19,11 @@ ActiveRecord::Schema.define(version: 20150313202056) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "timeslot_id"
+    t.time     "start_time"
+    t.time     "end_time"
   end
 
-  create_table "teachings", force: :cascade do |t|
+  create_table "instructor", force: :cascade do |t|
     t.string   "country_of_origin"
     t.string   "first_language"
     t.string   "subject_to_teach"
@@ -34,10 +36,23 @@ ActiveRecord::Schema.define(version: 20150313202056) do
     t.text     "about"
   end
 
+  create_table "instructors", force: :cascade do |t|
+    t.string   "country_of_origin"
+    t.string   "first_language"
+    t.string   "subject_to_teach"
+    t.string   "education"
+    t.integer  "teacher_id"
+    t.integer  "price_cents"
+    t.string   "price_currency"
+    t.text     "about"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "timeslots", force: :cascade do |t|
-    t.integer  "teaching_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "instructor_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.datetime "start_time"
     t.datetime "end_time"
   end
