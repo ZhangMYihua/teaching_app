@@ -29,6 +29,7 @@ gem 'faker'
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'money-rails'
 gem 'mustache-js-rails'
+gem 'carrierwave'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
