@@ -19,6 +19,10 @@
 	</div>
 </div>
 
+<% if @teaching.teacher == current_user %>
+	<%= link_to "Edit" , edit_teaching_url(@teaching) %>
+<% end %>
+
 <h2>Availability</h2>
 
 <div id="timeslots">
