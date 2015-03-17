@@ -1,18 +1,15 @@
+
 <h1><%= @teaching.teacher.joined_fields :first_name, :last_name %></h1>
 <div class="teacher-fields">
 	<p>
-		From: <strong> <%= @teaching.country_of_origin %> </strong> <br>
-		First Language: <strong><%= @teaching.first_language %> </strong> <br>
-
+		From: <strong> <%= @teaching.country_of_origin %> </strong><br>
+		First Language: <strong><%= @teaching.first_language %> </strong><br>
 		Subject to teach: <strong><%= @teaching.subject_to_teach %></strong><br>
-		
 		Education level: <strong><%= @teaching.education %></strong><br>
-		
-		Time Zone: <strong><%= @teaching.teacher.city_time_zone %></strong> <br> <br>
-		
+		Time Zone: <strong><%= @teaching.teacher.city_time_zone %></strong> <br><br>
 		<%= "#{@teaching.price.format} #{@teaching.price.currency}" %>
-		
 	</p>
+
 	<div class="about-teacher">
 		<h3>About <%= @teaching.teacher.first_name.capitalize%>:</h3>
 		<p><%= @teaching.about%></p>
@@ -20,7 +17,7 @@
 </div>
 
 <% if @teaching.teacher == current_user %>
-	<%= link_to "Edit" , edit_teaching_url(@teaching) %>
+	<%= link_to "Edit #{@teaching.teacher.first_name}'s information", edit_teaching_url(@teaching) %>
 <% end %>
 
 <h2>Availability</h2>
@@ -30,7 +27,7 @@
 		<%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
 	<% end %>
 </div>
-
+<!-- Calendar -->
 <div class='teacher_calendar'>
 </div>
 <script> 
