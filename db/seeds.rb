@@ -20,15 +20,19 @@
 	print "|".green
 end
 
+languages = ["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese", "Russian", "French"]
+education_levels = ["Bachelor Degree", "Master Degree", "PhD", "Other"]
+
 50.times do 
 	Instructor.create!(
     country_of_origin: Faker::Address.country,
-  	first_language: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
-  	subject_to_teach: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
-  	education: ["Masters", "Bachelor Degree", "PhD", "Other"].sample,
+  	first_language: languages.sample,
+  	subject_to_teach: languages.sample,
+  	education: education_levels.sample,
   	teacher_id: User.all.sample.id,
   	price_cents: rand(1000...4000),
   	about: Faker::Lorem.paragraphs(paragraph_count=3).join(" ")
+
     # price_currency: USD
 	)
 	print "|".yellow

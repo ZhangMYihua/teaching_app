@@ -3,21 +3,20 @@
 	<p>
 		From: <strong> <%= @instructor.country_of_origin %> </strong> <br>
 		First Language: <strong><%= @instructor.first_language %> </strong> <br>
-
 		Subject to teach: <strong><%= @instructor.subject_to_teach %></strong><br>
-		
 		Education level: <strong><%= @instructor.education %></strong><br>
-		
 		Time Zone: <strong><%= @instructor.teacher.city_time_zone %></strong> <br> <br>
-		
 		<%= "#{@instructor.price.format} #{@instructor.price.currency}" %>
-		
 	</p>
 	<div class="about-teacher">
 		<h3>About <%= @instructor.teacher.first_name.capitalize%>:</h3>
 		<p><%= @instructor.about%></p>
 	</div>
 </div>
+
+<% if @instructor.teacher == current_user %>
+	<%= link_to "Edit #{@instructor.teacher.first_name}'s information", edit_instructor_url(@instructor) %>
+<% end %>
 
 <h2>Availability</h2>
 
