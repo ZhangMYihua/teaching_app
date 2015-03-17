@@ -5,6 +5,10 @@ class Booking < ActiveRecord::Base
 
 	validate :fits_within_open_slot
 
+	def timerange
+		TimeRange.new(start_time, end_time)
+	end
+
 	private
 	def fits_within_open_slot
 		unless timeslot.is_available?(start_time, end_time)

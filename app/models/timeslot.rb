@@ -2,11 +2,17 @@ class Timeslot < ActiveRecord::Base
 	belongs_to :instructor
 	has_many :bookings
 
-	def is_available?(start_time, end_time)
-		bookings.none? do |booking|
-			range = ((start_time+1.second).to_i..(end_time-1.second).to_i)
-			range.include?(booking.start_time.to_i) || range.include?(booking.end_time.to_i)
+  def timerange
+    TimeRange.new(start_time, end_time)
+  end
+
+	def is_available?(wanted_timerange)
+		not bookings.any? do |booking|
+			booking.overlap?(potential_booking)
 		end
 	end
 
 end
+
+
+
