@@ -7,6 +7,7 @@ class Timeslot < ActiveRecord::Base
   end
 
 	def is_available?(wanted_timerange)
+    self.bookings.all
 		not bookings.any? do |booking|
 			booking.overlap?(potential_booking)
 		end

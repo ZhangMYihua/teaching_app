@@ -3,7 +3,7 @@ class Booking < ActiveRecord::Base
 	has_many :instructors, through: :timeslot
 	belongs_to :student, class_name: 'User'
 
-	validate :fits_within_open_slot
+	# validate :fits_within_open_slot
 
 	def timerange
 		TimeRange.new(start_time, end_time)
