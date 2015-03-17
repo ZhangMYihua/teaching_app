@@ -24,11 +24,12 @@ end
 	Teaching.create!(
     country_of_origin: Faker::Address.country,
   	first_language: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
-  	subject_to_teach: ["Chinese", "Japanese", "Korean", "Spanish", "Russian", "Portugese"].sample,
-  	education: ["Masters", "Bachelor Degree", "PhD", "Other"].sample,
+  	subject_to_teach: ["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese", "Russian", "French"].sample,
+  	education: ["Bachelor Degree", "Master Degree", "PhD", "Other"].sample,
   	teacher_id: User.all.sample.id,
   	price_cents: rand(1000...4000),
   	about: Faker::Lorem.paragraphs(paragraph_count=3).join(" ")
+
     # price_currency: USD
 	)
 	print "|".yellow
