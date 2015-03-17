@@ -6,8 +6,7 @@ class CreateInstructors < ActiveRecord::Migration
       t.string :subject_to_teach
       t.string :education
       t.integer :teacher_id
-      t.integer :price_cents
-      t.string :price_currency
+  		t.money :price
       t.text :about
 
       t.timestamps null: false

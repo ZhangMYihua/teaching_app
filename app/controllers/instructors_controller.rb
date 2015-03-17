@@ -1,7 +1,16 @@
 class InstructorsController < ApplicationController
+  # def index
+  #   @instructors = Instructor.all
+  # end
+
   def index
-    @instructors = Instructor.all
+  	if param = params[:subject_to_teach]
+  		@instructors = Instructor.where(subject_to_teach: param)
+  	else
+	    @instructors = Instructor.all
+	  end
   end
+
 
   def show
     @instructor = Instructor.find(params[:id])
