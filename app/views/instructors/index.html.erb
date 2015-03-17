@@ -4,7 +4,7 @@
 <% @instructors.each do |instructor| %>
 	<div class="teacher">
 		<h4>
-			<%= link_to instructor.teacher.name, instructor_path(instructor) %>
+			<%= link_to instructor.teacher.name.titleize, instructor_path(instructor) %>
 		</h4>
 		<p>
 			From: <%= instructor.country_of_origin %> <br>

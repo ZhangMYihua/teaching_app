@@ -11,10 +11,10 @@
 	 <%= link_to "Home", instructors_path %>
     <% if current_user != nil %>
      <% if current_user.instructor %>
-        Welcome <%= link_to current_user.first_name, instructor_path(current_user.instructor.id) %>
+        Welcome <%= link_to current_user.first_name.capitalize, instructor_path(current_user.instructor.id) %>
         <%= link_to "Logout", session_path("current"), :method => :delete %>
      <% elsif current_user %>
-        Signed is as <%= link_to current_user.first_name, user_path(current_user) %> 
+        Signed is as <%= link_to current_user.first_name.capitalize, user_path(current_user) %> 
         <%= link_to "Logout", session_path("current"), :method => :delete %>
         <%= link_to 'Wanna Teach?', new_instructor_path %>
       <% end %>  
