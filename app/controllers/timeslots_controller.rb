@@ -1,8 +1,8 @@
 class TimeslotsController < ApplicationController
-	before_action :load_teaching
+	before_action :load_instructor
 
 	def index
-		results = @teaching.timeslots
+		results = @instructor.timeslots
 
 		if params[:start]
 			time 		= DateTime.parse params[:start]
@@ -18,13 +18,13 @@ class TimeslotsController < ApplicationController
 	end
 
 	def new
-		@timeslot = @teaching.timeslots.new
+		@timeslot = @instructor.timeslots.new
 	end
 
 	def create
-		@timeslot = @teaching.timeslots.new(timeslot_params)	
+		@timeslot = @instructor.timeslots.new(timeslot_params)	
 		if @timeslot.save
-			redirect_to teaching_path(@teaching)
+			redirect_to instructor_path(@instructor)
 		else
 			render :new
 		end
@@ -39,7 +39,7 @@ private
 		params[:timeslot].permit(:start_time, :end_time)
 	end
 
-	def load_teaching
-		@teaching = Teaching.find(params[:teaching_id])
+	def load_instructor
+		@instructor = Instructor.find(params[:instructor_id])
 	end
 end

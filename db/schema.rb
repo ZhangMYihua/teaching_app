@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317144615) do
+ActiveRecord::Schema.define(version: 20150317185608) do
 
   create_table "bookings", force: :cascade do |t|
     t.text     "description"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20150317144615) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "timeslot_id"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "instructor", force: :cascade do |t|

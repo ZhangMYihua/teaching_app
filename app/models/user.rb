@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  has_one :teaching, foreign_key: :teacher_id
+  has_one :instructor, foreign_key: :teacher_id
   has_many :bookings, foreign_key: :student_id
 
   validates :password, length: { minimum: 6 }

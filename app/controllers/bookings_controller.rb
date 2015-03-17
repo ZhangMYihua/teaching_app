@@ -8,7 +8,7 @@ before_action :load_user
   def create
   	@booking = @user.bookings.new(booking_params)
     if @booking.save
-      redirect_to teachings_path
+      redirect_to instructors_path
     else
       render :new
     end

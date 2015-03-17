@@ -1,9 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  teaching_id: 1
-  time: 2015-03-12 17:44:35
+  instructor_id: 1
+  start_time: 2015-03-12 12:00:00
+  end_time: 2015-03-12 14:00:00
 
 two:
-  teaching_id: 1
-  time: 2015-03-12 17:44:35
+  instructor_id: 1
+  start_time: 2015-03-13 12:00:00
+  end_time: 2015-03-13 16:00:00
+
