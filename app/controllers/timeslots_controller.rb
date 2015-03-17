@@ -23,10 +23,15 @@ class TimeslotsController < ApplicationController
 
 	def create
 		@timeslot = @instructor.timeslots.new(timeslot_params)	
-		if @timeslot.save
-			redirect_to instructor_path(@instructor)
-		else
-			render :new
+
+			respond_to do |format|
+			if @timeslot.save
+				format.html { redirect_to instructor_path(@instructor) }
+				format.js {}
+			else
+				format.html {render :new, alert: "Create timeslot failed"}
+				format.js {}
+			end	
 		end
 	end
 

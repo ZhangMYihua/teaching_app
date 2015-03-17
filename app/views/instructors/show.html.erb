@@ -21,10 +21,12 @@
 
 <h2>Availability</h2>
 
+<h5><%= link_to 'Select Availability', new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true %></h5>
+
 <div id="timeslots">
 	<% @instructor.timeslots.each do |timeslot| %>
 		<%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
-		<h5><%= link_to 'Book this Timeslot!', new_instructor_timeslot_booking_path(@instructor, timeslot), id:'add_booking_link'%></h5>
+
 	<% end %>
 </div>
 
@@ -74,7 +76,7 @@
 </script>
 
 
-<h5><%= link_to 'Select Availability', new_instructor_timeslot_path(@instructor), id:'add_availability_link'%></h5>
+
 
 <!-- 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

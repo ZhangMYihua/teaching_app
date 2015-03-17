@@ -1,15 +1,17 @@
 class BookingsController < ApplicationController
-before_action :load_user
+before_action :load_timeslot
+before_action :load_instructor
   
   def new
-    @booking = @user.bookings.new
+    @booking = @timeslot.bookings.new
   end
 
   def create
-  	@booking = @user.bookings.new(booking_params)
+  	@booking = @timeslot.bookings.new(booking_params)
     if @booking.save
-      redirect_to instructors_path
+      redirect_to instructor_path(@instructor)
     else
+      @bookings.errors
       render :new
     end
   end
@@ -26,11 +28,15 @@ before_action :load_user
 
 private
   def booking_params
-    params.require(:booking).permit(:description)
+    params.require(:booking).permit(:start_time, :end_time)
   end
 
-  def load_user
-    @user = current_user  
+  def load_timeslot
+    @timeslot = Timeslot.find(params[:timeslot_id])
+  end
+
+  def load_instructor
+    @instructor = @timeslot.instructor
   end
 
 end
