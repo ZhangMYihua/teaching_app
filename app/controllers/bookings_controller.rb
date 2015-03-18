@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
     render json: results, each_serializer: BookingSerializer
   end
 
+
   def new
     @booking = @timeslot.bookings.new
   end

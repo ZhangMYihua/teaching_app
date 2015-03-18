@@ -11,6 +11,23 @@ class InstructorsController < ApplicationController
 	  end
   end
 
+  def bookings
+    instructor = Instructor.find(params[:id])
+    results = instructor.bookings
+
+    if params[:start]
+      time    = DateTime.parse params[:start]
+      results = results.where("start_time >= ?", time)
+    end
+
+    if params[:end]
+      time    = DateTime.parse params[:end]
+      results = results.where("end_time < ?", time)
+    end
+
+    render json: results, each_serializer: BookingSerializer
+  end
+
   def show
     @instructor = Instructor.find(params[:id])
   end

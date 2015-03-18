@@ -38,7 +38,8 @@
 			center:'title',
 			right: 'today,month,agendaWeek,agendaDay'
 		},
-		events: "/instructors/<%= @instructor.id %>/timeslots",
+		events: ["/instructors/<%= @instructor.id %>/timeslots",
+             "/instructors/<%= @instructor.id %>/bookings"]
 		defaultView: "agendaWeek",
 		timezone: 'local',
 		// timezoneParam: '<% @instructor.teacher.city_time_zone %>',
