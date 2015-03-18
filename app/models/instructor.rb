@@ -11,7 +11,10 @@ class Instructor < ActiveRecord::Base
 
 	validates :teacher, presence: true
 	monetize :price_cents
+	
+	mount_uploader :avatar, AvatarUploader
 
+	
 	def price_string
 		price && price.format
 	end
