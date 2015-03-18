@@ -38,8 +38,21 @@
 			center:'title',
 			right: 'today,month,agendaWeek,agendaDay'
 		},
-		eventSources: ["/instructors/<%= @instructor.id %>/timeslots",
-                  "/instructors/<%= @instructor.id %>/bookings"],
+		eventSources: [
+      {
+        url: '/instructors/<%= @instructor.id %>/timeslots',
+        backgroundColor: '#6cf62c'  ,
+        textColor: '#DDF4FF',
+        rendering: 'background',
+        borderColor: 'black'
+      },
+      {
+        url: "/instructors/<%= @instructor.id %>/bookings",
+        textColor: '#000E15',
+        borderColor: 'black',
+        backgroundColor: '#9DD6F2'
+      }
+    ],
 		defaultView: "agendaWeek",
 		timezone: 'local',
 		// timezoneParam: '<% @instructor.teacher.city_time_zone %>',
@@ -55,13 +68,13 @@
             // other view-specific options here
         }
       },
-    eventClick: function(calEvent, jsEvent, view) {
+   //  eventClick: function(calEvent, jsEvent, view) {
 
-        // change the border color just for fun
-        if (confirm('Are you sure you want to book this timeslot?')) {
-				  $(this).css('background-color', 'red');
-				}
-			}
+   //      // change the border color just for fun
+   //      if (confirm('Are you sure you want to book this timeslot?')) {
+			// 	  $(this).css('background-color', 'red');
+			// 	}
+			// }
 		}); 
 </script>
 

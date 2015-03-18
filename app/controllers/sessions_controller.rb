@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
- #    logout
     reset_session
     redirect_to(:instructors, notice: 'Logged out!')
   end

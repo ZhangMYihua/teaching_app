@@ -25,7 +25,7 @@ class InstructorsController < ApplicationController
       results = results.where("bookings.end_time < ?", time)
     end
 
-    render json: results, each_serializer: BookingSerializer
+    render json: results, each_serializer: InstructorbookingSerializer
   end
 
   def show
