@@ -30,6 +30,9 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'money-rails'
 gem 'mustache-js-rails'
 gem 'carrierwave'
+# gem 'rmagick', '~> 2.13.4'
+gem "mini_magick"
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

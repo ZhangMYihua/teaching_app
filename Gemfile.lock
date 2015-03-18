@@ -120,6 +120,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.4.3)
+    mini_magick (4.1.0)
     mini_portile (0.6.2)
     minitest (5.5.1)
     momentjs-rails (2.9.0)
@@ -245,6 +246,7 @@ DEPENDENCIES
   fullcalendar-rails
   jquery-rails
   jquery-ui-themes!
+  mini_magick
   momentjs-rails
   money-rails
   mustache-js-rails

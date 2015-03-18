@@ -1,4 +1,8 @@
 <h1><%= @instructor.teacher.joined_fields :first_name, :last_name %></h1>
+
+<div class="avatar">
+	<%= image_tag @instructor.avatar_url(:thumb) %>
+</div> <br>
 <div class="teacher-fields">
 	<p>
 		From: <strong> <%= @instructor.country_of_origin %> </strong> <br>
@@ -15,7 +19,7 @@
 </div>
 
 <% if @instructor.teacher == current_user %>
-	<%= link_to "Edit #{@instructor.teacher.first_name}'s information", edit_instructor_url(@instructor) %>
+	<%= link_to "Edit your information", edit_instructor_url(@instructor) %>
 <% end %>
 
 <h2>Availability</h2>
