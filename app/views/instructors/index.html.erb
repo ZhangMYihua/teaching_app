@@ -3,7 +3,7 @@
 
 <% @instructors.each do |instructor| %>
 	<div class="teacher">
-		<%= image_tag instructor.avatar_url(:index), width: AvatarUploader::THUMBW, height: AvatarUploader::THUMBH %>
+		<%= link_to (image_tag instructor.avatar_url(:index), width: AvatarUploader::THUMBW, height: AvatarUploader::THUMBH), instructor_path(instructor) %>
 
 		<h4>
 			<%= link_to instructor.teacher.name.titleize, instructor_path(instructor) %>

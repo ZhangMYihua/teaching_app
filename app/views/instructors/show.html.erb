@@ -6,16 +6,23 @@
 <div class="teacher-fields">
 	<p>
 		From: <strong> <%= @instructor.country_of_origin %> </strong> <br>
-		First Language: <strong><%= @instructor.first_language %> </strong> <br>
+		First Language: <strong><%= @instructor.first_language.capitalize %> </strong> <br>
 		Subject to teach: <strong><%= @instructor.subject_to_teach %></strong><br>
 		Education level: <strong><%= @instructor.education %></strong><br>
 		Time Zone: <strong><%= @instructor.teacher.city_time_zone %></strong> <br> <br>
-		<%= "#{@instructor.price.format} #{@instructor.price.currency}" %>
+		Price per teaching hour: <%= "#{@instructor.price.format} #{@instructor.price.currency}" %> <br>
+		
+		<% if @instructor.document != nil %>
+			<strong> <%= "#{@instructor.teacher.first_name.capitalize}'s Docs: " %> </strong>
+			<%= link_to "Download Resume", @instructor.document_url %>
+		<% end %>
 	</p>
+
 	<div class="about-teacher">
 		<h3>About <%= @instructor.teacher.first_name.capitalize%>:</h3>
 		<p><%= @instructor.about%></p>
 	</div>
+	
 </div>
 
 <% if @instructor.teacher == current_user %>

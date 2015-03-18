@@ -52,8 +52,19 @@
   <div class="field">
   	<%= f.label :about %>
   	<%= f.text_field :about %>
-  </div>
+  </div> <br>
+  	
+	<% if @instructor.document != nil %>
+		<i> <%="You've uploaded a resume already. You can update it to another if you want"%></i>
+	<% end %>
+
+  <div class="field">
+  	<%= f.label :document, "Upload your CV/Resume for students to view." %>
+  	<%= f.file_field :document %>
+  	<%= f.hidden_field :document_cache %> 
+  </div> <br>
+
   <div class="actions">
     <%= f.submit %>
-  </div>
+  </div> <br>
 <% end %>

@@ -13,6 +13,7 @@ class Instructor < ActiveRecord::Base
 	monetize :price_cents
 	
 	mount_uploader :avatar, AvatarUploader
+	mount_uploader :document, DocumentUploader
 
 	
 	def price_string
