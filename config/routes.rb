@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'instructors#index'
 
+  get '/instructors/:id/bookings' => "instructors#bookings" 
   resources :instructors do
     resources :timeslots, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :bookings, only: [:new, :create]

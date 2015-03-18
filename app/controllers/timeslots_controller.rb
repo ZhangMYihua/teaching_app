@@ -18,11 +18,11 @@ class TimeslotsController < ApplicationController
 	end
 
 	def new
-		@timeslot = @instructor.timeslots.new
+		@timeslot = @instructor.timeslots.build
 	end
 
 	def create
-		@timeslot = @instructor.timeslots.new(timeslot_params)	
+		@timeslot = @instructor.timeslots.build(timeslot_params)	
 
 			respond_to do |format|
 			if @timeslot.save
@@ -35,9 +35,6 @@ class TimeslotsController < ApplicationController
 		end
 	end
 
-	def default_serializer_options
-  	{root: false}
-	end
 
 private	
 	def timeslot_params
