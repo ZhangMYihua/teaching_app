@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create
    if @user = login(params[:email], params[:password])
-     redirect_back_or_to(:teachings, notice: 'Login successful')
+     redirect_back_or_to(:instructors, notice: 'Login successful')
    else
     flash.now[:alert] = 'Login failed'
     render action: 'new'
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   def destroy
  #    logout
     reset_session
-    redirect_to(:teachings, notice: 'Logged out!')
+    redirect_to(:instructors, notice: 'Logged out!')
   end
 
 end

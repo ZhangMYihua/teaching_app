@@ -4,17 +4,16 @@ class ActiveRecord::Base
 	end
 end
 
-class Teaching < ActiveRecord::Base
-	has_many :bookings, through: :timeslot
+class Instructor < ActiveRecord::Base
+	has_many :bookings, through: :timeslots
 	has_many :timeslots
 	belongs_to :teacher, class_name: 'User', foreign_key: :teacher_id
 
 	validates :teacher, presence: true
-
 	monetize :price_cents
 
 	def price_string
-		price.format
+		price && price.format
 	end
 
 	def price_string=(val)
@@ -24,8 +23,5 @@ class Teaching < ActiveRecord::Base
 			raise "Couldn't turn this into a price: #{val.inspect}"
 		end
 	end
-
-
-
+	
 end
-

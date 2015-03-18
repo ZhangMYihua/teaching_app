@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 # match 'logout' => 'sessions#destroy', :as => :logout
 
-  root 'teachings#index'
+  root 'instructors#index'
 
-  resources :teachings do
+  get '/instructors/:id/bookings' => "instructors#bookings" 
+  resources :instructors do
     resources :timeslots, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :bookings, only: [:new, :create]
     end

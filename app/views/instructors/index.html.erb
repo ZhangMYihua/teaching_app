@@ -1,0 +1,18 @@
+<h1>Teachers</h1>
+<%= render 'search' %>
+
+<% @instructors.each do |instructor| %>
+	<div class="teacher">
+		<h4>
+			<%= link_to instructor.teacher.name, instructor_path(instructor) %>
+		</h4>
+		<p>
+			From: <%= instructor.country_of_origin %> <br>
+			Teaches: <%= instructor.subject_to_teach %> <br>
+			Education level: <%= instructor.education %> <br>
+			$<%= instructor.price %>
+			<%= instructor.price_currency %>
+		</p>
+	</div>
+	
+<% end %>

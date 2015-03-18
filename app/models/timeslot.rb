@@ -1,18 +1,19 @@
 class Timeslot < ActiveRecord::Base
-	belongs_to :teaching
-	has_one :booking
+	belongs_to :instructor
+	has_many :bookings
 
-	def start
-		format_time start_time
-	end
-	
-	def end
-		format_time end_time
+  def timerange
+    TimeRange.new(start_time, end_time)
+  end
+
+	def is_available?(wanted_timerange)
+    self.bookings.all
+		not bookings.any? do |booking|
+			booking.overlap?(potential_booking)
+		end
 	end
 
-
-	private
-	def format_time(t)
-		t.strftime("%Y-%m-%dT%H:%M:%S%z")
-	end
 end
+
+
+

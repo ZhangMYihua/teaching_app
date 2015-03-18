@@ -1,5 +1,5 @@
- <div id="timeslot_<%= timeslot.id %>">
-	  <p><%= timeslot.start_time %></p>
-	  <p><%= timeslot.end_time %></p>
+<div id="timeslot_<%= timeslot.id %>">
+	<p><%= timeslot.start_time %> to <%= timeslot.end_time %></p>
 
+	<h5><%= link_to 'Book this Timeslot!', new_instructor_timeslot_booking_path(@instructor, timeslot), id:'add_booking_link'%></h5>
 </div>   
