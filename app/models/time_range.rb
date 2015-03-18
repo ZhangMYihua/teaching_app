@@ -14,6 +14,11 @@ class TimeRange < Struct.new(:start_time, :end_time)
     a, b = [self, other].sort
     a.end_time > b.start_time
   end
+
+  def in_range?(other)
+    (self.start_time <= other.start_time) && (self.end_time >= other.end_time) 
+  end
+
   alias_method :overlaps?, :overlap?
   alias_method :conflicts?, :overlap?
 

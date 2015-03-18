@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :load_instructor, except: [:index]
   before_action :load_timeslot, except: [:index]
+  before_action :load_instructor, except: [:index]
     
   def index
   	results = current_user.bookings
@@ -18,7 +18,6 @@ class BookingsController < ApplicationController
     render json: results, each_serializer: BookingSerializer
   end
 
-
   def new
     @booking = @timeslot.bookings.new
   end
@@ -26,11 +25,14 @@ class BookingsController < ApplicationController
   def create
     @booking = @timeslot.bookings.new(booking_params)
     @booking.student = current_user
-    if @booking.save
-      redirect_to instructor_path(@instructor)
-    else
-      @bookings.errors
-      render :new
+    respond_to do |format|
+      if @booking.save
+        format.html { redirect_to instructor_path(@instructor) }
+        format.js {}
+      else
+        format.html {render :new, alert: "Create timeslot failed"}
+        format.js {}
+      end
     end
   end
 
@@ -52,6 +54,5 @@ private
   def load_instructor 
     @instructor = @timeslot.instructor
   end
-
 end
 

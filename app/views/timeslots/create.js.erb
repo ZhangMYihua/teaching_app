@@ -1,3 +1,9 @@
-$('#add_availability_link').show();
-$('#timeslots').append('<%= j render partial: 'timeslots/timeslot', locals: {timeslot: @timeslot} %>');
-$('#new_timeslot').html("");
+<% if @timeslot.errors.any? %>
+  <% @timeslot.errors.full_messages.each do |error| %>
+    alert("<%= error %>" );
+  <% end %>
+<% else %>
+  $('#timeslots').append('<%= j render partial: 'timeslots/timeslot', locals: {timeslot: @timeslot} %>');
+  $('#add_availability_link').show();
+  $('#new_timeslot').html("");
+<% end %>
