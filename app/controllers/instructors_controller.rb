@@ -11,7 +11,6 @@ class InstructorsController < ApplicationController
 	  end
   end
 
-
   def show
     @instructor = Instructor.find(params[:id])
   end
