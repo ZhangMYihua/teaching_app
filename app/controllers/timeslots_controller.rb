@@ -35,9 +35,6 @@ class TimeslotsController < ApplicationController
 		end
 	end
 
-	def default_serializer_options
-  	{root: false}
-	end
 
 private	
 	def timeslot_params

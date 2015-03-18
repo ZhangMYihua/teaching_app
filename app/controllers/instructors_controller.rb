@@ -17,12 +17,12 @@ class InstructorsController < ApplicationController
 
     if params[:start]
       time    = DateTime.parse params[:start]
-      results = results.where("start_time >= ?", time)
+      results = results.where("bookings.start_time >= ?", time)
     end
 
     if params[:end]
       time    = DateTime.parse params[:end]
-      results = results.where("end_time < ?", time)
+      results = results.where("bookings.end_time < ?", time)
     end
 
     render json: results, each_serializer: BookingSerializer
