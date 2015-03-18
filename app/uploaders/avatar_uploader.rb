@@ -22,15 +22,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  #
-
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-
-  	# secure random number: 
-  	# "http://www.gravatar.com/avatar/#{SecureRandom.uuid}"
-  	# with robohash, can append: ?size=200x200
-  	# @name = Instructor.find(params[:id])
-	  "https://robohash.org/#{SecureRandom.uuid}.png"
+	  "https://robohash.org/#{model.id}shimmy.png"
   end
 
   # Process files as they are uploaded:
