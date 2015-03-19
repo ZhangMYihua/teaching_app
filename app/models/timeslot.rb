@@ -13,12 +13,12 @@ class Timeslot < ActiveRecord::Base
     booking_range = requested_booking.timerange
     within_range = self.timerange.in_range?(booking_range)
 
-    no_other_bookings = bookings.none? do |booking|
+    no_other_bookings = self.bookings.none? do |booking|
       booking.timerange.overlap?(booking_range)
     end
 
     within_range && no_other_bookings
-  end  
+  end
 
   private
 

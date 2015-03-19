@@ -16,11 +16,10 @@ class Booking < ActiveRecord::Base
 		unless timeslot.is_available?(self)
 			errors.add(:timeslot, "is unavailable for that booking")
 		end
-		unless start_time < end_time
+		
+		if start_time > end_time
 			errors.add(:start_time, "Cannot be greater than the end time")
 		end
 	end
 end
 
-
-#booking.timerange.overlap?(timeslot.timerange)

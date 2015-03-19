@@ -18,34 +18,33 @@
 	<%= link_to "Edit #{@instructor.teacher.first_name}'s information", edit_instructor_url(@instructor) %>
 <% end %>
 
-<h2>Availability</h2>
-
-<h5><%= link_to 'Select Availability', new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true %></h5>
-
-<div id="timeslots">
-	<% @instructor.timeslots.each do |timeslot| %>
-		<%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
-	<% end %>
-</div>
-
-
 <div class='teacher_calendar'>
 </div>
 <script>
 	$('.teacher_calendar').fullCalendar({
-		header: {
+    
+    select: function( start, end, jsEvent, view ) {
+      console.log(start, end);
+    },
+
+    selectable: true,
+		
+    header: {
 			left: 'prev, next',
 			center:'title',
 			right: 'today,month,agendaWeek,agendaDay'
 		},
-		eventSources: [
+		
+    eventSources: [
       {
         url: '/instructors/<%= @instructor.id %>/timeslots',
-        backgroundColor: '#6cf62c'  ,
+        backgroundColor: '#6cf62c',
         textColor: '#DDF4FF',
         rendering: 'background',
-        borderColor: 'black'
+        borderColor: 'black',
+        className: 'instructor_availability'
       },
+      
       {
         url: "/instructors/<%= @instructor.id %>/bookings",
         textColor: '#000E15',
@@ -53,6 +52,7 @@
         backgroundColor: '#9DD6F2'
       }
     ],
+
 		defaultView: "agendaWeek",
 		timezone: 'local',
 		// timezoneParam: '<% @instructor.teacher.city_time_zone %>',
@@ -61,6 +61,7 @@
         basicWeek: true,
         "default": true
     },
+
     theme: true,
     views: {
         month: { // name of view
@@ -68,6 +69,7 @@
             // other view-specific options here
         }
       },
+
    //  eventClick: function(calEvent, jsEvent, view) {
 
    //      // change the border color just for fun
@@ -79,15 +81,25 @@
 </script>
 
 
+<h2>Availability</h2>
+
+<h5><%= link_to 'Select Availability', new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true %></h5>
+
+<div id="timeslots">
+  <% @instructor.timeslots.each do |timeslot| %>
+    <%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
+  <% end %>
+</div>
 
 
-<!-- 
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
   </div>
 </div>
 
-<script id="modalTemplate" type="x-tmpl-mustache">
+
+<div id="modalTemplate">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -102,4 +114,4 @@
       </div>
     </div>
 
-</script> -->
+</div>
