@@ -1,7 +1,7 @@
 class InstructorsController < ApplicationController
   
   def index
-  	if param = params[:subject_to_teach]
+  	if param = params[:subject_to_teach] and not param.blank?
   		@instructors = Instructor.where(subject_to_teach: param)
   	else
 	    @instructors = Instructor.all
