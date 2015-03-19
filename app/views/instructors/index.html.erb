@@ -2,7 +2,7 @@
 <%= render 'search' %>
 
 <% @instructors.each do |instructor| %>
-	<div class="teacher">
+	<div class="teacher col-md-4 col-sm-6 col-xs-8">
 		<%= link_to (image_tag instructor.avatar_url(:index), width: AvatarUploader::THUMBW, height: AvatarUploader::THUMBH), instructor_path(instructor) %>
 
 		<h4>
