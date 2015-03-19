@@ -18,15 +18,12 @@
 		<% else %>
 			<i><%= "No CV uploaded." %></i>
 		<% end %>
-		
-
 	</p>
 
 	<div class="about-teacher">
 		<h3>About <%= @instructor.teacher.first_name.capitalize%>:</h3>
 		<p><%= @instructor.about%></p>
 	</div>
-
 </div>
 
 <% if @instructor.teacher == current_user %>
