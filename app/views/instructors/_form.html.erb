@@ -1,7 +1,7 @@
 <%= form_for @instructor, :html => {:multipart => true} do |f| %>
   <% if @instructor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@instructor.errors.count, "error") %> prohibited this instructor from being saved:</h2>
+    <div class="error_explanation">
+      <h2><%= pluralize(@instructor.errors.count, "error") %> prohibited this form from being saved:</h2>
       <ul>
       <% @instructor.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -18,22 +18,22 @@
   </div>
 
   <div class="field">
-    <%= f.label :country_of_origin, "Country of Origin: " %>
+    <%= f.label :country_of_origin, "*Country of Origin: " %>
     <%= f.country_select :country_of_origin %>
   </div>
 
   <div class="field">
-    <%= f.label :first_language, "First Language: " %>
+    <%= f.label :first_language, "*First Language: " %>
     <%= f.text_field :first_language %>
   </div>
 	
   <div class="field">
-		<%= f.label :subject_to_teach, "Teaches: " %> <br>
+		<%= f.label :subject_to_teach, "*Teaches: " %> <br>
 		<%= f.select(:subject_to_teach, options_for_select(["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese"]), include_blank: true) %> <br> <br>
 	</div>
 	
   <div class="field">
-    <%= f.label :education, "Education: " %> <br>
+    <%= f.label :education, "*Education: " %> <br>
     <%= f.radio_button(:education, "High School") %>
 		<%= f.label(:education_high_school, "High School") %>
 		<%= f.radio_button(:education, "Bachelor Degree") %>
@@ -46,11 +46,11 @@
 		<%= f.label(:education_other, "Other") %>
 		</div>
   <div class="field">
-  	<%= f.label :price_string, 'Hourly Rate: $' %>
+  	<%= f.label :price_string, '*Hourly Rate: $' %>
   	<%= f.text_field :price_string %>
   </div>
   <div class="field">
-  	<%= f.label :about %>
+  	<%= f.label :about, "*About #{@instructor.teacher.first_name.capitalize}: " %>
   	<%= f.text_field :about %>
   </div> <br>
   	
@@ -63,6 +63,7 @@
   	<%= f.file_field :document %>
   	<%= f.hidden_field :document_cache %> 
   </div> <br>
+<p> <i> * Indicates a required field.</i></p>
 
   <div class="actions">
     <%= f.submit %>

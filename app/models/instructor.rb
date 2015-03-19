@@ -9,7 +9,16 @@ class Instructor < ActiveRecord::Base
 	has_many :timeslots
 	belongs_to :teacher, class_name: 'User', foreign_key: :teacher_id
 
-	validates :teacher, presence: true
+# Only do this when the site goes live as it might disable the default generated avatars:
+# validates :avatar, presence: true
+
+	validates :country_of_origin, presence: true
+	validates :first_language, presence: true
+	validates :subject_to_teach, presence: true
+	validates :education, presence: true
+	validates :price_string, presence: true
+	validates :about, presence: true
+
 	monetize :price_cents
 	
 	mount_uploader :avatar, AvatarUploader
