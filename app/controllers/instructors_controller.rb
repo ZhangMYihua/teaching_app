@@ -1,7 +1,7 @@
 class InstructorsController < ApplicationController
   
   def index
-  	if param = params[:subject_to_teach]
+  	if param = params[:subject_to_teach] and not param.blank?
   		@instructors = Instructor.where(subject_to_teach: param)
   	else
 	    @instructors = Instructor.all
@@ -57,13 +57,12 @@ class InstructorsController < ApplicationController
   end
 
   def destroy
-    
   end
 
 private
 
   def instructor_params
-    params.require(:instructor).permit(:country_of_origin, :first_language, :subject_to_teach, :education, :price_string, :about)
+    params.require(:instructor).permit(:avatar, :avatar_cache, :document, :document_cache, :country_of_origin, :first_language, :subject_to_teach, :education, :price_string, :about)
   end
 
 end

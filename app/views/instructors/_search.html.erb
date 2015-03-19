@@ -2,6 +2,7 @@
 	<p>
 		<select name="subject_to_teach" id="subject_to_teach">
 		  <option value="" style="display:none">-- Search by Language: --</option>
+			<option value="">All Languages</option>
 		  <option value="English">English</option>
 			<option value="Chinese">Chinese</option>
 			<option value="French">French</option>
@@ -9,6 +10,8 @@
 			<option value="Spanish">Spanish</option>
 			<option value="Portugese">Portugese</option>
 			<option value="Japanese">Japanese</option>
+			<option value="Russian">Russian</option>
+			<option value="French">French</option>
 		</select>
 	  <input type="submit" value="Search">
 	</p>
@@ -18,7 +21,7 @@
 
 <%= form_tag instructors_path, :method => 'get' do %>
 	<p>
-		<%= select_tag(:subject_to_teach, options_for_select(["-- Search by Language: --", "English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese"], disabled: "-- Search by Language: --")) %>
+		<%= select_tag(:subject_to_teach, options_for_select(["-- Search by Language: --", "English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese", "Russian", "French"], disabled: "-- Search by Language: --")) %>
 	  <%= submit_tag "Search", :name => nil %>
 	</p>
 <% end %>

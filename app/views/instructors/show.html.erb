@@ -1,13 +1,25 @@
 <h1><%= @instructor.teacher.joined_fields :first_name, :last_name %></h1>
+
+<div class="avatar">
+	<%= image_tag @instructor.avatar_url(:thumb) %>
+</div> <br>
 <div class="teacher-fields">
 	<p>
 		From: <strong> <%= @instructor.country_of_origin %> </strong> <br>
-		First Language: <strong><%= @instructor.first_language %> </strong> <br>
+		First Language: <strong><%= @instructor.first_language.capitalize %> </strong> <br>
 		Subject to teach: <strong><%= @instructor.subject_to_teach %></strong><br>
 		Education level: <strong><%= @instructor.education %></strong><br>
 		Time Zone: <strong><%= @instructor.teacher.city_time_zone %></strong> <br> <br>
-		<%= "#{@instructor.price.format} #{@instructor.price.currency}" %>
+		Price per teaching hour: <%= "#{@instructor.price.format} #{@instructor.price.currency}" %> <br>
+		
+		<% if @instructor.document.blank? == false %>
+			<strong> <%= "#{@instructor.teacher.first_name.capitalize}'s Docs: " %> </strong>
+			<%= link_to "Download Resume", @instructor.document_url %>
+		<% else %>
+			<i><%= "No CV uploaded." %></i>
+		<% end %>
 	</p>
+
 	<div class="about-teacher">
 		<h3>About <%= @instructor.teacher.first_name.capitalize%>:</h3>
 		<p><%= @instructor.about%></p>
@@ -15,7 +27,7 @@
 </div>
 
 <% if @instructor.teacher == current_user %>
-	<%= link_to "Edit #{@instructor.teacher.first_name}'s information", edit_instructor_url(@instructor) %>
+	<%= link_to "Edit your information", edit_instructor_url(@instructor) %>
 <% end %>
 
 <div class='teacher_calendar'>
