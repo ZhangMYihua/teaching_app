@@ -1,7 +1,7 @@
 <%= form_for @instructor, :html => {:multipart => true} do |f| %>
   <% if @instructor.errors.any? %>
     <div class="error_explanation">
-      <h2><%= pluralize(@instructor.errors.count, "error") %> prohibited this form from being saved:</h2>
+      <h2>Unfortunately <%= pluralize(@instructor.errors.count, "error") %> prevented this form from being saved:</h2>
       <ul>
       <% @instructor.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,7 +12,7 @@
 
   <div class="field"> 
 	  <%= image_tag(@instructor.avatar_url(:thumb)) if @instructor.avatar? %>
-  	<%= f.label :avatar %>
+  	<% f.label :avatar %>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %> 
   </div>
