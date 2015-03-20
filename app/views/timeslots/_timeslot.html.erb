@@ -1,5 +1,5 @@
 <div id="timeslot_<%= timeslot.id %>">
-	<p><%= timeslot.start_time.in_time_zone(timeslot.instructor.teacher.city_time_zone) %> to <%= timeslot.end_time.in_time_zone(timeslot.instructor.teacher.city_time_zone) %></p>
+	<p><%= timeslot.start_time.in_time_zone %> to <%= timeslot.end_time.in_time_zone %></p>
   
   <div id="booking_add_<%=timeslot.id%>">
     <h5><%= link_to 'Book this Timeslot!', new_instructor_timeslot_booking_path(@instructor, timeslot), class: 'add_booking_link', remote: true %></h5>
