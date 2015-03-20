@@ -22,6 +22,8 @@ class BookingsController < ApplicationController
   end
 
   def create
+    # start_time_at_zone = booking_params[:start_time].in_time_zone(current_user.city_time_zone)
+    # end_time_at_zone = booking_params[:end_time].in_time_zone(current_user.city_time_zone)
     @booking          = Booking.new booking_params
     @booking.timeslot = @timeslot
     @booking.student  = current_user

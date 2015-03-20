@@ -9,6 +9,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 	<div class="container">
 		<nav>
@@ -31,7 +32,7 @@
 	  <% if flash[:alert] %>
 	    <div><%= flash[:alert] %></div>
 	  <% end %>
-	  
+
 		<%= yield %>
 	</div>
 </body>
