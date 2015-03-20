@@ -12,38 +12,16 @@
 </head>
 
 <body>
-	<div class="container-fluid">
-			<nav>
-			 <%= link_to "Home", instructors_path, class: "btn btn-primary btn-sm" %>
-		    <% if current_user != nil %>
-		     <% if current_user.instructor %>
-		        Welcome <%= link_to current_user.first_name.capitalize, instructor_path(current_user.instructor.id) %>
-		        <%= link_to "Logout", session_path("current"), :method => :delete %>
-		     <% elsif current_user %>
-		        Signed is as <%= link_to current_user.first_name.capitalize, user_path(current_user) %> 
-		        <%= link_to "Logout", session_path("current"), :method => :delete %>
-		        <%= link_to 'Wanna Teach?', new_instructor_path %>
-		      <% end %>  
-		    <% else %>
-		  	   <%= link_to "Login", new_session_path %>
-		       <%= link_to "Sign up", new_user_path %>
-		    <% end %>
-		  </nav>
+	<div class="container">
+<%= render '/instructors/navbar' %>
 
 	  <% if flash[:alert] %>
 	    <div><%= flash[:alert] %></div>
 	  <% end %>
 
-      <div class="row">
-        <div class="col-xs-1">
-        <br><br><br>
-          <p>This is where the sidebar goes</p>
-        </div>
-        <div class="col-xs-11">
-          <%= yield %>
-        </div>
-      </div>
-
-	</div>
+    <div class="col-xs-11">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default" role="navigation">		
+	<div class="container">
+   <div class="navbar-header">
+
+ <%= link_to "Home", instructors_path, class: "btn btn-primary btn-md" %>
+	<% if current_user != nil %>
+   <% if current_user.instructor %>
+      Welcome <%= link_to current_user.first_name.capitalize, instructor_path(current_user.instructor.id) %>
+      <%= link_to "Logout", session_path("current"), :method => :delete %>
+  <% elsif current_user %>
+    <%= link_to "Logout", session_path("current"), class: "btn btn-primary btn-md",  :method => :delete %>
+    <%= link_to 'Wanna Teach?', new_instructor_path, class: "btn btn-primary btn-md"  %>
+    <%= link_to user_path(current_user), class: 'btn btn-default btn-sm' do %>
+			Signed in as: <%= current_user.first_name.capitalize %>
+    <% end %>      
+  <% end %>  
+<% else %>
+	   <%= link_to "Login", new_session_path, class: "btn btn-primary btn-md"  %>
+     <%= link_to "Sign up", new_user_path, class: "btn btn-primary btn-md"  %>
+<% end %>
+  </div>
+</div>
+</nav>
+

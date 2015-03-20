@@ -4,12 +4,15 @@
 <% @instructors.each do |instructor| %>
 	<%= link_to instructor_path(instructor) do %>
 	<div class="teacher col-md-4 col-sm-6 col-xs-6 col-lg-3 btn btn-default">
+	<div class="img-circle">
 		<%=  (image_tag instructor.avatar_url(:index), width: AvatarUploader::THUMBW, height: AvatarUploader::THUMBH) %>
+		
+	</div>
 
 		<h4>
 			<%=  instructor.teacher.name.titleize %>
 		</h4>
-		<p>
+		<p class="text-info">
 			From: <%= instructor.country_of_origin %> <br>
 			Teaches: <%= instructor.subject_to_teach %> <br>
 			Education level: <%= instructor.education %> <br>

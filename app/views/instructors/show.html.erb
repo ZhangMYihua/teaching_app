@@ -32,10 +32,9 @@
 		<i class="glyphicon glyphicon-plus"> </i> Edit your information
 		<% end %>
 
-
-	<%= link_to new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true, class: 'btn btn-success btn-sm' do %>
-	<i class="glyphicon glyphicon-plus"></i> Select your Availability <br>
-	<% end %>
+		<%= link_to new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true, class: 'btn btn-success btn-sm' do %>
+		<i class="glyphicon glyphicon-plus"></i> Select your Availability <br>
+		<% end %>
 	<% end %>
 
 	<div id="timeslots">
