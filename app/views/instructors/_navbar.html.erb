@@ -1,24 +1,47 @@
-<nav class="navbar navbar-default" role="navigation">		
+<nav class="navbar navbar-default navbar-fixed-top">		
 	<div class="container">
    <div class="navbar-header">
+		<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+  		<ul class="nav navbar-nav">
+			 	<li><%= link_to "Teachme.com", instructors_path, class: "navbar-brand" %></li>
+				<% if current_user != nil %>
+				  <% if current_user.instructor %>
+				      Welcome <%= link_to current_user.first_name.capitalize, instructor_path(current_user.instructor.id) %>
+				      <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
+				  <% else %>
+				    <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
+				    <li><%= link_to 'Wanna Teach?', new_instructor_path, class: "btn btn-primary btn-md"  %></li>
+				    <li><%= link_to user_path(current_user), class: 'btn btn-default btn-sm' do %>
+							Signed in as: <%= current_user.first_name.capitalize %>
+				   	<% end %></li>
+				  <% end %>  
+			   <% else %>
+					 <li><%= link_to "Login", new_session_path %></li>
+					 <li><%= link_to "Sign up", new_user_path %></li>
+				<% end %>
+       </ul>
+			</div>
+	  </div>
+	</div>
+</nav><!-- 
 
- <%= link_to "Home", instructors_path, class: "btn btn-primary btn-md" %>
-	<% if current_user != nil %>
-   <% if current_user.instructor %>
-      Welcome <%= link_to current_user.first_name.capitalize, instructor_path(current_user.instructor.id) %>
-      <%= link_to "Logout", session_path("current"), :method => :delete %>
-  <% elsif current_user %>
-    <%= link_to "Logout", session_path("current"), class: "btn btn-primary btn-md",  :method => :delete %>
-    <%= link_to 'Wanna Teach?', new_instructor_path, class: "btn btn-primary btn-md"  %>
-    <%= link_to user_path(current_user), class: 'btn btn-default btn-sm' do %>
-			Signed in as: <%= current_user.first_name.capitalize %>
-    <% end %>      
-  <% end %>  
-<% else %>
-	   <%= link_to "Login", new_session_path, class: "btn btn-primary btn-md"  %>
-     <%= link_to "Sign up", new_user_path, class: "btn btn-primary btn-md"  %>
-<% end %>
-  </div>
-</div>
-</nav>
-
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse 
+      </div>
+    </nav> -->

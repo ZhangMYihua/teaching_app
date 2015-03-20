@@ -1,8 +1,15 @@
 @import 'fullcalendar';
 @import 'bootstrap-sprockets';
-@import 'bootstrap';
+
 @import 'bootstrap-overrides';
+@import 'bootstrap';
+
+
 @import 'jquery-ui/overcast';
 @import 'calendar';
 @import 'instructors';
 
+
+body {
+	padding-top: 55px;
+}
