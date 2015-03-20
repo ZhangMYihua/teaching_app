@@ -23,8 +23,6 @@ class TimeslotsController < ApplicationController
 	end
 
 	def create
-		# start_time_at_zone = timeslot_params[:start_time].to_datetime.in_time_zone(@instructor.teacher.city_time_zone)
-  #   end_time_at_zone = timeslot_params[:end_time].to_datetime	.in_time_zone(@instructor.teacher.city_time_zone)
 		@timeslot = @instructor.timeslots.new(timeslot_params)	
 
 			respond_to do |format|

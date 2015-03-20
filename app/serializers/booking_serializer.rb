@@ -14,7 +14,7 @@ class BookingSerializer < ActiveModel::Serializer
   end
 
   private
-    def format_time(t)
-      t.strftime("%Y-%m-%dT%H:%M:%S%z")
-    end
+  def format_time(t)
+    t.strftime("%Y-%m-%dT%H:%M:%S%z")
+  end
 end

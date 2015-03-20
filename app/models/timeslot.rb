@@ -3,6 +3,7 @@ class Timeslot < ActiveRecord::Base
 	has_many :bookings
 
   validate :consistent
+  before_validation :mark_times_utc
 
 
   def timerange
@@ -27,6 +28,11 @@ class Timeslot < ActiveRecord::Base
       errors.add(:start_time, "Cannot be greater than the end time")
     end
   end  
+
+  def mark_times_utc
+    self.start_time = start_time.utc if start_time
+    self.end_time = end_time.utc if end_time
+  end
 end
 
 
