@@ -11,49 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313202056) do
+ActiveRecord::Schema.define(version: 20150318223902) do
 
   create_table "bookings", force: :cascade do |t|
     t.text     "description"
     t.string   "student_id"
+    t.string   "timeslot_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "timeslot_id"
   end
 
-  create_table "teachings", force: :cascade do |t|
+  create_table "instructors", force: :cascade do |t|
     t.string   "country_of_origin"
     t.string   "first_language"
     t.string   "subject_to_teach"
     t.string   "education"
     t.integer  "teacher_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
     t.integer  "price_cents",       default: 0,     null: false
     t.string   "price_currency",    default: "USD", null: false
     t.text     "about"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "avatar"
+    t.string   "document"
   end
 
   create_table "timeslots", force: :cascade do |t|
-    t.integer  "teaching_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "instructor_id"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                        null: false
     t.string   "crypted_password"
     t.string   "salt"
+    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "city_time_zone"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "city_time_zone"
-    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

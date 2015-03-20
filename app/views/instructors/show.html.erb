@@ -1,0 +1,130 @@
+<h1><%= @instructor.teacher.joined_fields :first_name, :last_name %></h1>
+
+<div class="avatar">
+	<%= image_tag @instructor.avatar_url(:thumb) %>
+</div> <br>
+<div class="teacher-fields">
+	<p>
+		From: <strong> <%= @instructor.country_of_origin %> </strong> <br>
+		First Language: <strong><%= @instructor.first_language.capitalize %> </strong> <br>
+		Subject to teach: <strong><%= @instructor.subject_to_teach %></strong><br>
+		Education level: <strong><%= @instructor.education %></strong><br>
+		Time Zone: <strong><%= @instructor.teacher.city_time_zone %></strong> <br> <br>
+		Price per teaching hour: <%= "#{@instructor.price.format} #{@instructor.price.currency}" %> <br>
+		
+		<% if @instructor.document.blank? == false %>
+			<strong> <%= "#{@instructor.teacher.first_name.capitalize}'s Docs: " %> </strong>
+			<%= link_to "Download Resume", @instructor.document_url %>
+		<% else %>
+			<i><%= "No CV uploaded." %></i>
+		<% end %>
+	</p>
+
+	<div class="about-teacher">
+		<h3>About <%= @instructor.teacher.first_name.capitalize%>:</h3>
+		<p><%= @instructor.about%></p>
+	</div>
+</div>
+
+<% if @instructor.teacher == current_user %>
+	<%= link_to "Edit your information", edit_instructor_url(@instructor) %>
+<% end %>
+
+<div class='teacher_calendar'>
+</div>
+<script>
+	$('.teacher_calendar').fullCalendar({
+    
+    select: function( start, end, jsEvent, view ) {
+      console.log(start, end);
+    },
+
+    selectable: true,
+		
+    header: {
+			left: 'prev, next',
+			center:'title',
+			right: 'today,month,agendaWeek,agendaDay'
+		},
+		
+    eventSources: [
+      {
+        url: '/instructors/<%= @instructor.id %>/timeslots',
+        backgroundColor: '#6cf62c',
+        textColor: '#DDF4FF',
+        rendering: 'background',
+        borderColor: 'black',
+        className: 'instructor_availability'
+      },
+      
+      {
+        url: "/instructors/<%= @instructor.id %>/bookings",
+        textColor: '#000E15',
+        borderColor: 'black',
+        backgroundColor: '#9DD6F2'
+      }
+    ],
+
+		defaultView: "agendaWeek",
+		timezone: 'local',
+		// timezoneParam: '<% @instructor.teacher.city_time_zone %>',
+		displayEventEnd: {
+        month: true,
+        basicWeek: true,
+        "default": true
+    },
+
+    theme: true,
+    views: {
+        month: { // name of view
+            titleFormat: 'YYYY, MM, DD'
+            // other view-specific options here
+        }
+      },
+
+   //  eventClick: function(calEvent, jsEvent, view) {
+
+   //      // change the border color just for fun
+   //      if (confirm('Are you sure you want to book this timeslot?')) {
+			// 	  $(this).css('background-color', 'red');
+			// 	}
+			// }
+		}); 
+</script>
+
+
+<h2>Availability</h2>
+
+<h5><%= link_to 'Select Availability', new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true %></h5>
+
+<div id="timeslots">
+  <% @instructor.timeslots.each do |timeslot| %>
+    <%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
+  <% end %>
+</div>
+
+
+
+<!-- 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  </div>
+</div>
+ -->
+
+  <!-- <div id="modalTemplate">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+
+  </div> -->

@@ -1,0 +1,9 @@
+<% if @timeslot.errors.any? %>
+  <% @timeslot.errors.full_messages.each do |error| %>
+    alert("<%= error %>" );
+  <% end %>
+<% else %>
+  $('#timeslots').append('<%= j render partial: 'timeslots/timeslot', locals: {timeslot: @timeslot} %>');
+  $('#add_availability_link').show();
+  $('#new_timeslot').html("");
+<% end %>

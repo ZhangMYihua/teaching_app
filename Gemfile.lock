@@ -65,6 +65,11 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -115,6 +120,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.4.3)
+    mini_magick (4.1.0)
     mini_portile (0.6.2)
     minitest (5.5.1)
     momentjs-rails (2.9.0)
@@ -131,6 +137,8 @@ GEM
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mustache-js-rails (1.0.0)
+      railties (>= 3.1, <= 5.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
@@ -230,6 +238,7 @@ DEPENDENCIES
   active_model_serializers
   bootstrap-sass
   byebug
+  carrierwave
   coffee-rails (~> 4.1.0)
   country_select!
   faker
@@ -237,8 +246,10 @@ DEPENDENCIES
   fullcalendar-rails
   jquery-rails
   jquery-ui-themes!
+  mini_magick
   momentjs-rails
   money-rails
+  mustache-js-rails
   rails (= 4.2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

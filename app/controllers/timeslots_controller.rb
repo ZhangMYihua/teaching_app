@@ -1,63 +1,50 @@
 class TimeslotsController < ApplicationController
-	before_action :load_teaching
+	before_action :load_instructor
 
 	def index
-		results = @teaching.timeslots
+		results = @instructor.timeslots
 
 		if params[:start]
-			time = DateTime.parse params[:start]
+
+			time 		= DateTime.parse params[:start]
 			results = results.where("start_time >= ?", time)
 		end
 
-		# if params[:end]
-		# 	results = results.where("end_date < ?", params[:end])
-		# end
 		if params[:end]
-			time = DateTime.parse params[:end]
+			time 		= DateTime.parse params[:end]
 			results = results.where("end_time < ?", time)
 		end
 
-		# render json: results
-		json = results.map do |result|
-			# binding.pry
-			{
-				start: result.start,
-				end: result.end,
-				title: "Available"
-		  }
-		end.to_json
-
-		render json: json
-
-		# render json: [
-		# 	{start: "2015-03-13T15:25:00-05:00", title: "Woot", end: "2015-03-13T16:25:00-05:00"},
-		# ]
+		render json: results, each_serializer: TimeslotSerializer
 	end
 
 	def new
-		@timeslot = @teaching.timeslots.new
+		@timeslot = @instructor.timeslots.build
 	end
 
 	def create
-		# binding.pry
-		@timeslot = @teaching.timeslots.new(timeslot_params)	
-		if @timeslot.save
-			redirect_to teaching_path(@teaching)
-		else
-			render :new
+		# start_time_at_zone = timeslot_params[:start_time].to_datetime.in_time_zone(@instructor.teacher.city_time_zone)
+  #   end_time_at_zone = timeslot_params[:end_time].to_datetime	.in_time_zone(@instructor.teacher.city_time_zone)
+		@timeslot = @instructor.timeslots.new(timeslot_params)	
+
+			respond_to do |format|
+			if @timeslot.save
+				format.html { redirect_to instructor_path(@instructor) }
+				format.js {}
+			else
+				format.html {render :new, alert: "Create timeslot failed"}
+				format.js {}
+			end	
 		end
 	end
 
-	def default_serializer_options
-  	{root: false}
-	end
 
 private	
 	def timeslot_params
 		params[:timeslot].permit(:start_time, :end_time)
 	end
 
-	def load_teaching
-		@teaching = Teaching.find(params[:teaching_id])
+	def load_instructor
+		@instructor = Instructor.find(params[:instructor_id])
 	end
 end

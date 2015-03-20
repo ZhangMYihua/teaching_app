@@ -1,0 +1,71 @@
+<%= form_for @instructor, :html => {:multipart => true} do |f| %>
+  <% if @instructor.errors.any? %>
+    <div class="error_explanation">
+      <h2><%= pluralize(@instructor.errors.count, "error") %> prohibited this form from being saved:</h2>
+      <ul>
+      <% @instructor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field"> 
+	  <%= image_tag(@instructor.avatar_url(:thumb)) if @instructor.avatar? %>
+  	<%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %> 
+  </div>
+
+  <div class="field">
+    <%= f.label :country_of_origin, "*Country of Origin: " %>
+    <%= f.country_select :country_of_origin %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_language, "*First Language: " %>
+    <%= f.text_field :first_language %>
+  </div>
+	
+  <div class="field">
+		<%= f.label :subject_to_teach, "*Teaches: " %> <br>
+		<%= f.select(:subject_to_teach, options_for_select(["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese"]), include_blank: true) %> <br> <br>
+	</div>
+	
+  <div class="field">
+    <%= f.label :education, "*Education: " %> <br>
+    <%= f.radio_button(:education, "High School") %>
+		<%= f.label(:education_high_school, "High School") %>
+		<%= f.radio_button(:education, "Bachelor Degree") %>
+		<%= f.label(:education_bachelors, "Bachelor Degree") %> <br>
+		<%= f.radio_button(:education, "Master Degree") %>
+		<%= f.label(:education_masters, "Master Degree") %>
+		<%= f.radio_button(:education, "PhD") %>
+		<%= f.label(:education_phd, "PhD") %> <br>
+		<%= f.radio_button(:education, "Other") %>
+		<%= f.label(:education_other, "Other") %>
+		</div>
+  <div class="field">
+  	<%= f.label :price_string, '*Hourly Rate: $' %>
+  	<%= f.text_field :price_string %>
+  </div>
+  <div class="field">
+  	<%= f.label :about, "*About me: " %>
+  	<%= f.text_field :about %>
+  </div> <br>
+  	
+	<% if @instructor.document != nil %>
+		<i> <%="You've uploaded a resume already. You can update it to another if you want"%></i>
+	<% end %>
+
+  <div class="field">
+  	<%= f.label :document, "Upload your CV/Resume for students to view." %>
+  	<%= f.file_field :document %>
+  	<%= f.hidden_field :document_cache %> 
+  </div> <br>
+<p> <i> * Indicates a required field.</i></p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div> <br>
+<% end %>
