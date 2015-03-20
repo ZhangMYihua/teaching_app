@@ -9,7 +9,7 @@
       </ul>
     </div>
   <% end %>
-
+	
   <div class="field"> 
 	  <%= image_tag(@instructor.avatar_url(:thumb)) if @instructor.avatar? %>
   	<% f.label :avatar %>
@@ -64,6 +64,7 @@
   	<%= f.hidden_field :document_cache %> 
   </div> <br>
 <p> <i> * Indicates a required field.</i></p>
+
 
   <div class="actions">
     <%= f.submit %>
