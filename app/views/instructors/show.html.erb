@@ -35,8 +35,8 @@
 		<%= link_to new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true, class: 'btn btn-success btn-sm' do %>
 		<i class="glyphicon glyphicon-plus"></i> Select your Availability <br>
 		<% end %>
-	</div>
 	<% end %>
+
 
 <!-- Need to ensure current user is not the rendered instructors profile!!!!! -->
 <!-- need to fix this page! the calendar border is over the teacher's profile!! -->
@@ -47,7 +47,9 @@
 		<% end %>
 <% else %> 
 	<p><i> <%= link_to "Login", new_session_path %> to book a time with this teacher.</i></p>
+	</div>
 <% end %>
+	</div>
 
 <div class='teacher_calendar'>
 </div>
@@ -120,9 +122,9 @@
 	</div>
 
 <div id="timeslots">
-  <% @instructor.timeslots.each do |timeslot| %>
-    <%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
-  <% end %>
+  < @instructor.timeslots.each do |timeslot| %>
+    <= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
+  < end %>
 </div>
 
 

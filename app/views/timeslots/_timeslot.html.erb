@@ -1,12 +1,12 @@
 <div id="timeslot_<%= timeslot.id %>">
 	<p><%= timeslot.start_time.in_time_zone %> to <%= timeslot.end_time.in_time_zone %></p>
-  
+  <% if @instructor.teacher != current_user %>
   <div id="booking_add_<%=timeslot.id%>">
     <%= link_to new_instructor_timeslot_booking_path(@instructor, timeslot), class: 'add_booking_link btn btn-success btn-sm', remote: true do %>
     		<i class="glyphicon glyphicon-plus"> </i>Book this Timeslot!
 	<% end %>
   </div>
-		<!-- < end %> -->
+		<% end %>
 
 </div>   
 
