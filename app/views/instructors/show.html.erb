@@ -38,6 +38,8 @@
 	</div>
 	<% end %>
 
+<!-- Need to ensure current user is not the rendered instructors profile!!!!! -->
+<!-- need to fix this page! the calendar border is over the teacher's profile!! -->
 <% if current_user != nil %>
 	<div id="timeslots">
 		<% @instructor.timeslots.each do |timeslot| %>
