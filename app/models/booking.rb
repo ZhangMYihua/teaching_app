@@ -2,6 +2,7 @@ class Booking < ActiveRecord::Base
 	belongs_to :timeslot
 	has_many :instructors, through: :timeslot
 	belongs_to :student, class_name: 'User'
+	before_validation :mark_times_utc
 
 
 	# validate :fits_within_open_slot
@@ -14,13 +15,18 @@ class Booking < ActiveRecord::Base
 	private
 	def consistent
 		unless timeslot.is_available?(self)
+			# binding.pry
 			errors.add(:timeslot, "is unavailable for that booking")
 		end
-		unless start_time < end_time
+		
+		if start_time > end_time
 			errors.add(:start_time, "Cannot be greater than the end time")
 		end
 	end
+
+  def mark_times_utc
+    self.start_time = start_time.utc if start_time
+    self.end_time = end_time.utc if end_time
+  end
 end
 
-
-#booking.timerange.overlap?(timeslot.timerange)

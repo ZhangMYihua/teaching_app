@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,9 +26,14 @@
 	    <div><%= flash[:alert] %></div>
 	  <% end %>
 
+<<<<<<< HEAD
     <div class="col-xs-11">
       <%= yield %>
     </div>
   </div>
+=======
+		<%= yield %>
+	</div>
+>>>>>>> origin
 </body>
 </html>

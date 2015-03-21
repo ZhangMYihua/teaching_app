@@ -1,6 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :load_timeslot, except: [:index]
-  before_action :load_instructor, except: [:index]
+  before_action :load_timeslot_and_instructor, except: [:index]
     
   def index
   	results = current_user.bookings
@@ -23,8 +22,10 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = @timeslot.bookings.new(booking_params)
-    @booking.student = current_user
+    @booking          = Booking.new booking_params
+    @booking.timeslot = @timeslot
+    @booking.student  = current_user
+    
     respond_to do |format|
       if @booking.save
         format.html { redirect_to instructor_path(@instructor) }
@@ -47,11 +48,8 @@ private
     params.require(:booking).permit(:start_time, :end_time)
   end
 
-  def load_timeslot
-    @timeslot = Timeslot.find(params[:timeslot_id])
-  end
-
-  def load_instructor 
+  def load_timeslot_and_instructor
+    @timeslot   = Timeslot.find(params[:timeslot_id])
     @instructor = @timeslot.instructor
   end
 end

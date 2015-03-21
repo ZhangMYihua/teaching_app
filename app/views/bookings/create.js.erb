@@ -3,6 +3,7 @@
     alert("<%= error %>" );
   <% end %>
 <% else %>
-  $('#add_booking_link').show();
-  $('#new_timeslot').html("");
+  $('.add_booking_link').show();
+  $('#new_booking').html("");
+  $('<div class=""></div>teacher_calendar').fullCalendar( 'refetchEvents' );
 <% end %>

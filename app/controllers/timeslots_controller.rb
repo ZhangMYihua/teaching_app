@@ -5,6 +5,7 @@ class TimeslotsController < ApplicationController
 		results = @instructor.timeslots
 
 		if params[:start]
+
 			time 		= DateTime.parse params[:start]
 			results = results.where("start_time >= ?", time)
 		end
@@ -22,7 +23,7 @@ class TimeslotsController < ApplicationController
 	end
 
 	def create
-		@timeslot = @instructor.timeslots.build(timeslot_params)	
+		@timeslot = @instructor.timeslots.new(timeslot_params)	
 
 			respond_to do |format|
 			if @timeslot.save

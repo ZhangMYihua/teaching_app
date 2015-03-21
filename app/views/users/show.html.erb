@@ -26,7 +26,7 @@
     },
     events: "/users/<%= @user.id %>/bookings",
     defaultView: "agendaWeek",
-    timezone: 'local',
+    timezone: "<%= current_user.city_time_zone%>",
     displayEventEnd: {
         month: true,
         basicWeek: true,

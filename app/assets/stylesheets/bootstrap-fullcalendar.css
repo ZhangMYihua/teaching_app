@@ -329,8 +329,15 @@ table.fc-border-separate {
     white-space: nowrap;
     font-size: 10px; }
 
+
 .fc .ui-draggable-dragging .fc-event-bg, .fc-select-helper .fc-event-bg {
   display: none; }
 
 .fc-event-vert .ui-resizable-s {
   bottom: 0 !important; }
+
+
+.fc-highlight {
+  background: green;
+}
+
