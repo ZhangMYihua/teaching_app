@@ -3,6 +3,10 @@
 <p>Last Name: <%=@user.last_name.capitalize %></p>
 <p>Current Time Zone: <%=@user.city_time_zone %></p>
 
+<% if @user == current_user %>
+	<%= link_to "Edit" , edit_user_url(@user) %>
+<% end %>
+
 <div id="timeslots">
   <h3> Current Bookings: </h3>
   <% @user.bookings.each do |booking| %>
@@ -10,10 +14,6 @@
 
   <% end %>
 </div>
-
-<% if @user == current_user %>
-	<%= link_to "Edit" , edit_user_url(@user) %>
-<% end %>
 
 <div class='student_calendar'>
 </div>

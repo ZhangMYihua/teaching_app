@@ -4,10 +4,7 @@
 <% @instructors.each do |instructor| %>
 	<%= link_to instructor_path(instructor) do %>
 	<div class="teacher col-md-4 col-sm-6 col-xs-6 col-lg-3 btn btn-default">
-	<div class="img-circle">
-		<%=  (image_tag instructor.avatar_url(:index), width: AvatarUploader::THUMBW, height: AvatarUploader::THUMBH) %>
-		
-	</div>
+		<%=  (image_tag instructor.avatar_url(:index), width: AvatarUploader::THUMBW, height: AvatarUploader::THUMBH)  %>
 
 		<h4>
 			<%=  instructor.teacher.name.titleize %>
