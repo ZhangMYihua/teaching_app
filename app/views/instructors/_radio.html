@@ -1,0 +1,47 @@
+
+<div class="col-lg-6">
+  <div class="input-group">
+    <span class="input-group-addon">
+      <input type="radio" aria-label="...">
+    </span>
+    <input type="text" class="form-control" aria-label="...">
+  </div><!-- /input-group -->
+</div><!-- /.col-lg-6 -->
+
+
+
+<div class="input-group">
+	<span class="input-group-addon">
+			<%= f.radio_button(:education, "Other") %>
+	</span>
+		<!-- <= f.label(:education_other, "Other") %> -->
+		<label>
+		</label>
+</div>
+
+<div class="radio">
+	<!-- <= f.label(:education_other, "Other") %> -->
+	<label>
+		<input type="radio" value="Other" name="instructor[education]" id="instructor_education_other"> Other
+	</label>
+</div>
+
+<div class="col-sm-9">
+  <input class="form-control" placeholder="First Language" type="text" name="instructor[first_language]" id="instructor_first_language">
+</div>
+
+<div class="form-group">
+  <%= f.label :education, "*Education: ", class: 'col-sm-3 control-label'%>
+  <div class="col-sm-9">
+    <%= f.radio_button(:education, "High School") %>
+		<%= f.label(:education_high_school, "High School") %>
+		<%= f.radio_button(:education, "Bachelor Degree") %>
+		<%= f.label(:education_bachelors, "Bachelor Degree") %> <br>
+		<%= f.radio_button(:education, "Master Degree") %>
+		<%= f.label(:education_masters, "Master Degree") %>
+		<%= f.radio_button(:education, "PhD") %>
+		<%= f.label(:education_phd, "PhD") %> <br>
+		<%= f.radio_button(:education, "Other") %>
+		<%= f.label(:education_other, "Other") %>
+  </div>
+</div>

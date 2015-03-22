@@ -1,8 +1,7 @@
-
-<%= form_for @instructor, :html => {:multipart => true} do |f| %>
+<%= form_for @instructor, :html => {:multipart => true, class: 'form-horizontal'} do |f| %>
   <% if @instructor.errors.any? %>
-    <div class="error_explanation">
-      <h2>Unfortunately <%= pluralize(@instructor.errors.count, "error") %> prevented this form from being saved:</h2>
+    <div class="alert alert-danger">
+      <h2>Drats! </h2> <p><%= pluralize(@instructor.errors.count, "error") %> prevented this form from being saved:</p>
       <ul>
       <% @instructor.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,55 +9,98 @@
       </ul>
     </div>
   <% end %>
-	
-  <div class="field"> 
-	  <%= image_tag(@instructor.avatar_url(:thumb)) if @instructor.avatar? %>
-  	<% f.label :avatar %>
-    <%= f.file_field :avatar %>
-    <%= f.hidden_field :avatar_cache %> 
-  </div>
 
-  <div class="field">
-    <%= f.label :country_of_origin, "*Country of Origin: " %>
-    <%= f.country_select :country_of_origin %>
-  </div>
+<div class="row">
+	<div class="col-sm-9 col-sm-offset-1">
+		
+	  <div class="form-group"> 
+		  <%= image_tag(@instructor.avatar_url(:thumb)) if @instructor.avatar? %>
+	  	<% f.label :avatar %>
+	  	<div class="col-sm-10">
+		  	<span class="btn btn-info btn-file">
+			    Upload a Photo <%= f.file_field :avatar %>
+				</span>
+		    <%= f.hidden_field :avatar_cache %> 
+	  	</div>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label :country_of_origin, "*Country of Origin: ", class: 'col-sm-3 control-label' %>
+	    <div class="col-sm-9">
+		    <%= f.country_select :country_of_origin, nil, {prompt: "Select a Country"}, {:class => 'form-control'} %>
+	    </div>
+	  </div>
 
-  <div class="field">
-    <%= f.label :first_language, "*First Language: " %>
-    <%= f.text_field :first_language %>
-  </div>
-	
-  <div class="field">
-		<%= f.label :subject_to_teach, "*Teaches: " %> <br>
-		<%= f.select(:subject_to_teach, options_for_select(["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese"]), include_blank: true) %> <br> <br>
-	</div>
-	
-  <div class="field">
-    <%= f.label :education, "*Education: " %> <br>
-    <%= f.radio_button(:education, "High School") %>
-		<%= f.label(:education_high_school, "High School") %>
-		<%= f.radio_button(:education, "Bachelor Degree") %>
-		<%= f.label(:education_bachelors, "Bachelor Degree") %> <br>
-		<%= f.radio_button(:education, "Master Degree") %>
-		<%= f.label(:education_masters, "Master Degree") %>
-		<%= f.radio_button(:education, "PhD") %>
-		<%= f.label(:education_phd, "PhD") %> <br>
-		<%= f.radio_button(:education, "Other") %>
-		<%= f.label(:education_other, "Other") %>
+	  <div class="form-group">
+	    <%= f.label :first_language, "*First Language:", class: 'col-sm-3 control-label' %>
+	    <div class="col-sm-9">
+		    <%= f.text_field :first_language, class: 'form-control', placeholder: 'First Language' %>
+	    </div>
+	  </div>
+		
+	  <div class="form-group">
+			<%= f.label :subject_to_teach, "*Subject to Teach:", class: 'col-sm-3 control-label' %> 
+			<div class="col-sm-9">
+				<%= f.select(:subject_to_teach, options_for_select(["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese"]), {prompt: "Select a Language"
+},{:class => 'form-control'}) %>
+			</div>
 		</div>
-  <div class="field">
-  	<%= f.label :price_string, '*Hourly Rate: $' %>
-  	<%= f.text_field :price_string %>
-  </div>
-  <div class="field">
-  	<%= f.label :about, "*About me: " %>
-  	<%= f.text_area :about %>
-  </div> <br>
+
+	  <div class="form-group">
+	  	<%= f.label :education, "*Education: ", class: 'col-sm-3 control-label'%>
+	  	<div class="col-sm-offset-1 col-sm-4">
+		   	<div class="radio">
+			   	<label>
+					<!-- <= f.label(:education_high_school, "High School") %> -->
+				    <%= f.radio_button(:education, "High School") %>
+				    High School
+			   	</label>
+		   	</div>
+
+		   	<div class="radio">
+					<!-- <= f.label(:education_bachelors, "Bachelor Degree") %> -->
+					<label>
+						<%= f.radio_button(:education, "Bachelor Degree") %> Bachelor Degree
+					</label>
+		   	</div>
+
+		   	<div class="radio">
+					<!-- <= f.label(:education_masters, "Master Degree") %> -->
+					<label>
+						<%= f.radio_button(:education, "Master Degree") %> Master Degree
+					</label>
+		   	</div>
+			</div> 
+			<div class="col-sm-4">
+					<div class="radio">
+						<!-- <= f.label(:education_phd, "PhD") %> -->
+						<label>
+							<%= f.radio_button(:education, "PhD") %> PhD
+						</label>
+					</div>
+
+					<div class="radio">
+						<!-- <= f.label(:education_other, "Other") %> -->
+						<label>
+							<%= f.radio_button(:education, "Other") %> Other
+						</label>
+					</div>
+				</div>
+    	</div>
+
+
+	  <div class="form-group">
+	  	<%= f.label :price_string, '*Hourly Rate: $' %>
+	  	<%= f.text_field :price_string %>
+	  </div>
+	  <div class="form-group">
+	  	<%= f.label :about, "*About me: " %>
+	  	<%= f.text_area :about %>
+	  </div> 
 
 
 
 
-  <div class="field">
+  <div class="form-group">
   	<%= f.label :document, "Upload your CV/Resume for students to view." %> <br>
 		<% if @instructor.document != nil %>
 			<i> <%="You've uploaded a resume already. You can update it to another if you want"%></i>
@@ -69,7 +111,9 @@
 <p> <i> * Indicates a required field.</i></p>
 
 
-  <div class="actions">
-    <%= f.submit %>
-  </div> <br>
+		  <div class="actions">
+		    <%= f.submit %>
+		  </div> 
+	  </div>
+  </div>
 <% end %>
