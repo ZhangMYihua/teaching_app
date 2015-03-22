@@ -3,17 +3,15 @@
    <div class="navbar-header">
 		<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
   		<ul class="nav navbar-nav">
-			 	<li><%= link_to "Teachme.com", instructors_path, class: "navbar-brand" %></li>
+			 	<li><%= link_to "Teachme", instructors_path, class: "navbar-brand" %></li>
 				<% if current_user != nil %>
 				  <% if current_user.instructor %>
-				      Welcome <%= link_to current_user.first_name.capitalize, instructor_path(current_user.instructor.id) %>
+				      <li><%= link_to "Welcome #{current_user.first_name.capitalize}", instructor_path(current_user.instructor.id) %></li>
 				      <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
 				  <% else %>
 				    <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
-				    <li><%= link_to 'Wanna Teach?', new_instructor_path, class: "btn btn-primary btn-md"  %></li>
-				    <li><%= link_to user_path(current_user), class: 'btn btn-default btn-sm' do %>
-							Signed in as: <%= current_user.first_name.capitalize %>
-				   	<% end %></li>
+				    <li><%= link_to 'Wanna Teach?', new_instructor_path %></li>
+				    <li><%= link_to "Signed in as: #{current_user.first_name.capitalize}", user_path(current_user) %> </li>
 				  <% end %>  
 			   <% else %>
 					 <li><%= link_to "Login", new_session_path %></li>
