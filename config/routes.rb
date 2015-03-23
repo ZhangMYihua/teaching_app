@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+	
+  get 'pages/home'
+  get 'pages/contact'
+  get 'pages/about'
+
 # match 'logout' => 'sessions#destroy', :as => :logout
 
   root 'instructors#index'

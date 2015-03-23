@@ -52,7 +52,9 @@
 	</div>
 
 <div class='teacher_calendar'>
+<% timezone = current_user.city_time_zone if current_user.present? %>
 </div>
+
 <script>
 	$('.teacher_calendar').fullCalendar({
     
@@ -87,7 +89,8 @@
     ],
 
 		defaultView: "agendaWeek",
-		timezone: "<%= current_user.city_time_zone %>",
+		timezone: "<%= timezone %>",
+		// timezone: <= current_user.city_time_zone %>,
 		// timezoneParam: '<% @instructor.teacher.city_time_zone %>',
 		displayEventEnd: {
         month: true,
