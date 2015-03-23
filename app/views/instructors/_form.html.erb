@@ -12,17 +12,43 @@
 
 <div class="row">
 	<div class="col-sm-9 col-sm-offset-1">
-		
-	  <div class="form-group"> 
-		  <%= image_tag(@instructor.avatar_url(:thumb)) if @instructor.avatar? %>
-	  	<% f.label :avatar %>
-	  	<div class="col-sm-10">
-		  	<span class="btn btn-info btn-file">
-			    Upload a Photo <%= f.file_field :avatar %>
-				</span>
-		    <%= f.hidden_field :avatar_cache %> 
-	  	</div>
-	  </div>
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-3">
+		  <div class="media">
+			  <div class="media-left">
+				  <% if @instructor.avatar? %> <br>
+					  <%= image_tag(@instructor.avatar_url(:thumb), class: 'img-responsive img-thumbnail')%>
+							<p><i>Your current image</i></p> <br>
+						<%end %>
+			  </div>
+		  </div>
+		</div>
+	</div>
+		  <div class="form-group"> 
+		  	<%= f.label :avatar, "Upload a Profile Picture: ", class: 'col-sm-3 control-label' %>
+		  	<div class="col-sm-4">
+			  	<span class="btn btn-success btn-lg btn-block btn-file">
+				    Upload! <%= f.file_field :avatar %>
+					</span> 
+			    <%= f.hidden_field :avatar_cache %> 
+		  	</div>
+		  </div>
+	  
+
+  <div class="form-group">
+  	<%= f.label :document, "Upload your CV or Resume (Optional):", class: 'col-sm-3 control-label' %> 
+  	<div class="col-sm-4">
+			<span class="btn btn-success btn-lg btn-block btn-file">
+				Choose a File <%= f.file_field :document %> 
+			</span>
+			<% if !@instructor.document.blank? %> <br>
+				<i> <%="You've uploaded a resume already. You can update it to another if you want"%></i>
+			<% end %>
+	  	<%= f.hidden_field :document_cache %> 
+  	</div>
+  </div> 
+
+
 	  <div class="form-group">
 	    <%= f.label :country_of_origin, "*Country of Origin: ", class: 'col-sm-3 control-label' %>
 	    <div class="col-sm-9">
@@ -47,6 +73,7 @@
 
 	  <div class="form-group">
 	  	<%= f.label :education, "*Education: ", class: 'col-sm-3 control-label'%>
+
 	  	<div class="col-sm-offset-1 col-sm-4">
 		   	<div class="radio">
 			   	<label>
@@ -77,43 +104,49 @@
 							<%= f.radio_button(:education, "PhD") %> PhD
 						</label>
 					</div>
+<!-- This text input radio button needs fixing up. It can be written in without automatically selecting the button component. Untested as of mar 22 if it actually submits -->
 
-					<div class="radio">
-						<!-- <= f.label(:education_other, "Other") %> -->
-						<label>
-							<%= f.radio_button(:education, "Other") %> Other
-						</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<%= f.radio_button(:education, "") %>
+						</span>
+							<!-- <= f.label(:education_other, "Other") %> -->
+						<%= f.text_field :education, class: 'form-control', placeholder: "Other" %>
 					</div>
 				</div>
     	</div>
 
+<form class="form-inline">
+	  <div class="form-group">
+	  	<%= f.label :price_string, '*Hourly Rate (in USD)', class: "col-sm-3 control-label" %>
+	  	<div class="col-sm-9">
+	  		<div class="input-group">
+	  			<div class="input-group-addon">$</div>
+		  	<%= f.text_field :price_string, class: 'form-control', placeholder: 'Amount in USD' %>
+	  		</div>
+	  	</div>
+	  </div>
 
 	  <div class="form-group">
-	  	<%= f.label :price_string, '*Hourly Rate: $' %>
-	  	<%= f.text_field :price_string %>
-	  </div>
-	  <div class="form-group">
-	  	<%= f.label :about, "*About me: " %>
-	  	<%= f.text_area :about %>
+	  	<%= f.label :about, "*About me: ", class: 'col-sm-3 control-label' %>
+	  	<div class="col-sm-9">
+		  	<%= f.text_area :about, class: 'form-control', rows: 6 %>
+		  	<span class="help-block">You might write a little about your educational background, your teaching experience and what you feel your particular strengths are in teaching.</span>
+	  	</div>
 	  </div> 
 
+		<div class="form-group">
+			<div class="col-sm-3 control-label"><p> <i> * Indicates a required field.</i></p></div>
+		</div>
 
+	  <div class="form-group">
+		  <div class="col-sm-offset-3 col-sm-9">
+			  <button type="submit" name="commit" class="btn btn-lg btn-primary btn-block">Save it!</button>
+		    <!-- <= f.submit %> -->
+		  </div>
+	  </div>  
 
+  </div> <!-- overall column wrapping -->
 
-  <div class="form-group">
-  	<%= f.label :document, "Upload your CV/Resume for students to view." %> <br>
-		<% if @instructor.document != nil %>
-			<i> <%="You've uploaded a resume already. You can update it to another if you want"%></i>
-		<% end %>
-  	<%= f.file_field :document %>
-  	<%= f.hidden_field :document_cache %> 
-  </div> <br>
-<p> <i> * Indicates a required field.</i></p>
-
-
-		  <div class="actions">
-		    <%= f.submit %>
-		  </div> 
-	  </div>
-  </div>
+</div> <!-- row -->
 <% end %>

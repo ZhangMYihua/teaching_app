@@ -28,7 +28,7 @@ class Instructor < ActiveRecord::Base
 	def price_string
 		price && price.format
 	end
-
+# gotta change this so that the '$' isn't automatically rendered in the input field of instructor create
 	def price_string=(val)
 		if val =~ /(\d+(\.\d+)?)/
 			self.price_cents = ($1.to_f * 100).to_i # convert to cents
