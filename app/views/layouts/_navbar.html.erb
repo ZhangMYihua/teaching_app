@@ -10,23 +10,38 @@
       <%= link_to "Teachme", instructors_path, class: "navbar-brand" %>
     </div>
     <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
-      <ul class="nav navbar-nav">
-				<% if current_user != nil %>
-				  <% if current_user.instructor %>
-				      <li><%= link_to "Welcome #{current_user.first_name.capitalize}", instructor_path(current_user.instructor.id) %></li>
-				      <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
-				  <% else %>
-				    <li><%= link_to "#{current_user.first_name.capitalize}'s Page", user_path(current_user) %> </li>
-				    <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
-				    <li><%= link_to 'Wanna Teach?', new_instructor_path %></li>
-				  <% end %>  
-			   <% else %>
-					 <li><%= link_to "Login", new_session_path %></li>
-					 <li><%= link_to "Sign up", new_user_path %></li>
+      <ul class="nav navbar-nav"> 
+      <!-- Nav bar links -->
+				<% if current_user != nil && current_user.instructor %>
+				  <!-- < if current_user.instructor %> -->
+			      <li><%= link_to "#{current_user.first_name.capitalize}'s Teacher Profile", instructor_path(current_user.instructor.id) %></li>
+				  <% end %>
+
+	      <% if current_user != nil && !current_user.instructor %>
+			    <li><%= link_to "#{current_user.first_name.capitalize}'s Page", user_path(current_user) %> </li>
+			  <% end %>
+
+			  <% if current_user %>  
+			    <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
 				<% end %>
-	      <li><%= link_to "Contact", pages_contact_path %> </li>
+
+				<% if current_user == nil %>
+				 <li><%= link_to "Login", new_session_path %></li>
+				<% end %>
+				
+				<% if !current_user %>
+				 <li><%= link_to "Sign up", new_user_path %></li>
+				<% end %>
+	      
 	      <li><%= link_to "About", pages_about_path %> </li>
+
+	      <li><%= link_to "Contact", pages_contact_path %> </li>
+
+	      <% if current_user != nil && !current_user.instructor %>
+					  <li><%= link_to 'Wanna Teach?', new_instructor_path %></li>
+			  <% end %>
        </ul>
+
     </div><!--/.nav-collapse -->
   </div>   
 </nav>

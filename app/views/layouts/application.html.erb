@@ -32,10 +32,14 @@
   
   <div id="footer" class="navbar navbar-default navbar-fixed-bottom text-center">
   	<div class="container">
-  		<p class="text-muted"><br>&copy 2015 - A Mike and Chris Production</p>
+			<ul class="nav navbar-nav">
+				<% if current_user != nil && !current_user.instructor %>
+					  <li><%= link_to 'Wanna Teach?', new_instructor_path %></li>
+			  <% end %>
+			</ul>
+  		<p class="text-muted">&copy 2015 - A Mike and Chris Production</p>
   	</div>
   </div>
-
 	<!-- <footer class="footer">
 	  <div class="container">
 	    <p class="text-muted">&copy 2015 - A Mike and Chris Production</p>
