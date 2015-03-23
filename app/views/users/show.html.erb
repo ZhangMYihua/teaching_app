@@ -33,6 +33,20 @@
 	  </div>
   </div>
 </div>
+
+<!-- Panel for calendar -->
+<div class="row">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">My Bookings Calendar:</h3>
+		</div>
+	  <div class="panel-body">
+			<div class='student_calendar'>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- panel with table for bookings -->
 <div class="row">
 	<div id="timeslots">
@@ -52,34 +66,26 @@
 		        </tr>
 		      </thead>
 		      <tbody>
-					  <% @user.bookings.each do |booking| %>
-					    <!-- <= render partial: 'bookings/booking', locals: {booking: booking} %> -->
-					    <div id="booking_<%= booking.id %>">
-							  <!-- <p><= booking.start_time %> to <= booking.end_time %> with <= booking.timeslot.instructor.teacher.name %> for <= booking.timeslot.instructor.subject_to_teach %>. </p> -->
-				        <tr>
-				          <!-- <th scope="row">add a number here: 1 ++ </th> -->
-				          <td><%= booking.timeslot.instructor.teacher.name %></td>
-				          <td><%= booking.timeslot.instructor.subject_to_teach %></td>
-				          <td><%= booking.start_time %></td>
-				          <td><%= booking.end_time %></td>
-				        </tr>
-							</div> 
+			      <% if @user.bookings %>
+						  <% @user.bookings.each do |booking| %>
+						    <!-- <= render partial: 'bookings/booking', locals: {booking: booking} %> -->
+						    <div id="booking_<%= booking.id %>">
+								  <!-- <p><= booking.start_time %> to <= booking.end_time %> with <= booking.timeslot.instructor.teacher.name %> for <= booking.timeslot.instructor.subject_to_teach %>. </p> -->
+					        <tr>
+					          <!-- <th scope="row">add a number here: 1 ++ </th> -->
+					          <td><%= booking.timeslot.instructor.teacher.name %></td>
+					          <td><%= booking.timeslot.instructor.subject_to_teach %></td>
+					          <td><%= booking.start_time %></td>
+					          <td><%= booking.end_time %></td>
+					        </tr>
+								</div> 
+							  <% end %>
+						  <% else %>
+							 <i>You don't have any bookings currently</i>
 					  <% end %>
 		      </tbody>
 		    </table>
 			</div> 
-		</div>
-	</div>
-</div>
-<!-- Panel for calendar -->
-<div class="row">
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">My Bookings Calendar:</h3>
-		</div>
-	  <div class="panel-body">
-			<div class='student_calendar'>
-			</div>
 		</div>
 	</div>
 </div>
