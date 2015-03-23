@@ -5,5 +5,5 @@
 <% else %>
   $('.add_booking_link').show();
   $('#new_booking').html("");
-  $('<div class=""></div>teacher_calendar').fullCalendar( 'refetchEvents' );
+  $('.teacher_calendar').fullCalendar('refetchEvents');
 <% end %>

@@ -16,9 +16,9 @@
 				      <li><%= link_to "Welcome #{current_user.first_name.capitalize}", instructor_path(current_user.instructor.id) %></li>
 				      <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
 				  <% else %>
+				    <li><%= link_to "#{current_user.first_name.capitalize}'s Page", user_path(current_user) %> </li>
 				    <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
 				    <li><%= link_to 'Wanna Teach?', new_instructor_path %></li>
-				    <li><%= link_to "Signed in as: #{current_user.first_name.capitalize}", user_path(current_user) %> </li>
 				  <% end %>  
 			   <% else %>
 					 <li><%= link_to "Login", new_session_path %></li>
