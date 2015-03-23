@@ -21,12 +21,26 @@
 </head>
 
 <body id="body">
-	<%= render '/instructors/navbar' %>
+	<%= render '/layouts/navbar' %>
 	<div class="container">
 	  <% if flash[:alert] %>
 	    <div><%= flash[:alert] %></div>
 	  <% end %>
-	  <%= yield %>
+  <%= yield %>
+
   </div>
+  
+  <div id="footer" class="navbar navbar-default navbar-fixed-bottom">
+  	<div class="container">
+  		<p class="text-muted">&copy 2015 - A Mike and Chris Production</p>
+  	</div>
+  </div>
+
+	<!-- <footer class="footer">
+	  <div class="container">
+	    <p class="text-muted">&copy 2015 - A Mike and Chris Production</p>
+	  </div>
+	</footer> -->
+
 </body>
 </html>
