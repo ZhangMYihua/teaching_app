@@ -1,6 +1,11 @@
-
 @import 'fullcalendar';
+@import 'bootstrap-sprockets';
+
+@import 'bootstrap-overrides';
 @import 'bootstrap';
-@import 'jquery-ui/mint-choc';
+
+
+@import 'jquery-ui/overcast';
 @import 'calendar';
+@import 'instructors';
 

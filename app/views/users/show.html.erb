@@ -2,9 +2,42 @@
 <p>First Name: <%= @user.first_name.capitalize%></p>
 <p>Last Name: <%=@user.last_name.capitalize %></p>
 <p>Current Time Zone: <%=@user.city_time_zone %></p>
-<p>Current Bookings:</p>
-
 
 <% if @user == current_user %>
 	<%= link_to "Edit" , edit_user_url(@user) %>
 <% end %>
+
+<div id="timeslots">
+  <h3> Current Bookings: </h3>
+  <% @user.bookings.each do |booking| %>
+    <%= render partial: 'bookings/booking', locals: {booking: booking} %>
+
+  <% end %>
+</div>
+
+<div class='student_calendar'>
+</div>
+<script>
+  $('.student_calendar').fullCalendar({
+    header: {
+      left: 'prev, next',
+      center:'title',
+      right: 'today,month,agendaWeek,agendaDay'
+    },
+    events: "/users/<%= @user.id %>/bookings",
+    defaultView: "agendaWeek",
+    timezone: "<%= current_user.city_time_zone%>",
+    displayEventEnd: {
+        month: true,
+        basicWeek: true,
+        "default": true
+    },
+    theme: true,
+    views: {
+        month: { // name of view
+            titleFormat: 'YYYY, MM, DD'
+            // other view-specific options here
+        }
+      }
+    }); 
+</script>
