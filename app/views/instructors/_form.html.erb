@@ -12,7 +12,7 @@
 
 	<div class="row">
 		<div class="col-sm-9 col-sm-offset-1">
-		
+		<!-- display avatar if the user already has one. for the edit page -->
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-3">
 				  <div class="media">
@@ -25,7 +25,7 @@
 				  </div>
 				</div>
 			</div>
-
+<!-- upload avatar -->
 	  <div class="form-group"> 
 	  	<%= f.label :avatar, "Upload a Profile Picture: ", class: 'col-sm-3 control-label' %>
 	  	<div class="col-sm-4">
@@ -36,7 +36,7 @@
 	  	</div>
 	  </div>
 	  
-
+<!-- upload cv/resume -->
   <div class="form-group">
   	<%= f.label :document, "Upload your CV or Resume (Optional):", class: 'col-sm-3 control-label' %> 
   	<div class="col-sm-4">
@@ -50,21 +50,21 @@
   	</div>
   </div> 
 
-
+<!-- country select -->
 	  <div class="form-group">
 	    <%= f.label :country_of_origin, "*Country of Origin: ", class: 'col-sm-3 control-label' %>
 	    <div class="col-sm-9">
 		    <%= f.country_select :country_of_origin, nil, {prompt: "Select a Country"}, {:class => 'form-control'} %>
 	    </div>
 	  </div>
-
+<!-- first language -->
 	  <div class="form-group">
 	    <%= f.label :first_language, "*First Language:", class: 'col-sm-3 control-label' %>
 	    <div class="col-sm-9">
 		    <%= f.text_field :first_language, class: 'form-control', placeholder: 'First Language' %>
 	    </div>
 	  </div>
-		
+<!-- subject to teach -->
 	  <div class="form-group">
 			<%= f.label :subject_to_teach, "*Subject to Teach:", class: 'col-sm-3 control-label' %> 
 			<div class="col-sm-9">
@@ -72,7 +72,7 @@
 },{:class => 'form-control'}) %>
 			</div>
 		</div>
-
+<!-- education. radio buttons.-->
 	  <div class="form-group">
 	  	<%= f.label :education, "*Education: ", class: 'col-sm-3 control-label'%>
 
@@ -117,7 +117,7 @@
 					</div>
 				</div>
     	</div>
-
+<!-- payment per hour. (need to fix the field so it doesn't render a '$' by default) -->
 <form class="form-inline">
 	  <div class="form-group">
 	  	<%= f.label :price_string, '*Hourly Rate (in USD)', class: "col-sm-3 control-label" %>
@@ -128,7 +128,7 @@
 	  		</div>
 	  	</div>
 	  </div>
-
+<!-- About me -->
 	  <div class="form-group">
 	  	<%= f.label :about, "*About me: ", class: 'col-sm-3 control-label' %>
 	  	<div class="col-sm-9">
@@ -140,7 +140,7 @@
 		<div class="form-group">
 			<div class="col-sm-3 control-label"><p> <i> * Indicates a required field.</i></p></div>
 		</div>
-
+<!-- submit button -->
 	  <div class="form-group">
 		  <div class="col-sm-offset-3 col-sm-9">
 			  <button type="submit" name="commit" class="btn btn-lg btn-primary btn-block">Save it!</button>
