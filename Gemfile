@@ -32,7 +32,9 @@ gem 'mustache-js-rails'
 gem 'carrierwave'
 # gem 'rmagick', '~> 2.13.4'
 gem "mini_magick"
-
+  
+gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
