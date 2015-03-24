@@ -1,20 +1,17 @@
 <div class="col-sm-10 col-sm-offset-1">
-
+<br>
 	<div class="row">
-		<br>
-
-			<div class="col-sm-6 col-sm-offset-1">
-				<h1><br><%= @instructor.teacher.joined_fields :first_name, :last_name %></h1>
-			</div>
-			<div class="avatar col-sm-5">
-				<%= image_tag @instructor.avatar_url(:thumb) %>
-			
-
+		<div id="teacher-name" class="col-sm-6 col-sm-offset-1">
+			<h1><%= @instructor.teacher.joined_fields :first_name, :last_name %></h1>
+		</div>
+		<div class="avatar col-sm-5">
+			<%= image_tag @instructor.avatar_url(:thumb), class: "img-circle" %>
 		</div>
 	</div>
 
-	<br>
 
+	<br>
+<!-- Teacher info via dl elements -->
 	<div class="row">
 		<div class="teacher-fields panel panel-info">
 			<div class="panel-heading">
@@ -38,21 +35,22 @@
 					</dl>
 				</div>
 				<div class="col-sm-6">
-						<strong> <%= "#{@instructor.teacher.first_name.capitalize}'s Resume:" %> </strong>
-					<% if @instructor.document %>
+					<% if @instructor.document.blank? == false %>
 						<%= link_to @instructor.document_url, class: 'btn btn-primary btn-xs' do %>
 						<span class="glyphicon glyphicon-download-alt"></span> Download Resume
 						<% end %>
 						<% end %>
 
 						<% if @instructor.document.blank? == true %>
-						<i><%= "#{@instructor.teacher.first_name.capitalize} hasn't yet uploaded a resume"%></i>
+						<strong> <%= "#{@instructor.teacher.first_name.capitalize}'s Resume:" %> </strong>
+						<i><%= "#{@instructor.teacher.first_name.capitalize} hasn't yet uploaded a resume."%></i>
 					<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
 
+<!-- Teacher info via table element -->
 	<div class="row">
 		<div class="teacher-fields panel panel-info">
 			<div class="panel-heading">
@@ -69,7 +67,6 @@
 		          <th>Education Level</th>
 		          <th>Time Zone</th>
 		          <th>Price/Teaching Hour:</th>
-		          <th><%="#{@instructor.teacher.first_name.capitalize}'s Resume:"%></th>
 		        </tr>
 		      </thead>
 		      <tbody>
@@ -80,30 +77,31 @@
 			        <td><%= @instructor.education %></td>
 			        <td><%= @instructor.teacher.city_time_zone%></td>
 			        <td><%="#{@instructor.price.format} #{@instructor.price.currency}"%></td>
-			        <td>
-			          <% if @instructor.document %>
+			      </tr>
+		      </tbody>
+				</table>
+				  <% if @instructor.document.blank? == false %>
 									<%= link_to @instructor.document_url, class: 'btn btn-primary btn-xs' do %>
 										<span class="glyphicon glyphicon-download-alt"></span> Download Resume
 									<% end %>
 								<% end %>
 
 								<% if @instructor.document.blank? == true %>
-									<i><%= "#{@instructor.teacher.first_name.capitalize} hasn't yet uploaded a resume"%></i>
+					<strong><%="#{@instructor.teacher.first_name.capitalize}'s Resume:"%> </strong>
+									<i><%= "#{@instructor.teacher.first_name.capitalize} hasn't yet uploaded a resume."%></i>
 								<% end %>
-			        </td>
-			      </tr>
-		      </tbody>
-				</table>
-			</div>
+			</div> <!-- panel body -->
 		</div>
 	</div>
 				
-
-	<div class="about-teacher lead">
+	
+	<div class="about-teacher row">
 		<h3>About <%= @instructor.teacher.first_name.capitalize%>:</h3>
 		<p><%= @instructor.about%></p>
 	</div>
-
+	
+	<br>
+	
 	<% if @instructor.teacher == current_user %>
 		<%= link_to edit_instructor_url(@instructor), class: 'btn btn-info btn-sm' do %>
 		<i class="glyphicon glyphicon-plus"> </i> Edit your information
