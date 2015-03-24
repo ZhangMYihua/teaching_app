@@ -1,5 +1,5 @@
-
 <div class="col-sm-10 col-sm-offset-1">
+
 	<div class="row">
 		<div class="col-sm-11">
 			<div class="page-header">
@@ -9,109 +9,121 @@
 	</div>
 
 <!-- panel with dl-horizontal user info and edit button -->
-<div class="row">
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">Your info:</h3>
-		</div>
-	  <div class="panel-body">
-	    <dl class="dl-horizontal">
-		    <dt>First Name:</dt>
-		    <dd><%= @user.first_name.capitalize%></dd>
-		    <dt>Last Name:</dt>
-		    <dd><%=@user.last_name.capitalize %></dd>
-		    <dt>Current Time Zone:</dt>
-		    <dd><%=@user.city_time_zone %></dd>
-		  </dl>	
-			<div class="col-sm-offset-1">
-				<% if @user == current_user %>
-					<%= link_to edit_user_url(@user), class: 'btn btn-info btn-xs' do %>
-						<span class="glyphicon glyphicon-pencil"> </span> Edit this information
-					<% end %>
-				<% end %>
-			</div>
-	  </div>
-  </div>
-</div>
-
-<!-- Panel for calendar -->
-<div class="row">
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">My Bookings Calendar:</h3>
-		</div>
-	  <div class="panel-body">
-			<div class='student_calendar'>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- panel with table for bookings -->
-<div class="row">
-	<div id="timeslots">
-		<div class="panel panel-warning">
+	<div class="row">
+		<div class="panel panel-info">
 			<div class="panel-heading">
-			  <h3 class="panel-title"> Current Bookings: </h3>
+				<h3 class="panel-title">Your info:</h3>
 			</div>
-			<div class="panel-body">
-				<table class="table table-striped">
-		      <thead>
-		        <tr>
-			        <!-- <th>#</th> -->
-		          <th>Instructor's Name</th>
-		          <th>Subject</th>
-		          <th>Start Time</th>
-		          <th>End Time</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-			      <% if @user.bookings %>
-						  <% @user.bookings.each do |booking| %>
-						    <!-- <= render partial: 'bookings/booking', locals: {booking: booking} %> -->
-						    <div id="booking_<%= booking.id %>">
-								  <!-- <p><= booking.start_time %> to <= booking.end_time %> with <= booking.timeslot.instructor.teacher.name %> for <= booking.timeslot.instructor.subject_to_teach %>. </p> -->
-					        <tr>
-					          <!-- <th scope="row">add a number here: 1 ++ </th> -->
-					          <td><%= booking.timeslot.instructor.teacher.name %></td>
-					          <td><%= booking.timeslot.instructor.subject_to_teach %></td>
-					          <td><%= booking.start_time %></td>
-					          <td><%= booking.end_time %></td>
-					        </tr>
-								</div> 
-							  <% end %>
-						  <% else %>
-							 <i>You don't have any bookings currently</i>
-					  <% end %>
-		      </tbody>
-		    </table>
-			</div> 
+		  <div class="panel-body">
+		  	<div class="col-sm-6">
+			    <dl class="dl-horizontal">
+				    <dt>First Name:</dt>
+				    <dd><%= @user.first_name.capitalize%></dd>
+				    <dt>Last Name:</dt>
+				    <dd><%=@user.last_name.capitalize %></dd>
+				    <dt>Current Time Zone:</dt>
+				    <dd><%=@user.city_time_zone %></dd>
+				   <!--  <dt>Your Current Balance:</dt>
+				    <dd>$0.00</dd> -->
+				  </dl>	
+					<div class="col-sm-offset-1">
+						<% if @user == current_user %>
+							<%= link_to edit_user_url(@user), class: 'btn btn-info btn-xs' do %>
+								<span class="glyphicon glyphicon-pencil"> </span> Edit this information
+							<% end %>
+						<% end %>
+					</div>	
+		  	</div>
+		  	<div class="col-sm-6">
+	  		  <dl class="dl-horizontal">
+		  		  <dt>Your Current Balance:</dt>
+				    <dd>$0.00</dd>
+			    </dl>
+		  	</div>
+		  </div>
+	  </div>
+	</div>
+
+	<!-- Panel for calendar -->
+	<div class="row">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">My Bookings Calendar:</h3>
+			</div>
+		  <div class="panel-body">
+				<div class='student_calendar'>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-</div>
 
-	<script>
-	  $('.student_calendar').fullCalendar({
-	    header: {
-	      left: 'prev, next',
-	      center:'title',
-	      right: 'today,month,agendaWeek,agendaDay'
-	    },
-	    events: "/users/<%= @user.id %>/bookings",
-	    defaultView: "agendaWeek",
-	    timezone: "<%= current_user.city_time_zone%>",
-	    displayEventEnd: {
-	        month: true,
-	        basicWeek: true,
-	        "default": true
-	    },
-	    theme: true,
-	    views: {
-	        month: { // name of view
-	            titleFormat: 'YYYY, MM, DD'
-	            // other view-specific options here
-	        }
-	      }
-	    }); 
-	</script>
+	<!-- panel with table for bookings -->
+	<div class="row">
+		<div id="timeslots">
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+				  <h3 class="panel-title"> Current Bookings: </h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+			      <thead>
+			        <tr>
+				        <!-- <th>#</th> -->
+			          <th>Instructor's Name</th>
+			          <th>Subject</th>
+			          <th>Start Time</th>
+			          <th>End Time</th>
+			        </tr>
+			      </thead>
+			      <tbody>
+				      <% if @user.bookings %>
+							  <% @user.bookings.each do |booking| %>
+							    <!-- <= render partial: 'bookings/booking', locals: {booking: booking} %> -->
+							    <div id="booking_<%= booking.id %>">
+									  <!-- <p><= booking.start_time %> to <= booking.end_time %> with <= booking.timeslot.instructor.teacher.name %> for <= booking.timeslot.instructor.subject_to_teach %>. </p> -->
+									  <!-- @user.bookings.all do method booking.start_time and then order based on the earlier start time. -->
+						        <tr>
+						          <!-- <th scope="row"># </th> -->
+						          <td><%= booking.timeslot.instructor.teacher.name %></td>
+						          <td><%= booking.timeslot.instructor.subject_to_teach %></td>
+						          <td><%= booking.start_time %></td>
+						          <td><%= booking.end_time %></td>
+						        </tr>
+									</div> 
+								  <% end %>
+							  <% else %>
+								 <i>You don't have any bookings currently</i>
+						  <% end %>
+			      </tbody>
+			    </table>
+				</div> 
+			</div>
+		</div>
+	</div>
+
+</div> <!-- col-sm-10 col-sm-offset-1 -->
+
+<script>
+  $('.student_calendar').fullCalendar({
+    header: {
+      left: 'prev, next',
+      center:'title',
+      right: 'today,month,agendaWeek,agendaDay'
+    },
+    events: "/users/<%= @user.id %>/bookings",
+    defaultView: "agendaWeek",
+    timezone: "<%= current_user.city_time_zone%>",
+    displayEventEnd: {
+        month: true,
+        basicWeek: true,
+        "default": true
+    },
+    theme: true,
+    views: {
+        month: { // name of view
+            titleFormat: 'YYYY, MM, DD'
+            // other view-specific options here
+        }
+      }
+    }); 
+</script>

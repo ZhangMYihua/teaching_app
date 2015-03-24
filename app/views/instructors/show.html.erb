@@ -1,39 +1,107 @@
-	<div class="col-sm-10 col-sm-offset-1">
+<div class="col-sm-10 col-sm-offset-1">
 
 	<div class="row">
-		<div class="col-sm-11">
-			<div class="page-header">
+		<br>
+
+			<div class="col-sm-6 col-sm-offset-1">
+				<h1><br><%= @instructor.teacher.joined_fields :first_name, :last_name %></h1>
+			</div>
+			<div class="avatar col-sm-5">
+				<%= image_tag @instructor.avatar_url(:thumb) %>
 			
-		<div class="avatar">
-			<%= image_tag @instructor.avatar_url(:thumb) %>
+
 		</div>
+	</div>
+
+	<br>
+
+	<div class="row">
+		<div class="teacher-fields panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s info</h3>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-6">
+					<dl class="dl-horizontal">
+						<dt>From:</dt>
+						<dd><%= @instructor.country_of_origin %></dd>
+						<dt>First Language:</dt>
+						<dd><%= @instructor.first_language.capitalize %></dd>
+						<dt><%= @instructor.teacher.first_name.capitalize%> Teaches:</dt>
+						<dd><%= @instructor.subject_to_teach %></dd>
+						<dt>Education Level:</dt>
+						<dd><%= @instructor.education %></dd>
+						<dt>Time Zone:</dt>
+						<dd><%= @instructor.teacher.city_time_zone %></dd>
+						<dt>Price/Teaching Hour:</dt>
+						<dd><%= "#{@instructor.price.format} #{@instructor.price.currency}"%></dd>
+					</dl>
+				</div>
+				<div class="col-sm-6">
+						<strong> <%= "#{@instructor.teacher.first_name.capitalize}'s Resume:" %> </strong>
+					<% if @instructor.document %>
+						<%= link_to @instructor.document_url, class: 'btn btn-primary btn-xs' do %>
+						<span class="glyphicon glyphicon-download-alt"></span> Download Resume
+						<% end %>
+						<% end %>
+
+						<% if @instructor.document.blank? == true %>
+						<i><%= "#{@instructor.teacher.first_name.capitalize} hasn't yet uploaded a resume"%></i>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
 
-				<h1><%= @instructor.teacher.joined_fields :first_name, :last_name %></h1>
+	<div class="row">
+		<div class="teacher-fields panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s info</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped">
+		      <thead>
+		        <tr>
+			        <!-- <th>#</th> -->
+		          <th><%= @instructor.teacher.first_name.capitalize%>'s Origin</th>
+		          <th>First Language</th>
+		          <th><%= @instructor.teacher.first_name.capitalize%> Teaches</th>
+		          <th>Education Level</th>
+		          <th>Time Zone</th>
+		          <th>Price/Teaching Hour:</th>
+		          <th><%="#{@instructor.teacher.first_name.capitalize}'s Resume:"%></th>
+		        </tr>
+		      </thead>
+		      <tbody>
+			      <tr>
+			        <td><%= @instructor.country_of_origin %></td>
+			        <td><%= @instructor.first_language.capitalize %></td>
+			        <td><%= @instructor.subject_to_teach %></td>
+			        <td><%= @instructor.education %></td>
+			        <td><%= @instructor.teacher.city_time_zone%></td>
+			        <td><%="#{@instructor.price.format} #{@instructor.price.currency}"%></td>
+			        <td>
+			          <% if @instructor.document %>
+									<%= link_to @instructor.document_url, class: 'btn btn-primary btn-xs' do %>
+										<span class="glyphicon glyphicon-download-alt"></span> Download Resume
+									<% end %>
+								<% end %>
 
-	<div class="teacher-fields">
-		<p>
-			From: <strong> <%= @instructor.country_of_origin %> </strong> <br>
-			First Language: <strong><%= @instructor.first_language.capitalize %> </strong> <br>
-			Subject to teach: <strong><%= @instructor.subject_to_teach %></strong><br>
-			Education level: <strong><%= @instructor.education %></strong><br>
-			Time Zone: <strong><%= @instructor.teacher.city_time_zone %></strong> <br> <br>
-			Price per teaching hour: <%= "#{@instructor.price.format} #{@instructor.price.currency}" %> <br>
-			
-			<% if @instructor.document.blank? == false %>
-				<strong> <%= "#{@instructor.teacher.first_name.capitalize}'s Docs: " %> </strong>
-				<%= link_to "Download Resume", @instructor.document_url %>
-			<% else %>
-				<i><%= "No CV uploaded." %></i>
-			<% end %>
-		</p>
-
-		<div class="about-teacher lead">
-			<h3>About <%= @instructor.teacher.first_name.capitalize%>:</h3>
-			<p><%= @instructor.about%></p>
+								<% if @instructor.document.blank? == true %>
+									<i><%= "#{@instructor.teacher.first_name.capitalize} hasn't yet uploaded a resume"%></i>
+								<% end %>
+			        </td>
+			      </tr>
+		      </tbody>
+				</table>
+			</div>
 		</div>
+	</div>
+				
+
+	<div class="about-teacher lead">
+		<h3>About <%= @instructor.teacher.first_name.capitalize%>:</h3>
+		<p><%= @instructor.about%></p>
 	</div>
 
 	<% if @instructor.teacher == current_user %>
@@ -47,22 +115,23 @@
 	<% end %>
 
 
-<!-- Need to ensure current user is not the rendered instructors profile!!!!! -->
-<!-- need to fix this page! the calendar border is over the teacher's profile!! -->
-<% if current_user != nil %>
-	<div id="timeslots">
-		<% @instructor.timeslots.each do |timeslot| %>
-			<%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
+	<!-- Need to ensure current user is not the rendered instructors profile!!!!! -->
+	<!-- need to fix this page! the calendar border is over the teacher's profile!! -->
+	<% if current_user != nil %>
+		<div id="timeslots">
+			<% @instructor.timeslots.each do |timeslot| %>
+				<%= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
+			<% end %>
+	<% else %> 
+		<p><i> <%= link_to "Login", new_session_path %> to book a time with this teacher.</i></p>
+		</div>
 		<% end %>
-<% else %> 
-	<p><i> <%= link_to "Login", new_session_path %> to book a time with this teacher.</i></p>
-	</div>
-<% end %>
+
+	<div class='teacher_calendar'>
+	<% timezone = current_user.city_time_zone if current_user.present? %>
 	</div>
 
-<div class='teacher_calendar'>
-<% timezone = current_user.city_time_zone if current_user.present? %>
-</div>
+</div> <!-- col-sm-10 col-sm-offset-1  -->
 
 <script>
 	$('.teacher_calendar').fullCalendar({
@@ -124,8 +193,6 @@
 		}); 
 
 </script>
-
-
 
 	<!-- 
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
