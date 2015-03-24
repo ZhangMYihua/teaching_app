@@ -29,6 +29,12 @@ class Timeslot < ActiveRecord::Base
     end
   end  
 
+  def time_still_relevant
+    if end_time < Time.zone.now
+      self.destroy
+    end
+  end
+
   def mark_times_utc
     self.start_time = start_time.utc if start_time
     self.end_time = end_time.utc if end_time
