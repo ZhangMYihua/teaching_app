@@ -10,21 +10,22 @@
     </div>
   <% end %>
 
-	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
+<div class="row">
+	<div class="col-sm-9 col-sm-offset-1">
+	
 		<!-- display avatar if the user already has one. for the edit page -->
-			<div class="row">
-				<div class="col-sm-4 col-sm-offset-3">
-				  <div class="media">
-					  <div class="media-left">
-						  <% if @instructor.avatar? %> <br>
-						  <%= image_tag(@instructor.avatar_url(:thumb), class: 'img-responsive img-thumbnail')%>
-							<p><i>Your current image</i></p> <br>
-						<%end %>
-					  </div>
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-3">
+			  <div class="media">
+				  <div class="media-left">
+					  <% if @instructor.avatar? %> <br>
+					  <%= image_tag(@instructor.avatar_url(:thumb), class: 'img-responsive img-thumbnail')%>
+						<p><i>Your current image</i></p> <br>
+					<%end %>
 				  </div>
-				</div>
+			  </div>
 			</div>
+		</div>
 <!-- upload avatar -->
 	  <div class="form-group"> 
 	  	<%= f.label :avatar, "Upload a Profile Picture: ", class: 'col-sm-3 control-label' %>
