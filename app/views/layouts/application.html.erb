@@ -22,11 +22,12 @@
 
 <body id="body">
 	<%= render '/layouts/navbar' %>
+
 	<div class="container">
-	  <% if flash[:alert] %>
-	    <div><%= flash[:alert] %></div>
-	  <% end %>
-  <%= yield %>
+
+<%= render '/layouts/messages' %>
+
+	  <%= yield %>
 
   </div>
   
