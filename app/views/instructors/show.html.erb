@@ -106,7 +106,8 @@
 	</div> -->
 
 <!-- about teacher panel -->
-	<div class="about-teacher row">
+<div class="row">
+	<div class="about-teacher">
 		<div class="teacher-fields panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">About <%= @instructor.teacher.first_name.capitalize%>:</h3>
@@ -117,8 +118,12 @@
 		</div>
 	</div>
 	
-	<br>
 
+	<div id="timeslots">
+		<%= render 'timeslots/timeslotbeta' %>
+	</div>
+		
+</div>
 
 <!-- Need to ensure current user is not the rendered instructors profile!!!!! -->
 <!-- need to fix this page! the calendar border is over the teacher's profile!! -->
@@ -134,10 +139,12 @@
 		</div>
 		< end %> -->
 
-		<%= render 'timeslots/timeslotbeta' %>
 	
 
-
+<!-- <= link_to edit_instructor_url(@instructor), class: 'btn btn-info btn-sm' do %>
+	<i class="glyphicon glyphicon-plus"> </i> Edit your information
+< end %>
+ -->
 	<% if @instructor.teacher == current_user %>
 		<%= link_to edit_instructor_url(@instructor), class: 'btn btn-info btn-sm' do %>
 		<i class="glyphicon glyphicon-plus"> </i> Edit your information

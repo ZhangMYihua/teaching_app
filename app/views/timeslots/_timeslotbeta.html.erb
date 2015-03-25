@@ -1,47 +1,49 @@
-<div class="row">
-	<div id="timeslots">
-		<div class="panel panel-warning">
-			<div class="panel-heading">
-				<h3 class="panel-title">Available Timeslots</h3>
-			</div>
-			<div class="panel-body">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Start Time</th>
-							<th>End Time</th>
-							<th>Book</th>
-						</tr>
-					</thead>
-					<tbody>
-					<!-- < if current_user != nil %> --> 
-							<% @instructor.timeslots.each do |timeslot| %>
-								<div id="timeslot_<%= timeslot.id %>">
-									<tr>
-										<td><%= timeslot.start_time.in_time_zone %></td>
-										<td><%= timeslot.end_time.in_time_zone %></td>
-										<td>
-										  <% if current_user && @instructor.teacher != current_user %>
-											  <div id="booking_add_<%=timeslot.id%>">
-											    <%= link_to new_instructor_timeslot_booking_path(@instructor, timeslot), class: 'add_booking_link btn btn-success btn-sm', remote: true do %>
-											    		<i class="glyphicon glyphicon-plus"> </i>Book this Time!
-													<% end %>
-											  </div>
-											  <% elsif current_user && @instructor.teacher == current_user %>
-												  <%= link_to edit_instructor_url(@instructor), class: 'btn btn-info btn-sm' do %>
-														<i class="glyphicon glyphicon-plus"> </i> Edit your information
-														<% end %>
-												<% else %>
-													<i> <%= link_to "Login", new_session_path %> to book a time with this teacher.</i>
+
+
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h3 class="panel-title">Available Timeslots</h3>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Start Time</th>
+					<th>End Time</th>
+					<th>Book</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- < if current_user != nil %> --> 
+					<% @instructor.timeslots.each do |timeslot| %>
+						<div id="timeslot_<%= timeslot.id %>">
+							<tr>
+								<td><%= timeslot.start_time.in_time_zone %></td>
+								<td><%= timeslot.end_time.in_time_zone %></td>
+								<td>
+								  <% if current_user && @instructor.teacher != current_user %>
+									  <div id="booking_add_<%=timeslot.id%>">
+									    <%= link_to new_instructor_timeslot_booking_path(@instructor, timeslot), class: 'add_booking_link btn btn-success btn-sm', remote: true do %>
+									    		<i class="glyphicon glyphicon-plus"> </i>Book this Time!
 											<% end %>
-										</td>
-									</tr>
-								</div>   
-							<% end %>
-					<!-- < end %> if current_user isn't nil--> 
-					</tbody>
-				</table>
-			</div> <!-- panel-body -->
-		</div> <!-- panel -->
-	</div> <!-- #timeslots -->
-</div> <!-- row -->
+									  </div>
+									  <% else %>
+										<!-- 	<i> <= link_to "Login", new_session_path %> to book a time with this teacher.</i> -->
+											<button type="button" class="btn btn-sm btn-success" disabled="disabled"><span class="glyphicon glyphicon-plus"></span>Book this Time!</button>
+									<% end %>
+								</td>
+							</tr>
+						</div>   
+					<% end %>
+			<!-- < end %> if current_user isn't nil--> 
+			</tbody>
+		</table>
+	</div> <!-- panel-body -->
+	<% if !current_user %>
+		<div class="panel-footer">
+			<i>Please <%= link_to "Login", new_session_path %> or <%= link_to "Sign-up", new_user_path%> to book a time with this teacher.</i>
+		</div>
+	<% end %>
+</div> <!-- panel -->
+
+
