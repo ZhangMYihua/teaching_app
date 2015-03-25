@@ -18,9 +18,7 @@
 			      <tbody>
 				      <% if @user.bookings %>
 							  <% @user.bookings.each do |booking| %>
-							    <!-- <= render partial: 'bookings/booking', locals: {booking: booking} %> -->
 							    <div id="booking_<%= booking.id %>">
-									  <!-- <p><= booking.start_time %> to <= booking.end_time %> with <= booking.timeslot.instructor.teacher.name %> for <= booking.timeslot.instructor.subject_to_teach %>. </p> -->
 									  <!-- @user.bookings.all do method booking.start_time and then order based on the earlier start time. -->
 						        <tr>
 						          <!-- <th scope="row"># </th> -->
