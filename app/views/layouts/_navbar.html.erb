@@ -17,7 +17,7 @@
 			      <li><%= link_to "#{current_user.first_name.capitalize}'s Teacher Profile", instructor_path(current_user.instructor.id) %></li>
 				  <% end %>
 
-	      <% if current_user && !current_user.instructor %>
+	      <% if current_user %>
 			    <li><%= link_to "#{current_user.first_name.capitalize}'s Page", user_path(current_user) %> </li>
 			  <% end %>
 
