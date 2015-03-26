@@ -1,27 +1,26 @@
-<div class="col-sm-10 col-sm-offset-1">
-
-<!-- For having the avatar above the info panel -->
-
-<!-- 	<div class="row">
-		<div id="teacher-name" class="col-sm-6 col-sm-offset-1">
-			<h1><= @instructor.teacher.joined_fields :first_name, :last_name %></h1>
-		</div>
-		<div class="avatar col-sm-5">
-			<= image_tag @instructor.avatar_url(:thumb), class: "img-circle" %>
-		</div>
-	</div> -->
 
 <!-- teacher's name header -->
-	<div class="row">
-		<div class="col-sm-11">
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="col-sm-6">
 			<div class="page-header">
 				<p id="t-name-head"><%= @instructor.teacher.joined_fields :first_name, :last_name %></p>
 			</div>
 		</div>
+		<div class="col-sm-4 col-sm-offset-1 teacher-edit-button">
+			<% if @instructor.teacher == current_user %>
+				<%= link_to edit_instructor_url(@instructor), class: 'btn btn-info btn-xs' do %>
+				<i class="glyphicon glyphicon-plus"> </i> Edit your information
+				<% end %>
+			<% end %>
+		</div>
 	</div>
+</div>
+
 
 <!-- teacher's info panel -->
-	<div class="row">
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">	
 		<div class="teacher-fields panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s info</h3>
@@ -43,200 +42,129 @@
 						<dd><%= "#{@instructor.price.format} #{@instructor.price.currency}"%></dd>
 						<% if @instructor.document.blank? == true %>
 							<dt><%="#{@instructor.teacher.first_name.capitalize}'s Resume:" %></dt>
-							<dd><i class="text-info"><%= "#{@instructor.teacher.first_name.capitalize} hasn't yet uploaded a resume."%></i></dd>
+							<dd><i class="text-info"><%= "#{@instructor.teacher.first_name.capitalize} hasn't uploaded a resume yet."%></i></dd>
 						<% end %>
 					</dl>
 
-					<div class="resume-button col-sm-offset-1">
-						<% if @instructor.document.blank? == false %>
+					<% if @instructor.document.blank? == false %>
+						<div class="resume-button col-sm-offset-1">
 							<%= link_to @instructor.document_url, class: 'btn btn-primary btn-xs' do %>
 							<span class="glyphicon glyphicon-download-alt"></span> Download Resume
 							<% end %>
-							<% end %>
-					</div> <!-- resume button -->
-					<br>
+						</div> <!-- resume button -->
+						<br>
+					<% end %>
 				</div> <!-- col-sm-6 -->
 				<div class="avatar col-sm-5 col-sm-offset-1 col-xs-offset-2">
 					<%= image_tag @instructor.avatar_url(:thumb), class: "img-circle" %>
 				</div>
 			</div> <!-- panel body -->
 		</div> <!-- panel -->
-	</div> <!-- row -->
-
-	<br>
-
-<!-- Teacher info via dl elements: If we want to change back to having the avatar picture above the info panel.-->
-
-	<!-- <div class="row">
-		<div class="teacher-fields panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s info</h3>
-			</div>
-			<div class="panel-body">
-				<div class="col-sm-6">
-					<dl class="dl-horizontal">
-						<dt>From:</dt>
-						<dd><%= @instructor.country_of_origin %></dd>
-						<dt>First Language:</dt>
-						<dd><%= @instructor.first_language.capitalize %></dd>
-						<dt><%= @instructor.teacher.first_name.capitalize%> Teaches:</dt>
-						<dd><%= @instructor.subject_to_teach %></dd>
-						<dt>Education Level:</dt>
-						<dd><%= @instructor.education %></dd>
-						<dt>Time Zone:</dt>
-						<dd><%= @instructor.teacher.city_time_zone %></dd>
-						<dt>Price/Teaching Hour:</dt>
-						<dd><%= "#{@instructor.price.format} #{@instructor.price.currency}"%></dd>
-					</dl>
-				</div>
-				<div class="col-sm-6">
-					< if @instructor.document.blank? == false %>
-						<= link_to @instructor.document_url, class: 'btn btn-primary btn-xs' do %>
-						<span class="glyphicon glyphicon-download-alt"></span> Download Resume
-						< end %>
-						< end %>
-
-						< if @instructor.document.blank? == true %>
-						<strong> <%= "#{@instructor.teacher.first_name.capitalize}'s Resume:" %> </strong>
-						<i class="text-info"><%= "#{@instructor.teacher.first_name.capitalize} hasn't yet uploaded a resume."%></i>
-					< end %>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-<!-- about teacher panel -->
-<div class="row">
-	<div class="about-teacher">
-		<div class="teacher-fields panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">About <%= @instructor.teacher.first_name.capitalize%>:</h3>
-			</div>
-			<div class="panel-body">
-				<p class="lead text-primary"><%= @instructor.about%></p>
-			</div>
-		</div>
 	</div>
-	
+</div> <!-- row -->
 
-	<div id="timeslots">
-		<%= render 'timeslots/timeslotbeta' %>
-	</div>
-		
-</div>
-
-<!-- Need to ensure current user is not the rendered instructors profile!!!!! -->
-<!-- need to fix this page! the calendar border is over the teacher's profile!! -->
-
-
-<!-- 	< if current_user != nil %>
-		<div id="timeslots">
-			< @instructor.timeslots.each do |timeslot| %>
-				<= render partial: 'timeslots/timeslot', locals: {timeslot: timeslot} %>
-			< end %>
-	< else %> 
-		<p><i> <= link_to "Login", new_session_path %> to book a time with this teacher.</i></p>
-		</div>
-		< end %> -->
-
-	
-
-<!-- <= link_to edit_instructor_url(@instructor), class: 'btn btn-info btn-sm' do %>
-	<i class="glyphicon glyphicon-plus"> </i> Edit your information
-< end %>
- -->
-	<% if @instructor.teacher == current_user %>
-		<%= link_to edit_instructor_url(@instructor), class: 'btn btn-info btn-sm' do %>
-		<i class="glyphicon glyphicon-plus"> </i> Edit your information
-		<% end %>
-
-		<%= link_to new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true, class: 'btn btn-success btn-sm' do %>
-		<i class="glyphicon glyphicon-plus"></i> Select your Availability <br>
-		<% end %>
-	<% end %>
-
-
-
-
-
-
-	
 
 <!-- Teacher's Bookings Calendar -->
-	<div class="row">
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s Calendar:</h3>
 			</div>
-		  <div class="panel-body">
+			<div class="panel-body">
 				<div class='teacher_calendar'>
 					<% timezone = current_user.city_time_zone if current_user.present? %>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 
-</div> <!-- col-sm-10 col-sm-offset-1  -->
+<div class="row">
+<!-- about teacher panel -->
+	<div class="col-sm-5 col-sm-offset-1">
+		<div class="about-teacher">
+			<div class="teacher-fields panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">About <%= @instructor.teacher.first_name.capitalize%>:</h3>
+				</div>
+				<div class="panel-body">
+					<p class=" text-primary"><%= @instructor.about%></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Timeslot chart -->
+	<div class="col-sm-5">
+		<div id="timeslots">
+			<%= render 'timeslots/timeslotbeta' %>
+		</div>
+	</div>
+</div>
+	
+
+
+ <!-- col-sm-10 col-sm-offset-1  -->
 
 <script>
 	$('.teacher_calendar').fullCalendar({
-    
-    select: function( start, end, jsEvent, view ) {
-      console.log(start, end);
-    },
-
-    selectable: true,
 		
-    header: {
+		select: function( start, end, jsEvent, view ) {
+			console.log(start, end);
+		},
+
+		selectable: true,
+		
+		header: {
 			left: 'prev, next',
 			center:'title',
 			right: 'today,month,agendaWeek,agendaDay'
 		},
 		
-    eventSources: [
-      {
-        url: '/instructors/<%= @instructor.id %>/timeslots',
-        backgroundColor: '#6cf62c',
-        textColor: '#DDF4FF',
-        rendering: 'background',
-        borderColor: 'black',
-        className: 'instructor_availability'
-      },
-      
-      {
-        url: "/instructors/<%= @instructor.id %>/bookings",
-        textColor: '#000E15',
-        borderColor: 'black',
-        backgroundColor: '#9DD6F2'
-      }
-    ],
+		eventSources: [
+			{
+				url: '/instructors/<%= @instructor.id %>/timeslots',
+				backgroundColor: '#6cf62c',
+				textColor: '#DDF4FF',
+				rendering: 'background',
+				borderColor: 'black',
+				className: 'instructor_availability'
+			},
+			
+			{
+				url: "/instructors/<%= @instructor.id %>/bookings",
+				textColor: '#000E15',
+				borderColor: 'black',
+				backgroundColor: '#9DD6F2'
+			}
+		],
 
 		defaultView: "agendaWeek",
 		timezone: "<%= timezone %>",
 		// timezone: <= current_user.city_time_zone %>,
 		displayEventEnd: {
-        month: true,
-        basicWeek: true,
-        "default": true
-    },
+				month: true,
+				basicWeek: true,
+				"default": true
+		},
 
-    theme: true,
-    views: {
-        month: { // name of view
-            titleFormat: 'YYYY, MM, DD'
-            // other view-specific options here
-        }
-      },
+		theme: true,
+		views: {
+				month: { // name of view
+						titleFormat: 'YYYY, MM, DD'
+						// other view-specific options here
+				}
+			},
 
 		dayClick: function(calEvent, jsEvent, view) {
-     if (jsEvent.target.classList.contains('fc-bgevent')) {
-           $('#fullCalModal').modal({
-             backdrop: 'static'
-           });
-       }
-     }
-    });
+		 if (jsEvent.target.classList.contains('fc-bgevent')) {
+					 $('#fullCalModal').modal({
+						 backdrop: 'static'
+					 });
+			 }
+		 }
+		});
 
 </script>
 
@@ -249,7 +177,7 @@
 
 <% if current_user && current_user.instructor != nil %>
  <% teaching_approaching = current_user.instructor.bookings.any? do |booking|%>
-   <% Time.zone.now >= booking.start_time-15.minutes && Time.zone.now <= booking.end_time+10.minutes %>
+	 <% Time.zone.now >= booking.start_time-15.minutes && Time.zone.now <= booking.end_time+10.minutes %>
  <% end %>
 <% end %>
 
@@ -258,14 +186,14 @@
 
 	 <script>
 
-	   $('#render_video').click(function(){
-	      RTC();
-	   });
+		 $('#render_video').click(function(){
+				RTC();
+		 });
 
-	   $('#bookingModal').modal({
-	     backdrop: 'static',
-	     keyboard: false,
-	   });
+		 $('#bookingModal').modal({
+			 backdrop: 'static',
+			 keyboard: false,
+		 });
 
 	 </script>
 <% end %>
@@ -273,42 +201,39 @@
 
 <div id="bookingModal" class="modal fade">
  <div class="modal-dialog modal-lg">
-   <div class="modal-content">
-     <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-         <h4 id="modalTitle" class="modal-title"></h4>
-     </div>
-       <div id="modalBody" class="modal-body">
-
-         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-         <div class="pure-u-1-5">
-           <div id="l-video"></div>
-         </div>
-         <div class="pure-u-4-5" id="r-video"></div>
-         <script src="https://cdn.jsdelivr.net/rtc/latest/rtc.min.js"></script>
-
-       </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-   </div>
- </div>
+	 <div class="modal-content">
+		 <div class="modal-header">
+			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+				 <h4 id="modalTitle" class="modal-title"></h4>
+		 </div>
+		 <div id="modalBody" class="modal-body">
+			 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+			 <div class="pure-u-1-5">
+				 <div id="l-video"></div>
+			 </div>
+			 <div class="pure-u-4-5" id="r-video"></div>
+			 <script src="https://cdn.jsdelivr.net/rtc/latest/rtc.min.js"></script>
+		 </div>
+		 <div class="modal-footer">
+			 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		 </div>
+		</div>
+	</div>
 </div>
 
-<!-- </div> -->
-
 <div id="fullCalModal" class="modal fade">
- <div class="modal-dialog">
-   <div class="modal-content">
-     <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-         <h4 id="modalTitle" class="modal-title"></h4>
-     </div>
-       <div id="modalBody" class="modal-body">
-       </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           <button type="button" class="btn btn-primary">Make this Booking!</button>
-         </div>
-   </div>
- </div>
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		  <div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+				 <h4 id="modalTitle" class="modal-title"></h4>
+		  </div>
+			 <div id="modalBody" class="modal-body">
+			 </div>
+			 <div class="modal-footer">
+				 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				 <button type="button" class="btn btn-primary">Make this Booking!</button>
+			 </div>
+		</div>
+	</div>
 </div>
