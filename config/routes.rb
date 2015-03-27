@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 	
-  get 'pages/home'
-  get 'pages/contact'
-  get 'pages/about'
+  get '/home' => 'pages#home'
+  get '/contact' => 'pages#contact'
+  get '/about' => 'pages#about'
 
 # match 'logout' => 'sessions#destroy', :as => :logout
 
-  root 'instructors#index'
+  # root 'instructors#index'
+  root 'pages#home'
 
   get '/instructors/:id/bookings' => "instructors#bookings" 
   resources :instructors do
