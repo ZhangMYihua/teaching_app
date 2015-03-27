@@ -19,17 +19,9 @@
 			      <li><%= link_to "#{current_user.first_name.capitalize}'s Teacher Profile", instructor_path(current_user.instructor.id) %></li>
 				  <% end %>
 
-
-
-
-
 	      <% if current_user %>
 			    <li><%= link_to "#{current_user.first_name.capitalize}'s Page", user_path(current_user) %></li>
 			  <% end %>
-
-
-
-
 
 			  <% if current_user %>  
 			    <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
@@ -39,19 +31,17 @@
 				 <li><%= link_to "Login", new_session_path %></li>
 				<% end %>
 				
-
 				<% if !current_user %>
 				 <li><%= link_to "Sign up", new_user_path %></li>
 				<% end %>
 	      <li><%= link_to "About", about_path %> </li>
 
-	     <!--  <li><%= link_to "Contact", contact_path %> </li> -->
+	     <li><%= link_to "Contact", contact_path %> </li>
 	     
 	      <% if current_user && !current_user.instructor %>
 					  <li><%= link_to 'Wanna Teach?', new_instructor_path %></li>
 			  <% end %>
        </ul>
-
     </div>
   </div>   
 </nav>
