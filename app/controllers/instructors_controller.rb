@@ -27,6 +27,8 @@ class InstructorsController < ApplicationController
 
   def show
     @instructor = Instructor.find(params[:id])
+    @timeslots = @instructor.timeslots
+    # @booking = Booking.new
   end
 
   def new
