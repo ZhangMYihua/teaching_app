@@ -24,6 +24,7 @@ class Instructor < ActiveRecord::Base
 	mount_uploader :avatar, AvatarUploader
 	mount_uploader :document, DocumentUploader
 
+
 	
 	def price_string
 		price && price.format
