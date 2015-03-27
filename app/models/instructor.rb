@@ -37,4 +37,9 @@ class Instructor < ActiveRecord::Base
 		end
 	end
 	
+	def timeslot_for_booking
+		@timeslot = self.timeslots.all do |timeslot|
+			
+	end
+
 end

@@ -1,6 +1,6 @@
 class Booking < ActiveRecord::Base
 	belongs_to :timeslot
-	has_many :instructors, through: :timeslot
+	has_one :instructor, through: :timeslot
 	belongs_to :student, class_name: 'User'
 	before_validation :mark_times_utc
 
