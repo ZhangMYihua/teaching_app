@@ -17,7 +17,7 @@
 				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s info &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<% if @instructor.teacher == current_user %>
 				<%= link_to edit_instructor_url(@instructor), class: 'btn btn-info btn-xs' do %>
-				<span class="glyphicon glyphicon-pencil"> </span> Edit your information
+				<span class="glyphicon glyphicon-pencil"> </span> Edit Your Profile
 				<% end %>
 			<% end %></h3>
 			</div>
