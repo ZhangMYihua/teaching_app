@@ -123,7 +123,7 @@
 				url: '/instructors/<%= @instructor.id %>/timeslots',
 				backgroundColor: '#6cf62c',
 				textColor: '#DDF4FF',
-				rendering: 'background',
+				// rendering: 'background',
 				borderColor: 'black',
 				className: 'instructor_availability'
 			},
@@ -153,13 +153,11 @@
 				}
 			},
 
-		dayClick: function(calEvent, jsEvent, view) {
-		 if (jsEvent.target.classList.contains('fc-bgevent')) {
-					 $('#fullCalModal').modal({
+		eventClick: function(calEvent, jsEvent, view) {
+		 			 $('#fullCalModal_' + calEvent.id).modal({
 						 backdrop: 'static'
 					 });
 			 }
-		 }
 		});
 
 </script>
@@ -217,19 +215,34 @@
 	</div>
 </div>
 
-<div id="fullCalModal" class="modal fade">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-		  <div class="modal-header">
-			  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-				 <h4 id="modalTitle" class="modal-title"></h4>
-		  </div>
-			 <div id="modalBody" class="modal-body">
-			 </div>
-			 <div class="modal-footer">
-				 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				 <button type="button" class="btn btn-primary">Make this Booking!</button>
-			 </div>
-		</div>
-	</div>
+<% @timeslots.each do |timeslot| %>
+    <div class="modal fade" id="fullCalModal_<%= timeslot.id %>">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+              <h4 id="modalTitle" class="modal-title">Booking Form</h4>
+          </div>
+
+            <div class="modal-body">
+              <%= form_for([@instructor, timeslot, Booking.new], remote: true) do |f| %>
+                <div class="field">
+                  <%= f.label :start_time %>
+                  <%= f.datetime_select :start_time, discard_year: true, minute_step: 15, ampm: true %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :end_time %>
+                  <%= f.datetime_select :end_time, discard_year: true, minute_step: 15, ampm: true %>
+                </div>  
+
+            </div>
+            
+            <div class="modal-footer form-group">
+              <button type="submit" name="commit" class="btn btn-md btn-primary">Make this Booking!</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
 </div>
+<% end %>

@@ -27,6 +27,7 @@ class InstructorsController < ApplicationController
 
   def show
     @instructor = Instructor.find(params[:id])
+    @timeslots = @instructor.timeslots
   end
 
   def new
