@@ -224,25 +224,23 @@
               <h4 id="modalTitle" class="modal-title">Booking Form</h4>
           </div>
 
-            <div class="modal-body">
-              <%= form_for([@instructor, timeslot, Booking.new], remote: true) do |f| %>
-                <div class="field">
-                  <%= f.label :start_time %>
-                  <%= f.datetime_select :start_time, discard_year: true, minute_step: 15, ampm: true %>
-                </div>
+          <div class="modal-body">
+            <%= form_for([@instructor, timeslot, Booking.new], remote: true) do |f| %>
+              <div class="field">
+                <%= f.label :start_time %>
+                <%= f.datetime_select :start_time, discard_year: true, minute_step: 15, ampm: true %>
+              </div>
 
-                <div class="field">
-                  <%= f.label :end_time %>
-                  <%= f.datetime_select :end_time, discard_year: true, minute_step: 15, ampm: true %>
-                </div>  
-
-            </div>
-            
-            <div class="modal-footer form-group">
-              <button type="submit" name="commit" class="btn btn-md btn-primary">Make this Booking!</button>
-            </div>
-          <% end %>
+              <div class="field">
+                <%= f.label :end_time %>
+                <%= f.datetime_select :end_time, discard_year: true, minute_step: 15, ampm: true %>
+              </div>  
+          </div>
+          <div class="modal-footer form-group">
+            <button type="submit" name="commit" class="btn btn-md btn-primary">Make this Booking!</button>
+          </div>
+	          <% end %>
         </div>
       </div>
-</div>
+		</div>
 <% end %>

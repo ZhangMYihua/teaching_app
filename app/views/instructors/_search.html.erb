@@ -18,10 +18,12 @@
 </form>
 
 <!-- A Ruby version of the same code. Couldn't get it to display an empty value -->
-<!-- 
-<= form_tag instructors_path, :method => 'get' do %>
+
+<%= form_tag instructors_path, :method => 'get' do %>
 	<p>
-		<= select_tag(:subject_to_teach, options_for_select(["-- Search by Language: --", "English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese", "Russian", "French"], disabled: "-- Search by Language: --")) %>
-	  <= submit_tag "Search", :name => nil %>
+		<%= select_tag(:subject_to_teach, options_for_select(["-- Search by Language: --", "English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese", "Russian", "French"], disabled: "-- Search by Language: --")) %>
+	  <%= submit_tag "Search", :name => nil %>
 	</p>
-< end %> -->
+<% end %>
+
+
