@@ -20,7 +20,7 @@
 	print "|".green
 end
 
-languages = ["English", "Chinese", "French", "German", "Spanish", "Portugese", "Japanese", "Russian", "French"]
+languages = ["English", "Chinese", "French", "German", "Spanish", "Portuguese", "Japanese", "Russian", "French", "Arabic"]
 education_levels = ["Bachelor Degree", "Master Degree", "PhD", "Other"]
 
 50.times do 

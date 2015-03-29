@@ -15,4 +15,15 @@ class User < ActiveRecord::Base
   def name
   	[first_name.titleize, last_name.titleize].join(' ')
   end
+  
+  def double_booking?(requested_booking)
+    booking_time = requested_booking.timerange
+
+    no_double_booking = self.bookings.none? do |booking|
+      booking.timerange.overlap?(booking_time)
+    end
+    
+    no_double_booking
+  end
+
 end

@@ -15,13 +15,17 @@ class Booking < ActiveRecord::Base
 	private
 	def consistent
 		unless timeslot.is_available?(self)
-			# binding.pry
 			errors.add(:timeslot, "is unavailable for that booking")
 		end
-		
+
+		unless student.double_booking?(self)
+			errors.add(:booking, "is not available, you have another booking at that time")
+		end
+
 		if start_time > end_time
 			errors.add(:start_time, "Cannot be greater than the end time")
 		end
+
 	end
 
   def mark_times_utc
