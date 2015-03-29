@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/home' => 'pages#home'
   get '/contact' => 'pages#contact'
   get '/about' => 'pages#about'
+  get '/instructors/videochat' => 'instructors#videochat'
 
 # match 'logout' => 'sessions#destroy', :as => :logout
 

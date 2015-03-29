@@ -1,3 +1,15 @@
+<% if current_user %>
+	<% booking_approaching = current_user.bookings.any? do |booking|%>
+	 <% Time.zone.now >= booking.start_time-15.minutes && Time.zone.now <= booking.end_time+10.minutes %>
+	<% end %>
+<% end %>
+
+<% if current_user && current_user.instructor != nil %>
+ <% teaching_approaching = current_user.instructor.bookings.any? do |booking|%>
+	 <% Time.zone.now >= booking.start_time-15.minutes && Time.zone.now <= booking.end_time+10.minutes %>
+ <% end %>
+<% end %>
+
 <nav id="navbar3000" class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
 
@@ -14,6 +26,23 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+			
+      <% if booking_approaching || teaching_approaching %>
+	 <!-- <li id ='render_video' type="li" data-toggle="modal" data-target="#bookingModal"><= link_to "Start Your Lesson!" %></li>
+
+	 <script>	
+
+		 $('#render_video').click(function(){
+				RTC();
+		 });
+
+		 $('#bookingModal').modal({
+			 backdrop: 'static',
+			 keyboard: false,
+		 });
+
+	 </script> -->
+		<% end %>
 				<% if current_user %>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%="Signed in as: #{current_user.first_name.capitalize}"%><span class="caret"></span></a>
@@ -48,3 +77,26 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+
+<div id="bookingModal" class="modal fade">
+ <div class="modal-dialog modal-lg">
+	 <div class="modal-content">
+		 <div class="modal-header">
+			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+				 <h4 id="modalTitle" class="modal-title"></h4>
+		 </div>
+		 <div id="modalBody" class="modal-body">
+			 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+			 <div class="pure-u-1-5">
+				 <div id="l-video"></div>
+			 </div>
+			 <div class="pure-u-4-5" id="r-video"></div>
+			 <script src="https://cdn.jsdelivr.net/rtc/latest/rtc.min.js"></script>
+		 </div>
+		 <div class="modal-footer">
+			 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		 </div>
+		</div>
+	</div>
+</div>
