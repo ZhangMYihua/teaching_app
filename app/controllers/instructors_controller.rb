@@ -6,6 +6,11 @@ class InstructorsController < ApplicationController
   	else
 	    @instructors = Instructor.all.includes(:teacher)
 	  end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
   end
 
   def bookings

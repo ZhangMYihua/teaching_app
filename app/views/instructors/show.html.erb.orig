@@ -152,6 +152,12 @@
 		 			 	$('#fullCalModal_' + calEvent.id).modal('show');
 			 }
 		});
+<<<<<<< HEAD
+	$('#submit_booking').click(function(){
+		$('.modal').modal('hide');
+	});
+=======
+>>>>>>> 80f3bbb92fe796cd24affcdf43649d7bb83db047
 </script>
 
 <% if current_user %>
@@ -183,8 +189,12 @@
 	 </script>
 <% end %>
 
+<<<<<<< HEAD
 
 <div id="videoModal" class="modal fade">
+=======
+<div id="bookingModal" class="modal fade">
+>>>>>>> 80f3bbb92fe796cd24affcdf43649d7bb83db047
  <div class="modal-dialog modal-lg">
 	 <div class="modal-content">
 		 <div class="modal-header">
