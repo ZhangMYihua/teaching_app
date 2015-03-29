@@ -62,7 +62,11 @@
 	<div class="col-sm-10 col-sm-offset-1">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s Calendar:</h3>
+				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s Calendar:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% if @instructor.teacher == current_user %>
+				<%= link_to new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true, class: 'btn btn-success btn-xs' do %>
+					<span class="glyphicon glyphicon-plus"></span> Add New Timeslot <br>
+				<% end %>
+			<% end %></h3>
 			</div>
 			<div class="panel-body">
 				<div class='teacher_calendar'>
