@@ -6,4 +6,5 @@
   $('.add_booking_link').show();
   $('#new_booking').html("");
   $('.teacher_calendar').fullCalendar('refetchEvents');
+  $('#fullCalModal_<%= @booking.timeslot_id %>').modal('hide')
 <% end %>
