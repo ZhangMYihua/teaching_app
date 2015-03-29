@@ -1,8 +1,40 @@
+<% if current_user %>
+	<% booking_approaching = current_user.bookings.any? do |booking|%>
+	 <% Time.zone.now >= booking.start_time-15.minutes && Time.zone.now <= booking.end_time+10.minutes %>
+	<% end %>
+<% end %>
+
+<% if current_user && current_user.instructor != nil %>
+ <% teaching_approaching = current_user.instructor.bookings.any? do |booking|%>
+	 <% Time.zone.now >= booking.start_time-15.minutes && Time.zone.now <= booking.end_time+10.minutes %>
+ <% end %>
+<% end %>
+
 <!-- teacher's name header -->
 <div class="row">
 	<div class="col-sm-10 col-sm-offset-1">
 			<div class="page-header">
-				<p id="t-name-head"><%= @instructor.teacher.joined_fields :first_name, :last_name %></p>
+				<p id="t-name-head"><%= @instructor.teacher.joined_fields :first_name, :last_name %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% if booking_approaching || teaching_approaching %>
+				<%= link_to instructor_videochat_path(@instructor), class: "btn btn-warning btn-lg" do %>
+				<span class="glyphicon glyphicon-pencil"> </span> Go to your lesson!
+				<% end %>
+				<% end %>
+			
+	 <!-- <button id ='render_video' type="button" class="btn btn-warning" data-toggle="modal" data-target="#bookingModal">Click to Start Your Lesson!</button>
+
+	 <script>	
+
+		 $('#render_video').click(function(){
+				RTC();
+		 });
+
+		 $('#bookingModal').modal({
+			 backdrop: 'static',
+			 keyboard: false,
+		 });
+
+	 </script> -->
+</p>
 			</div>
 	</div>
 </div>
@@ -57,15 +89,16 @@
 	</div>
 </div> <!-- row -->
 
+
+
 <!-- Teacher's Bookings Calendar -->
 <div class="row">
 	<div class="col-sm-10 col-sm-offset-1">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><%= @instructor.teacher.first_name.capitalize%>'s Calendar:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% if @instructor.teacher == current_user %>
-				<%= link_to new_instructor_timeslot_path(@instructor), id:'add_availability_link', remote: true, class: 'btn btn-success btn-xs' do %>
-					<span class="glyphicon glyphicon-plus"></span> Add New Timeslot <br>
-				<% end %>
+				<button id='add_availability_link' class='btn btn-success btn-xs'> <span class="glyphicon glyphicon-plus"></span> Add New Timeslot </button>
+					 <br>
 			<% end %></h3>
 			</div>
 			<div class="panel-body">
@@ -76,6 +109,12 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$('#add_availability_link').click(function(){
+	$('#timeslotModal').modal('show');
+});
+</script>
 
 <div class="row">
 <!-- about teacher panel -->
@@ -112,7 +151,10 @@
 			center:'title',
 			right: 'today,month,agendaWeek,agendaDay'
 		},
-		
+
+
+// this is where I can change the color/style of the Calendar.		
+
 		eventSources: [
 			{
 				url: '/instructors/<%= @instructor.id %>/timeslots',
@@ -133,7 +175,6 @@
 
 		defaultView: "agendaWeek",
 		timezone: "<%= timezone %>",
-		// timezone: <= current_user.city_time_zone %>,
 		displayEventEnd: {
 				month: true,
 				basicWeek: true,
@@ -142,9 +183,8 @@
 
 		theme: true,
 		views: {
-				month: { // name of view
+				month: { 
 						titleFormat: 'YYYY, MM, DD'
-						// other view-specific options here
 				}
 			},
 
@@ -152,35 +192,10 @@
 		 			 	$('#fullCalModal_' + calEvent.id).modal('show');
 			 }
 		});
-<<<<<<< HEAD
-	$('#submit_booking').click(function(){
-		$('.modal').modal('hide');
-	});
-=======
->>>>>>> 80f3bbb92fe796cd24affcdf43649d7bb83db047
 </script>
 
-<% if current_user %>
-	<% booking_approaching = current_user.bookings.any? do |booking|%>
-	 <% Time.zone.now >= booking.start_time-15.minutes && Time.zone.now <= booking.end_time+10.minutes %>
-	<% end %>
-<% end %>
 
-<% if current_user && current_user.instructor != nil %>
- <% teaching_approaching = current_user.instructor.bookings.any? do |booking|%>
-	 <% Time.zone.now >= booking.start_time-15.minutes && Time.zone.now <= booking.end_time+10.minutes %>
- <% end %>
-<% end %>
-
-<% if booking_approaching || teaching_approaching %>
-	 <button id ='render_video' type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingModal">Start Your Lesson!</button>
-
-	 <script>
-
-		 $('#render_video').click(function(){
-				RTC();
-		 });
-
+<<<<<<< HEAD
 		 $('#videoModal').modal({
 			 backdrop: 'static',
 			 keyboard: false,
@@ -188,13 +203,10 @@
 
 	 </script>
 <% end %>
-
-<<<<<<< HEAD
+=======
+>>>>>>> 07017d42e12ae8821bb1c19eb3c409192e83ab03
 
 <div id="videoModal" class="modal fade">
-=======
-<div id="bookingModal" class="modal fade">
->>>>>>> 80f3bbb92fe796cd24affcdf43649d7bb83db047
  <div class="modal-dialog modal-lg">
 	 <div class="modal-content">
 		 <div class="modal-header">
@@ -248,4 +260,36 @@
 	    </div>
 	</div>
 <% end %>
+
+<div id="timeslotModal" class="modal fade">
+ <div class="modal-dialog modal-lg">
+	 <div class="modal-content">
+		 <div class="modal-header">
+			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+				 <h4 id="modalTitle" class="modal-title"></h4>
+		 </div>
+
+		 <div id="modalBody" class="modal-body">
+
+			<%= form_for([@instructor, Timeslot.new], remote: true) do |f| %>
+			 	<div class="field">
+			  <%= f.label :start_time %>
+			  <%= f.datetime_select :start_time, discard_year: true, minute_step: 15, ampm: true %>
+				</div>
+
+				<div class="field">
+				  <%= f.label :end_time %>
+				  <%= f.datetime_select :end_time, discard_year: true, minute_step: 15, ampm: true %>
+				</div>	
+
+		 </div>
+
+	 	  <div class="modal-footer form-group">
+	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      <button type="submit" name="commit" id='submit_booking' class="btn btn-md btn-primary">Make this Timeslot!</button>
+	    </div>
+    <% end %>
+		</div>
+	</div>
+</div>
 

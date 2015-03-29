@@ -49,8 +49,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 	gem 'favorite_things'
+<<<<<<< HEAD
+=======
 	gem 'better_errors'
 
+>>>>>>> 07017d42e12ae8821bb1c19eb3c409192e83ab03
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

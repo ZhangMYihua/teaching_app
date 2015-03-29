@@ -30,6 +30,9 @@ class InstructorsController < ApplicationController
     render json: results, each_serializer: InstructorbookingSerializer
   end
 
+  def videochat
+  	@instructor = Instructor.find(params[:id])
+  end
   def show
     @instructor = Instructor.find(params[:id])
     @timeslots = @instructor.timeslots
