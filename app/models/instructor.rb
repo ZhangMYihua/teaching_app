@@ -25,7 +25,11 @@ class Instructor < ActiveRecord::Base
 	mount_uploader :document, DocumentUploader
 
 
-	
+	def country_name
+		country = ISO3166::Country[@instructor.country_of_origin]
+    country.translations[I18n.locale.to_s] || country.name
+  end
+
 	def price_string
 		price && price.format
 	end
