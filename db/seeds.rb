@@ -14,8 +14,8 @@
     last_name: Faker::Name.last_name,
 		city_time_zone: Faker::Address.time_zone,
     email: Faker::Internet.email,
-    password: 'testing',
-    password_confirmation: 'testing'
+    password: '123123',
+    password_confirmation: '123123'
   ) 
 	print "|".green
 end
@@ -32,6 +32,7 @@ education_levels = ["Bachelor Degree", "Master Degree", "PhD", "Other"]
   	teacher_id: User.all.sample.id,
   	price_cents: rand(1000...4000),
   	about: Faker::Lorem.paragraphs(paragraph_count=3).join(" ")
+  	skype: Faker::Internet.user_name
 
     # price_currency: USD
 	)

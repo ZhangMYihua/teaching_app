@@ -1,3 +1,9 @@
+<!-- wrap this whole damn page in an if statement: if @instructor == current_user ooorrrrr 
+
+
+if @instructor.current_bookings.user == current_user -->
+
+
 <div class="col-sm-10 col-sm-offset-1">
 		<div class="page-header">
 			<h1>My Classroom</h1>
@@ -9,14 +15,14 @@
 <i class="text-info">You may need to enable this page to use your camera and mic.</i> 
 <% if current_user && current_user.instructor == nil %>
 <i class="text-info">Some browsers don't support this broswer chat. If this is the case for you, please contact your instructor on skype</i>
-<span class="glyphicon glyphicon-phone-alt">
+<!-- <span class="glyphicon glyphicon-phone-alt">
 
-   <a target="_blank" href=<%="skype: #{@instructor.skype}?chat"%>>
-              <!-- <i id="cbp-icon-widget-5518a5ff01ec1" class="fa fa-skype "></i> -->
+   <a target="_blank" href=<="skype: #{@instructor.skype}?chat"%>>
+
           </a>
       
-      </span>
-
+      </span> -->
+<a class="btn btn-primary btn-xs" href=<%="skype: #{@instructor.skype}?chat"%> role="button"><span class="glyphicon glyphicon-phone-alt"> </span>&nbsp;&nbsp;Open a Skype Call</a>
 
 <% end %>
 <script>

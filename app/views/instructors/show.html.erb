@@ -55,7 +55,11 @@
 				<div class="col-sm-6 col-xs-offset-2 col-sm-offset-0">
 					<dl class="dl-horizontal">
 						<dt>From:</dt>
-						<dd><%= @instructor.country_of_origin %></dd>
+						<% if @instructor.country_of_origin.length >= 4 %>
+							<dd> <%= @instructor.country_of_origin %> </dd> 
+						<%else %>
+							<dd><%= @instructor.country_name %></dd>
+						<% end %>
 						<dt>First Language:</dt>
 						<dd><%= @instructor.first_language.capitalize %></dd>
 						<dt><%= @instructor.teacher.first_name.capitalize%> Teaches:</dt>
