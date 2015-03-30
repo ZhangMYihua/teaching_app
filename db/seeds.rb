@@ -31,7 +31,7 @@ education_levels = ["Bachelor Degree", "Master Degree", "PhD", "Other"]
   	education: education_levels.sample,
   	teacher_id: User.all.sample.id,
   	price_cents: rand(1000...4000),
-  	about: Faker::Lorem.paragraphs(paragraph_count=3).join(" ")
+  	about: Faker::Lorem.paragraphs(paragraph_count=3).join(" "),
   	skype: Faker::Internet.user_name
 
     # price_currency: USD
