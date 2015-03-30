@@ -15,13 +15,7 @@ if @instructor.current_bookings.user == current_user -->
 <i class="text-info">You may need to enable this page to use your camera and mic.</i> 
 <% if current_user && current_user.instructor == nil %>
 <i class="text-info">Some browsers don't support this broswer chat. If this is the case for you, please contact your instructor on skype</i>
-<!-- <span class="glyphicon glyphicon-phone-alt">
 
-   <a target="_blank" href=<="skype: #{@instructor.skype}?chat"%>>
-
-          </a>
-      
-      </span> -->
 <a class="btn btn-primary btn-xs" href=<%="skype: #{@instructor.skype}?chat"%> role="button"><span class="glyphicon glyphicon-phone-alt"> </span>&nbsp;&nbsp;Open a Skype Call</a>
 
 <% end %>
