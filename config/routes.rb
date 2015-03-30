@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 	
-  get '/home' => 'pages#home'
+  # get '/home' => 'pages#home'
   get '/contact' => 'pages#contact'
   get '/about' => 'pages#about'
-  get '/instructors/videochat' => 'instructors#videochat'
+  # get '/instructors/lesson' => 'instructors#lesson'
+  get '/instructors/:id/lesson' => 'instructors#lesson'
 
 # match 'logout' => 'sessions#destroy', :as => :logout
 
