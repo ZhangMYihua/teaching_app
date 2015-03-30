@@ -17,6 +17,7 @@ gem 'bootstrap-sass'
 gem 'momentjs-rails'
 gem 'fullcalendar-rails'
 gem 'jquery-ui-themes', git: "https://github.com/fatdude/jquery-ui-themes-rails.git"
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

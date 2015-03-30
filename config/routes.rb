@@ -4,15 +4,17 @@ Rails.application.routes.draw do
   get '/contact' => 'pages#contact'
   get '/about' => 'pages#about'
   # get '/instructors/lesson' => 'instructors#lesson'
-  get '/instructors/:id/lesson' => 'instructors#lesson'
-
-# match 'logout' => 'sessions#destroy', :as => :logout
+	# match 'logout' => 'sessions#destroy', :as => :logout
 
   # root 'instructors#index'
   root 'pages#home'
 
-  get '/instructors/:id/bookings' => "instructors#bookings" 
   resources :instructors do
+  	member do
+  		get 'classroom'
+		  get 'bookings' 
+  	end
+  
     resources :timeslots, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :bookings, only: [:new, :create]
     end
@@ -44,12 +46,12 @@ Rails.application.routes.draw do
   # Example resource route with options:
   #   resources :products do
   #     member do
-  #       get 'short'
+  #       get 'short' # /products/5/short
   #       post 'toggle'
   #     end
   #
   #     collection do
-  #       get 'sold'
+  #       get 'sold' # /products/sold
   #     end
   #   end
 
