@@ -1,3 +1,19 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
 
 #body {
 	padding-top: 55px;
@@ -45,8 +61,16 @@
 }
 
 
-#footer {
-	padding-top:5px !important; padding-bottom:5px !important;}
-.navbar {min-height:32px !important
+// #footer {
+// 	padding-top:5px !important; padding-bottom:5px !important;}
+// .navbar {min-height:32px !important
+// }
 
-}
+// this doesn't work in instructors.scss for some reason.
+// #remoteVideos video {
+//   height: 300px;
+// }
+
+// #localVideo {
+//   height: 150px;
+// }
