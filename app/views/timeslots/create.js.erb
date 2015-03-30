@@ -7,4 +7,5 @@
   $('#timeslot_panel_body').prepend('<%= j render partial: 'timeslots/timeslot', locals: {timeslot: @timeslot} %>');
   $('#add_availability_link').show();
   $('.teacher_calendar').fullCalendar('refetchEvents');
+  $('#timeslotModal').modal('hide')
 <% end %>
