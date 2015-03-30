@@ -102,6 +102,10 @@
 			<% end %></h3>
 			</div>
 			<div class="panel-body">
+				<% if @instructor.timeslots.blank? %>
+					<i class="text-info">The teacher hasn't added any timeslots yet.</i>
+					<br><br>
+				<% end %>
 				<div class='teacher_calendar'>
 					<% timezone = current_user.city_time_zone if current_user.present? %>
 				</div>
@@ -131,11 +135,11 @@ $('#add_availability_link').click(function(){
 		</div>
 	</div>
 	<!-- Timeslot chart -->
-	<div class="col-sm-5">
+	<!-- <div class="col-sm-5">
 		<div id="timeslots">
-			<%= render 'timeslots/timeslotbeta' %>
+			<= render 'timeslots/timeslotbeta' %>
 		</div>
-	</div>
+	</div> -->
 </div>
 
  <!-- col-sm-10 col-sm-offset-1  -->
@@ -279,13 +283,13 @@ $('#add_availability_link').click(function(){
 		 <div id="modalBody" class="modal-body">
 
 			<%= form_for([@instructor, Timeslot.new], remote: true) do |f| %>
-			 	<div class="field">
-			  <%= f.label :start_time %>
-			  <%= f.datetime_select :start_time, discard_year: true, minute_step: 15, ampm: true %>
+			 	<div class="form-group">
+			  <%= f.label :start_time, class: "control-label" %>
+			  <%= f.datetime_select :start_time, discard_year: true, minute_step: 15, ampm: true, class: 'form-control' %>
 				</div>
 
-				<div class="field">
-				  <%= f.label :end_time %>
+				<div class="form-group">
+				  <%= f.label :end_time, class: "control-label" %>
 				  <%= f.datetime_select :end_time, discard_year: true, minute_step: 15, ampm: true %>
 				</div>	
 
