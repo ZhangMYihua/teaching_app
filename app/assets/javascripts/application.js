@@ -16,5 +16,4 @@
 //= require moment
 //= require fullcalendar
 //= require mustache
-//= require turbolinks
 //= require_tree .

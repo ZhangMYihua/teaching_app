@@ -15,9 +15,7 @@
 	<div class="col-sm-10 col-sm-offset-1">
 			<div class="page-header">
 				<p id="t-name-head"><%= @instructor.teacher.joined_fields :first_name, :last_name %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% if booking_approaching || teaching_approaching %>
-				<%= link_to instructor_videochat_path(@instructor), class: "btn btn-warning btn-lg" do %>
-				<span class="glyphicon glyphicon-pencil"> </span> Go to your lesson!
-				<% end %>
+				
 				<% end %>
 			
 	 <!-- <button id ='render_video' type="button" class="btn btn-warning" data-toggle="modal" data-target="#bookingModal">Click to Start Your Lesson!</button>
