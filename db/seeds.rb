@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-100.times do 
+120.times do 
 	User.create!(
   	username: Faker::Internet.user_name,
   	first_name: Faker::Name.first_name,
@@ -23,7 +23,7 @@ end
 languages = ["English", "Chinese", "French", "German", "Spanish", "Portuguese", "Japanese", "Russian", "Arabic"]
 education_levels = ["Bachelor Degree", "Master Degree", "PhD", "Other"]
 
-50.times do 
+60.times do 
 	Instructor.create!(
     country_of_origin: Faker::Address.country,
   	first_language: languages.sample,
