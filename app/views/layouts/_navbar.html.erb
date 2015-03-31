@@ -22,27 +22,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      <a href="/instructors" class="pull-left"><img id="logo" src="/assets/logo.jpg"></a>
       <%= link_to "Teachme", instructors_path, class: "navbar-brand" %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-
-			<!-- 
-      < if booking_approaching || teaching_approaching %>
-      < if teaching_approaching %>
-
-			 <li><= instructor_lesson_path(current_user.instructor.id)%></li>
-		< end %> -->
-
-<!-- 
-			< if booking_approaching %>
-			<li><= instructor_lesson_path(current_user.</li> 
-					how does the student get the instructor's id? through bookings? Shit. I'm too tired for this.-->
-<!-- 
-				< if current_user %>
-					<li><= link_to "Time for class!", classroom_instructor_path(current_user.instructor) %></li>
-					< end %>
-					 -->
+				<% if current_user %>
+					<% if current_user.bookings %>
+						<% b = current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now).take if current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now) %>
+							<% if b %>
+								<li><%= link_to "You Have a Class!", classroom_instructor_path(b.timeslot.instructor.id)%></li>
+							<% end %>
+					<% end %> 
+				<% end %>
 				 <% if current_user %>
 					<li><%= link_to "Instructors", instructors_path %></li>
 	        <li class="dropdown">
