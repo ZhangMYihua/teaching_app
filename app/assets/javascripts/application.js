@@ -15,5 +15,6 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require fullcalendar
+//= require bootstrap-datetimepicker
 //= require mustache
 //= require_tree .

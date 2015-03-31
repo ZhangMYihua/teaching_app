@@ -61,6 +61,22 @@ body {
 }
 
 
+@media all and (max-width: 992px) {
+	#paris-wide, #wet_street-wide, #temple-wide, #night_street_life-wide {
+		display: none;
+	}
+}	
+
+@media all and (min-width: 992px) {
+	#paris-tall, #wet_street-tall, #temple-tall, #night_street_life-tall {
+		display: none;
+	}
+}	
+// }
+// #lesson-nav {
+// 	text-color: blue;
+// }
+
 // #footer {
 // 	padding-top:5px !important; padding-bottom:5px !important;}
 // .navbar {min-height:32px !important

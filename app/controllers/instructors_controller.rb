@@ -30,9 +30,15 @@ class InstructorsController < ApplicationController
     render json: results, each_serializer: InstructorbookingSerializer
   end
 
-  def videochat
+  def classroom
   	@instructor = Instructor.find(params[:id])
+  	# if (current_user.instructor == @instructor)
+  	# 	render "classroom"
+  	# else
+  	# 	redirect_to "index"
+  	# end
   end
+
   def show
     @instructor = Instructor.find(params[:id])
     @timeslots = @instructor.timeslots
@@ -71,7 +77,13 @@ class InstructorsController < ApplicationController
 private
 
   def instructor_params
-    params.require(:instructor).permit(:avatar, :avatar_cache, :document, :document_cache, :country_of_origin, :first_language, :subject_to_teach, :education, :price_string, :about)
+    params.require(:instructor).permit(:avatar, :avatar_cache, :document, :document_cache, :country_of_origin, :skype, :first_language, :subject_to_teach, :education, :price_string, :about)
   end
+
+	# def instructor_booking?
+	# 	current_user.bookings.any? do |booking|
+	# 		booking.timeslot.instructor == Instructor.find(params[:id])
+	# 	end
+	# end 
 
 end

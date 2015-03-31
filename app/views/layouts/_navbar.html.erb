@@ -26,24 +26,25 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-			
-      <% if booking_approaching || teaching_approaching %>
-	 <!-- <li id ='render_video' type="li" data-toggle="modal" data-target="#bookingModal"><= link_to "Start Your Lesson!" %></li>
 
-	 <script>	
+			<!-- 
+      < if booking_approaching || teaching_approaching %>
+      < if teaching_approaching %>
 
-		 $('#render_video').click(function(){
-				RTC();
-		 });
+			 <li><= instructor_lesson_path(current_user.instructor.id)%></li>
+		< end %> -->
 
-		 $('#bookingModal').modal({
-			 backdrop: 'static',
-			 keyboard: false,
-		 });
-
-	 </script> -->
-		<% end %>
-				<% if current_user %>
+<!-- 
+			< if booking_approaching %>
+			<li><= instructor_lesson_path(current_user.</li> 
+					how does the student get the instructor's id? through bookings? Shit. I'm too tired for this.-->
+<!-- 
+				< if current_user %>
+					<li><= link_to "Time for class!", classroom_instructor_path(current_user.instructor) %></li>
+					< end %>
+					 -->
+				 <% if current_user %>
+					<li><%= link_to "Instructors", instructors_path %></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%="Signed in as: #{current_user.first_name.capitalize}"%><span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
@@ -55,10 +56,11 @@
 		            <li class="dropdown-header">Teacher links</li>
 					      <li><%= link_to "#{current_user.first_name.capitalize}'s Teacher Profile", instructor_path(current_user.instructor.id) %></li>
 					      <li><%= link_to "Edit Teacher Profile", edit_instructor_url(current_user.instructor.id) %></li>
+
+					      <li><%= link_to "My Classroom",classroom_instructor_path(current_user.instructor.id)%></li>
 						  <% end %>
 	            <li class="divider"></li>
 	            <li><%= link_to "Logout", session_path("current"), :method => :delete %></li>
-
 	          </ul>
 	        </li>
         <% end %>

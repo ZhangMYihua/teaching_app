@@ -11,14 +11,16 @@
 <% end %>
 
 <!-- teacher's name header -->
+<!-- thing doesn't work. booking button -->
 <div class="row">
 	<div class="col-sm-10 col-sm-offset-1">
 			<div class="page-header">
-				<p id="t-name-head"><%= @instructor.teacher.joined_fields :first_name, :last_name %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% if booking_approaching || teaching_approaching %>
-				<%= link_to instructor_videochat_path(@instructor), class: "btn btn-warning btn-lg" do %>
+				<p id="t-name-head"><%= @instructor.teacher.joined_fields :first_name, :last_name %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- s< if booking_approaching || teaching_approaching %>
+				<= link_to instructor_lesson_path(@instructor), class: "btn btn-warning btn-lg" do %>
 				<span class="glyphicon glyphicon-pencil"> </span> Go to your lesson!
-				<% end %>
-				<% end %>
+				< end %>
+				< end %>d -->
 			
 	 <!-- <button id ='render_video' type="button" class="btn btn-warning" data-toggle="modal" data-target="#bookingModal">Click to Start Your Lesson!</button>
 
@@ -55,7 +57,11 @@
 				<div class="col-sm-6 col-xs-offset-2 col-sm-offset-0">
 					<dl class="dl-horizontal">
 						<dt>From:</dt>
-						<dd><%= @instructor.country_of_origin %></dd>
+						<% if @instructor.country_of_origin.length >= 4 %>
+							<dd> <%= @instructor.country_of_origin %> </dd> 
+						<%else %>
+							<dd><%= @instructor.country_name %></dd>
+						<% end %>
 						<dt>First Language:</dt>
 						<dd><%= @instructor.first_language.capitalize %></dd>
 						<dt><%= @instructor.teacher.first_name.capitalize%> Teaches:</dt>
@@ -102,6 +108,10 @@
 			<% end %></h3>
 			</div>
 			<div class="panel-body">
+				<% if @instructor.timeslots.blank? %>
+					<i class="text-info">The teacher hasn't added any timeslots yet.</i>
+					<br><br>
+				<% end %>
 				<div class='teacher_calendar'>
 					<% timezone = current_user.city_time_zone if current_user.present? %>
 				</div>
@@ -131,11 +141,11 @@ $('#add_availability_link').click(function(){
 		</div>
 	</div>
 	<!-- Timeslot chart -->
-	<div class="col-sm-5">
+	<!-- <div class="col-sm-5">
 		<div id="timeslots">
-			<%= render 'timeslots/timeslotbeta' %>
+			<= render 'timeslots/timeslotbeta' %>
 		</div>
-	</div>
+	</div> -->
 </div>
 
  <!-- col-sm-10 col-sm-offset-1  -->
@@ -195,7 +205,16 @@ $('#add_availability_link').click(function(){
 </script>
 
 
-<<<<<<< HEAD
+
+<% if booking_approaching || teaching_approaching %>
+	 <button id ='render_video' type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingModal">Start Your Lesson!</button>
+
+	 <script>
+
+		 $('#render_video').click(function(){
+				RTC();
+		 });
+
 		 $('#videoModal').modal({
 			 backdrop: 'static',
 			 keyboard: false,
@@ -203,8 +222,6 @@ $('#add_availability_link').click(function(){
 
 	 </script>
 <% end %>
-=======
->>>>>>> 07017d42e12ae8821bb1c19eb3c409192e83ab03
 
 <div id="videoModal" class="modal fade">
  <div class="modal-dialog modal-lg">
@@ -261,6 +278,8 @@ $('#add_availability_link').click(function(){
 	</div>
 <% end %>
 
+
+<!-- Timeslot modal -->
 <div id="timeslotModal" class="modal fade">
  <div class="modal-dialog modal-lg">
 	 <div class="modal-content">

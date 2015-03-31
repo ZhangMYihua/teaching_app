@@ -18,8 +18,8 @@
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
 		    <div class="item active">
-		      <!-- <img src="//placehold.it/1024x700" width="100%" alt="..."> -->
-		      <%= link_to image_tag("paris550.jpg", :width =>"100%", :alt => "Slide1"), {:class => "img-responsive", :id => "paris", :alt => "Responsive image"} %>
+		      <img id="paris-wide"class="img-responsive slider-wide" width="100%" alt="Paris" src="/assets/paris550.jpg">
+		      <img id="paris-tall"class="img-responsive slider-tall" width="100%" alt="Paris" src="/assets/paris.jpg">
 			      <div class="carousel-caption middle">
 				      <div class="slider-text">
 				        <h1>Welcome to Teachme!</h1>
@@ -27,8 +27,10 @@
 						  </div>
 			      </div>
 		    </div>
+
 		    <div class="item">
-		    	<%= link_to image_tag("wet_street550.jpg", :width =>"100%", :alt => "Slide2"), {:class => "img-responsive", :alt => "Responsive image"} %>
+			    <img id="wet_street-wide"class="img-responsive slider-wide" width="100%" alt="wet_street" src="/assets/wet_street550.jpg">
+		      <img id="wet_street-tall"class="img-responsive slider-tall" width="100%" alt="wet_street" src="/assets/wet_street.jpg">
 			    	<div class="carousel-caption middle">
 				    	<div class="slider-text">
 				    		<h1>You're in Good Hands!</h1>
@@ -37,8 +39,10 @@
 		    		  <p><a class="btn btn-primary btn-lg" href="/instructors" role="button">See our Teachers</a></p>
 			    	</div>
 		    </div>
+
 		    <div class="item">
-		    	<%= link_to image_tag("temple550.jpg", :width =>"100%", :alt => "Slide3"), {:class => "img-responsive", :alt => "Responsive image"} %>
+			    <img id="temple-wide"class="img-responsive slider-wide" width="100%" alt="temple" src="/assets/temple550.jpg">
+		      <img id="temple-tall"class="img-responsive slider-tall" width="100%" alt="temple" src="/assets/temple.jpg">
 			    	<div class="carousel-caption middle">
 				    	<div class="slider-text">
 				    		<h1>Sign Up!</h1>
@@ -47,8 +51,11 @@
 			    		<p><a class="btn btn-primary btn-lg" href="/users/new" role="button">Sign Up</a></p>
 			    	</div>
 		    </div>
+
 		    <div class="item">
-		    	<%= link_to image_tag("night_street_life550.jpg", :width =>"100%", :alt => "Slide4"), {:class => "img-responsive", :alt => "Responsive image"} %>
+			    <img id="night_street_life-wide"class="img-responsive slider-wide" width="100%" alt="night_street_life" src="/assets/night_street_life550.jpg">
+		      <img id="night_street_life-tall"class="img-responsive slider-tall" width="100%" alt="night_street_life" src="/assets/night_street_life.jpg">
+		  
 		    	<div class="carousel-caption middle">
 				    	<div class="slider-text">
 				    		<h1>Curious?</h1>

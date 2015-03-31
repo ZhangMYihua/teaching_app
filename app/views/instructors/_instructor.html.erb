@@ -5,7 +5,11 @@
       <%=  instructor.teacher.name.titleize %>
     </h4>
     <p class="text-info">
-      From: <%= instructor.country_of_origin %> <br>
+	    <% if instructor.country_of_origin.length >= 4 %>
+				From: <%= instructor.country_of_origin %> <br>
+				<% else %>
+				From: <%= instructor.country_name %> <br>
+			<% end %>
       Teaches: <%= instructor.subject_to_teach %> <br>
       Education level: <%= instructor.education %> <br>
       $<%= instructor.price %>
