@@ -1,15 +1,3 @@
-<!-- wrap this whole damn page in an if statement: if @instructor == current_user ooorrrrr 
-
-if @instructor.current_bookings.user == current_user -->
-
-<!-- 
-< if current_user.bookings %>
-	< b = current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now).take %>
-
-	< if current_user %>
-		< if current_user.bookings %>
-		 < if current_user.bookings == this_booking %>
- -->
 
  <% if current_user %>
  	<% if current_user.instructor %>
@@ -20,9 +8,7 @@ if @instructor.current_bookings.user == current_user -->
 							<h1>My Classroom</h1>
 						</div>	
 					</div>
-				<!-- 
-				<video id="localVideo"></video>
-				<div id="remoteVideos"></div> -->
+			
 					<div class="row">
 
 						<div class="col-md-8">
@@ -94,9 +80,8 @@ if @instructor.current_bookings.user == current_user -->
 								<h1>My Classroom</h1>
 							</div>	
 						</div>
-							<!-- 
-							<video id="localVideo"></video>
-							<div id="remoteVideos"></div> -->
+							
+							
 								<div class="row">
 
 									<div class="col-md-8">
@@ -154,5 +139,5 @@ if @instructor.current_bookings.user == current_user -->
 		<p>you don't have a booking</p>
 	<% end %>
 	<% else %>
-	<p>your not signed in.</p>
+	<p>you're not signed in.</p>
 <% end %>
