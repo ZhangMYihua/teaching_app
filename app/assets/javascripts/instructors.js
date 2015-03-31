@@ -8,10 +8,10 @@ var distance = 40;
 var speed = 24;
 function autoScrollTo(el) {
   var currentY = window.pageYOffset;
-  var targetY = document.getElementById(el).offsetTop;
+  var targetY = document.getElementById(el).offsetTop + 300;
   var bodyHeight = document.body.offsetHeight;
   var yPos = currentY + window.innerHeight;
-  var animator = setTimeout('autoScrollTo(\''+el+'\')',24);
+  var animator = setTimeout('autoScrollTo(\''+el+'\')', speed);
   if(yPos > bodyHeight){
     clearTimeout(animator);
   } else {
@@ -23,6 +23,8 @@ function autoScrollTo(el) {
       }
   }
 }
+
+$('#all-teachers-button')
 
 
 $(document).on('ready page:load', function() {
