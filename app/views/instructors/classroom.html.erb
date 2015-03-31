@@ -1,13 +1,13 @@
+				<div class="col-sm-10 col-sm-offset-1">
+					<div class="row">
+						<div class="page-header">
+							<h1><%=@instructor.teacher.first_name.capitalize%>'s Classroom</h1>
+						</div>	
+					</div>
 
  <% if current_user %>
  	<% if current_user.instructor %>
 	 	<% if current_user.instructor == @instructor %>
-				<div class="col-sm-10 col-sm-offset-1">
-					<div class="row">
-						<div class="page-header">
-							<h1>My Classroom</h1>
-						</div>	
-					</div>
 			
 					<div class="row">
 						<div class="col-md-8">
@@ -70,12 +70,12 @@
 		<% b = current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now).take if current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now) %>
 			<% if b %>
 				<% if b.timeslot.instructor == @instructor %>
-					<div class="col-sm-10 col-sm-offset-1">
+				<!-- 	<div class="col-sm-10 col-sm-offset-1">
 						<div class="row">
 							<div class="page-header">
 								<h1>My Classroom</h1>
 							</div>	
-						</div>
+						</div> -->
 							
 							
 								<div class="row">
