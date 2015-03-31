@@ -85,15 +85,15 @@ if @instructor.current_bookings.user == current_user -->
 <% if current_user %>
 	<% if current_user.bookings %>
 		<% b = current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now).take if current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now) %>
-			<!-- s< b = current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now).take %> -->
+			
 			<% if b %>
 				<% if b.timeslot.instructor == @instructor %>
 					<div class="col-sm-10 col-sm-offset-1">
-								<div class="row">
-									<div class="page-header">
-										<h1>My Classroom</h1>
-									</div>	
-								</div>
+						<div class="row">
+							<div class="page-header">
+								<h1>My Classroom</h1>
+							</div>	
+						</div>
 							<!-- 
 							<video id="localVideo"></video>
 							<div id="remoteVideos"></div> -->
@@ -145,11 +145,11 @@ if @instructor.current_bookings.user == current_user -->
 								</div>
 							</div>
 							<% else %>
-							<p>your booking is not with this instructor</p>
-			<% end %>
+								<p>your booking is not with this instructor</p>
+							<% end %>
 			<% else %>
-			<p> your booking is not at this time</p>
-		<% end %>
+				<p> your booking is not at this time</p>
+			<% end %>
 		<% else %>
 		<p>you don't have a booking</p>
 	<% end %>

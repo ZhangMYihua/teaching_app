@@ -32,8 +32,13 @@ class InstructorsController < ApplicationController
 
   def classroom
   	@instructor = Instructor.find(params[:id])
+  	# if (current_user.instructor == @instructor)
+  	# 	render "classroom"
+  	# else
+  	# 	redirect_to "index"
+  	# end
   end
-  
+
   def show
     @instructor = Instructor.find(params[:id])
     @timeslots = @instructor.timeslots

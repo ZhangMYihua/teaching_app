@@ -1,14 +1,17 @@
-# class Booker
-# 	def initialize(booker)
-# 		@booker = booker
-# 	end
+class Booker
+	def initialize(booker)
+		@booker = booker
+	end
 
-# 	def instructor_booking?
-# 		@booker.bookings.any? do |booking|
-# 			booking.timeslot.instructor == Instructor.find()
-# 		end
-# 	end 
+	def instructor_booking?
+		@booker.bookings.any? do |booking|
+			booking.timeslot.instructor == Instructor.find()
+		end
+	end 
 
+	def is_instructor_for_class?
+ 		current_user && current_user.instructor == @instructor 
+	end
 
 # 	<% current_user.bookings.any? do |booking| %>
 # 	<% booking.timeslot.instructor == @instructor %>
@@ -24,4 +27,4 @@
 
 
 
-# end
+end
