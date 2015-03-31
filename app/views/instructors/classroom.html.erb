@@ -46,21 +46,21 @@
 					</div>
 
 					<div class="row">
-						<i class="text-info">You may need to enable this page to use your camera and mic.</i> 
+						<i class="text-info">You may need to enable this page to use your camera and mic. Look in the address bar.</i> 
 
-							<i class="text-info">Some browsers don't support this broswer chat. If this is the case for you, please contact your instructor on skype</i>
+							<!-- <i class="text-info">Some browsers don't support browser chat. If this is the case for you, please contact your instructor on skype</i>
 
-							<a class="btn btn-primary btn-xs" href=<%="skype: #{@instructor.skype}?chat"%> role="button"><span class="glyphicon glyphicon-phone-alt"> </span>&nbsp;&nbsp;Open a Skype Call</a>
+							<a class="btn btn-info btn-xs" href=<="skype: #{@instructor.skype}?chat"%> role="button"><span class="glyphicon glyphicon-phone-alt"> </span>&nbsp;&nbsp;Open a Skype Call</a> -->
 					</div>
 				</div>
-		<% else %>
-		<p> You are not the instructor of this classroom.</p>
+		<!-- < else %> -->
+		<!-- <p> You are not the instructor of this classroom.</p> -->
 		<% end %>
-		<% else %>
-		<p>You do not have a booking with this instructor.</p>
+		<!-- < else %> -->
+		<!-- <p>You do not have a booking with this instructor.</p> -->
 		<% end %>
-		<% else %>
-		<p>You are not signed in.</p>
+		<!-- < else %> -->
+		<!-- <p>You are not signed in.</p> -->
 		<% end %>
 
 
@@ -68,7 +68,6 @@
 <% if current_user %>
 	<% if current_user.bookings %>
 		<% b = current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now).take if current_user.bookings.where('(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)' , Time.zone.now + 15.minutes, Time.zone.now, Time.zone.now, Time.zone.now) %>
-			
 			<% if b %>
 				<% if b.timeslot.instructor == @instructor %>
 					<div class="col-sm-10 col-sm-offset-1">
@@ -117,22 +116,22 @@
 								</div>
 
 								<div class="row">
-									<i class="text-info">You may need to enable this page to use your camera and mic.</i> 
+									<i class="text-info">You may need to enable this page to use your camera and mic. Look in the address bar.</i> 
 
-										<i class="text-info">Some browsers don't support this broswer chat. If this is the case for you, please contact your instructor on skype</i>
+										<i class="text-info">Some browsers don't support browser chat. If this is the case for you, please contact your instructor on skype:</i>
 
-										<a class="btn btn-primary btn-xs" href=<%="skype: #{@instructor.skype}?chat"%> role="button"><span class="glyphicon glyphicon-phone-alt"> </span>&nbsp;&nbsp;Open a Skype Call</a>
+										<a class="btn btn-info btn-xs" href=<%="skype:#{@instructor.skype}?chat"%> role="button"><span class="glyphicon glyphicon-phone-alt"> </span>&nbsp;&nbsp;Open a Skype Call</a>
 								</div>
 							</div>
-							<% else %>
-								<p>your booking is not with this instructor</p>
+							<!-- < else %> -->
+								<!-- <i>your booking is not with this instructor</i> -->
 							<% end %>
-			<% else %>
-				<p> your booking is not at this time</p>
+			<!-- < else %> -->
+				<!-- <p> your booking is not at this time</p> -->
 			<% end %>
-		<% else %>
-		<p>you don't have a booking</p>
+		<!-- < else %> -->
+		<!-- <p>you don't have a booking</p> -->
 	<% end %>
-	<% else %>
-	<p>you're not signed in.</p>
+	<!-- < else %> -->
+	<!-- <p>you're not signed in.</p> -->
 <% end %>

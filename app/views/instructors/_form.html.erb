@@ -103,14 +103,11 @@
 							<%= f.radio_button(:education, "PhD") %> PhD
 						</label>
 					</div>
-<!-- This text input radio button needs fixing up. It can be written in without automatically selecting the button component. Untested as of mar 22 if it actually submits -->
-
-					<div class="input-group">
-						<span class="input-group-addon">
-							<%= f.radio_button(:education, "") %>
-						</span>
-							<!-- <= f.label(:education_other, "Other") %> -->
-						<%= f.text_field :education, class: 'form-control', placeholder: "Other" %>
+					<div class="radio">
+						<!-- <= f.label(:education_phd, "PhD") %> -->
+						<label>
+							<%= f.radio_button(:education, "Other") %> Other
+						</label>
 					</div>
 				</div>
     	</div>
