@@ -13,7 +13,7 @@ var distance = 40;
 var speed = 24;
 function autoScrollTo(el) {
   var currentY = window.pageYOffset;
-  var targetY = document.getElementById(el).offsetTop + 200;
+  var targetY = document.getElementById(el).offsetTop + 700;
   var bodyHeight = document.body.offsetHeight;
   var yPos = currentY + window.innerHeight;
   var animator = setTimeout('autoScrollTo(\''+el+'\')', speed);
