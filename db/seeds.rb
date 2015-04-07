@@ -17,7 +17,7 @@
     password: '123123',
     password_confirmation: '123123'
   ) 
-	print "|".green
+	# print "|".green
 end
 
 languages = ["English", "Chinese", "French", "German", "Spanish", "Portuguese", "Japanese", "Russian", "Arabic"]
@@ -36,7 +36,7 @@ education_levels = ["Bachelor Degree", "Master Degree", "PhD", "Other"]
 
     # price_currency: USD
 	)
-	print "|".yellow
+	# print "|".yellow
 end
 
 # 100.times do
