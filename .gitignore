@@ -17,3 +17,6 @@
 /tmp
 
 /public/uploads/
+
+/config/application.yml
+/config/secrets.yml
